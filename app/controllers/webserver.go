@@ -3,6 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/tetsuzawa/go-3daudio/app/models"
 	"github.com/tetsuzawa/go-3daudio/config"
 	"html/template"
 	"log"
@@ -50,16 +51,23 @@ func apiMakeHandler(fn func(http.ResponseWriter, *http.Request)) http.HandlerFun
 }
 
 func apiSOFAHandler(w http.ResponseWriter, r *http.Request) {
-
-	productCode := r.URL.Query().Get("id")
-	if productCode == "" {
+	id := r.URL.Query().Get("id")
+	if id == "" {
 		APIError(w, "No id param", http.StatusBadRequest)
 		return
 	}
+	df := models.GetHRTF(id)
+
+	js, err := json.Marshal(df)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(js)
 }
 
 func StartWebServer() error {
-	//http.HandleFunc("/api/sofa/", apiMakeHandler(apiSOFAHandler))
+	http.HandleFunc("/api/sofa/", apiMakeHandler(apiSOFAHandler))
 	http.HandleFunc("/hrtf/", viewHRTFHandler)
 	return http.ListenAndServe(fmt.Sprintf(":%d", config.Config.Port), nil)
 }
