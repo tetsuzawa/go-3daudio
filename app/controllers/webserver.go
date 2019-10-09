@@ -17,7 +17,8 @@ var fm = template.FuncMap{
 	"ft": firstThree,
 }
 
-var tpls = template.Must(template.New("").Funcs(fm).ParseFiles("app/views/hrtf.html", "app/views/analysis.html"))
+//var tpls = template.Must(template.New("").Funcs(fm).ParseFiles("app/views/hrtf.html", "app/views/analysis.html"))
+var tpls = template.Must(template.New("").Funcs(fm).ParseGlob("app/views/*.html"))
 
 func firstThree(s string) string{
 	s = strings.TrimSpace(s)
@@ -28,7 +29,8 @@ func firstThree(s string) string{
 func viewHRTFHandler(w http.ResponseWriter, r *http.Request) {
 	// TODO get from db
 	hrtf := models.NewHRTF(1, "tetsu", 20, 20, 0, 0.35555)
-	err := tpls.ExecuteTemplate(w, "hrtf.html", hrtf)
+	//err := tpls.ExecuteTemplate(w, "hrtf.html", hrtf)
+	err := tpls.ExecuteTemplate(w, "index.html", hrtf)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
