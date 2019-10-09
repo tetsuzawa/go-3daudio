@@ -3,17 +3,39 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/tetsuzawa/go-3daudio/app/models"
 	"github.com/tetsuzawa/go-3daudio/config"
 	"html/template"
 	"log"
 	"net/http"
 	"regexp"
+	"strings"
 )
 
-var templates = template.Must(template.ParseFiles("app/views/hrtf.html"))
+var fm = template.FuncMap{
+	"uc": strings.ToUpper,
+	"ft": firstThree,
+}
+
+var tpls = template.Must(template.New("").Funcs(fm).ParseFiles("app/views/hrtf.html", "app/views/analysis.html"))
+
+func firstThree(s string) string{
+	s = strings.TrimSpace(s)
+	s = s[:3]
+	return s
+}
 
 func viewHRTFHandler(w http.ResponseWriter, r *http.Request) {
-	err := templates.ExecuteTemplate(w, "hrtf.html", nil)
+	// TODO get from db
+	hrtf := models.NewHRTF(1, "tetsu", 20, 20, 0, 0.35555)
+	err := tpls.ExecuteTemplate(w, "hrtf.html", hrtf)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
+func viewAnalysisHandler(w http.ResponseWriter, r *http.Request) {
+	err := tpls.ExecuteTemplate(w, "analysis.html", nil)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
@@ -50,16 +72,24 @@ func apiMakeHandler(fn func(http.ResponseWriter, *http.Request)) http.HandlerFun
 }
 
 func apiSOFAHandler(w http.ResponseWriter, r *http.Request) {
-
-	productCode := r.URL.Query().Get("id")
-	if productCode == "" {
+	id := r.URL.Query().Get("id")
+	if id == "" {
 		APIError(w, "No id param", http.StatusBadRequest)
 		return
 	}
+	df := models.GetHRTF(id)
+
+	js, err := json.Marshal(df)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(js)
 }
 
 func StartWebServer() error {
-	//http.HandleFunc("/api/sofa/", apiMakeHandler(apiSOFAHandler))
+	http.HandleFunc("/api/sofa/", apiMakeHandler(apiSOFAHandler))
 	http.HandleFunc("/hrtf/", viewHRTFHandler)
+	http.HandleFunc("/analysis/", viewAnalysisHandler)
 	return http.ListenAndServe(fmt.Sprintf(":%d", config.Config.Port), nil)
 }

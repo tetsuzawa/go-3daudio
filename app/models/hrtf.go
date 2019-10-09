@@ -5,15 +5,17 @@ import (
 )
 
 type HRTF struct {
+	ID        int     `json:"id"`
 	Name      string  `json:"name"`
-	Age       string  `json:"age"`
+	Age       uint  `json:"age"`
 	Azimuth   float64 `json:"azimuth"`
 	Elevation float64 `json:"elevation"`
 	Data      float64 `json:"data"`
 }
 
-func NewHRTF(name, age string, azimuth, elevation, data float64) *HRTF {
+func NewHRTF(id int, name string, age uint, azimuth, elevation, data float64) *HRTF {
 	return &HRTF{
+		ID:        id,
 		Name:      name,
 		Age:       age,
 		Azimuth:   azimuth,
@@ -44,15 +46,15 @@ func (h *HRTF) Save() error {
 	return err
 }
 
-func GetHRTF(name string) *HRTF {
-	tableName := GetHRTFTableName(name)
-	cmd := fmt.Sprintf(`SELECT name, age, azimuth, elevation, data FROM %s WHERE name = '%s'`,
-		tableName, name)
+func GetHRTF(id string) *HRTF {
+	tableName := GetHRTFTableName(id)
+	cmd := fmt.Sprintf(`SELECT id, name, age, azimuth, elevation, data FROM %s WHERE id = '%s'`,
+		tableName, id)
 	row := DbConnection.QueryRow(cmd)
 	var hrtf HRTF
-	err := row.Scan(&hrtf.Name, &hrtf.Age, &hrtf.Azimuth, &hrtf.Elevation, &hrtf.Data)
+	err := row.Scan(&hrtf.ID, &hrtf.Name, &hrtf.Age, &hrtf.Azimuth, &hrtf.Elevation, &hrtf.Data)
 	if err != nil {
 		return nil
 	}
-	return NewHRTF(hrtf.Name, hrtf.Age, hrtf.Azimuth, hrtf.Elevation, hrtf.Data)
+	return NewHRTF(hrtf.ID, hrtf.Name, hrtf.Age, hrtf.Azimuth, hrtf.Elevation, hrtf.Data)
 }
