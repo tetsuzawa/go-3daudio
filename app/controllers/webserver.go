@@ -29,8 +29,8 @@ func firstThree(s string) string{
 func viewHRTFHandler(w http.ResponseWriter, r *http.Request) {
 	// TODO get from db
 	hrtf := models.NewHRTF(1, "tetsu", 20, 20, 0, 0.35555)
-	//err := tpls.ExecuteTemplate(w, "hrtf.html", hrtf)
-	err := tpls.ExecuteTemplate(w, "index.html", hrtf)
+	err := tpls.ExecuteTemplate(w, "hrtf.html", hrtf)
+	//err := tpls.ExecuteTemplate(w, "index.html", hrtf)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
