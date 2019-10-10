@@ -46,7 +46,7 @@ func (h *HRTF) Save() error {
 	return err
 }
 
-func GetHRTF(id string) *HRTF {
+func GetHRTF(id string) (*HRTF, error){
 	//tableName := GetHRTFTableName(string(id))
 	tableName := GetHRTFTableName("hrtf")
 	cmd := fmt.Sprintf(`SELECT id, name, age, azimuth, elevation, data FROM %s WHERE id = '%s'`,
@@ -55,7 +55,7 @@ func GetHRTF(id string) *HRTF {
 	var hrtf HRTF
 	err := row.Scan(&hrtf.ID, &hrtf.Name, &hrtf.Age, &hrtf.Azimuth, &hrtf.Elevation, &hrtf.Data)
 	if err != nil {
-		return nil
+		return nil, err
 	}
-	return NewHRTF(hrtf.ID, hrtf.Name, hrtf.Age, hrtf.Azimuth, hrtf.Elevation, hrtf.Data)
+	return NewHRTF(hrtf.ID, hrtf.Name, hrtf.Age, hrtf.Azimuth, hrtf.Elevation, hrtf.Data), nil
 }
