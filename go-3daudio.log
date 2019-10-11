@@ -1,0 +1,9 @@
+2019/10/09 09:56:39 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:33)
+2019/10/10 15:58:14 main.go:18: no such table: tetsu
+2019/10/10 16:00:10 main.go:18: table hrtf_data has no column named age
+2019/10/10 17:03:26 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:42)
+2019/10/10 18:09:11 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:45)
+2019/10/10 18:09:23 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:45)
+2019/10/10 18:09:28 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:45)
+2019/10/10 18:16:39 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:45)
+2019/10/10 18:16:40 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:45)
