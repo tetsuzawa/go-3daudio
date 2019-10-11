@@ -20,16 +20,26 @@ var fm = template.FuncMap{
 //var tpls = template.Must(template.New("").Funcs(fm).ParseFiles("app/views/hrtf.html", "app/views/analysis.html"))
 var tpls = template.Must(template.New("").Funcs(fm).ParseGlob("app/views/*.html"))
 
-func firstThree(s string) string{
+func firstThree(s string) string {
 	s = strings.TrimSpace(s)
 	s = s[:3]
 	return s
 }
 
 func viewHRTFHandler(w http.ResponseWriter, r *http.Request) {
-	// TODO get from db
-	hrtf := models.NewHRTF(1, "tetsu", 20, 20, 0, 0.35555)
-	err := tpls.ExecuteTemplate(w, "hrtf.html", hrtf)
+	id := r.URL.Query().Get("id")
+	if id == "" {
+		APIError(w, "No id param", http.StatusBadRequest)
+		return
+	}
+	hrtf, err := models.GetHRTF(id)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusNotFound)
+	}
+
+	//hrtf := models.NewHRTF(1, "tetsu", 20, 20, 0, 0.35555)
+	err = tpls.ExecuteTemplate(w, "hrtf.html", hrtf)
+	//TODO delete index.html sample code
 	//err := tpls.ExecuteTemplate(w, "index.html", hrtf)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -79,7 +89,10 @@ func apiSOFAHandler(w http.ResponseWriter, r *http.Request) {
 		APIError(w, "No id param", http.StatusBadRequest)
 		return
 	}
-	df := models.GetHRTF(id)
+	df, err := models.GetHRTF(id)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusNotFound)
+	}
 
 	js, err := json.Marshal(df)
 	if err != nil {
@@ -95,3 +108,4 @@ func StartWebServer() error {
 	http.HandleFunc("/analysis/", viewAnalysisHandler)
 	return http.ListenAndServe(fmt.Sprintf(":%d", config.Config.Port), nil)
 }
+
