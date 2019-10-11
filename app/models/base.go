@@ -15,6 +15,7 @@ var DbConnection *sql.DB
 func GetHRTFTableName(name string) string {
 	return fmt.Sprintf("%s", name)
 }
+
 //func GetHRTFTableName() string {
 //	return fmt.Sprintf("%s", tableNameHRTFData)
 //}

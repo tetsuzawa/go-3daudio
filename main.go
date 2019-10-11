@@ -12,6 +12,9 @@ func main() {
 	utils.LoggingSettings(config.Config.LogFile)
 	fmt.Println(config.Config.MockString)
 	fmt.Println(models.DbConnection)
+	//hrtf := models.NewHRTF(1, "tetsu", 20, 20, 0, 0.35555)
+	//hrtf := models.GetHRTF("1")
+	//fmt.Println("ssss", hrtf)
 
 	controllers.StartWebServer()
 }
