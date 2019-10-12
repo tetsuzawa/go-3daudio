@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"log"
+
 	"github.com/tetsuzawa/go-3daudio/app/controllers"
 	"github.com/tetsuzawa/go-3daudio/app/models"
 	"github.com/tetsuzawa/go-3daudio/config"
@@ -16,5 +18,8 @@ func main() {
 	//hrtf := models.GetHRTF("1")
 	//fmt.Println("ssss", hrtf)
 
-	controllers.StartWebServer()
+	err := controllers.StartWebServer()
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
