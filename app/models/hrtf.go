@@ -2,6 +2,7 @@ package models
 
 import (
 	"fmt"
+	"log"
 )
 
 type HRTF struct {
@@ -55,6 +56,7 @@ func GetHRTF(id string) (*HRTF, error){
 	var hrtf HRTF
 	err := row.Scan(&hrtf.ID, &hrtf.Name, &hrtf.Age, &hrtf.Azimuth, &hrtf.Elevation, &hrtf.Data)
 	if err != nil {
+		log.Println(err)
 		return nil, err
 	}
 	return NewHRTF(hrtf.ID, hrtf.Name, hrtf.Age, hrtf.Azimuth, hrtf.Elevation, hrtf.Data), nil
