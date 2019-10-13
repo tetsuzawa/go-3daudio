@@ -103,6 +103,7 @@ func apiSOFAHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func StartWebServer() error {
+	http.Handle("/favicon.ico", http.NotFoundHandler())
 	http.HandleFunc("/api/sofa/", apiMakeHandler(apiSOFAHandler))
 	http.HandleFunc("/hrtf/", viewHRTFHandler)
 	http.HandleFunc("/analysis/", viewAnalysisHandler)
