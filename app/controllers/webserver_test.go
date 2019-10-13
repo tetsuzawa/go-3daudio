@@ -11,7 +11,21 @@ import (
 )
 
 func TestFirstThree(t *testing.T) {
+	patterns := []struct {
+		want  string
+		given string
+	}{
+		{"abc", "abcde"},
+		{"Abc", "Abcde"},
+		{"012", "01234"},
+	}
+	for idx, p := range patterns {
+		got := firstThree(p.given)
 
+		if p.want != got {
+			t.Errorf("Case(%d) want %v, got %v", idx, p.want, got)
+		}
+	}
 }
 
 func TestViewHRTFHandler(t *testing.T) {
@@ -23,7 +37,7 @@ func TestViewHRTFHandler(t *testing.T) {
 	res := httptest.NewRecorder()
 	viewHRTFHandler(res, req)
 
-	if res.Code != http.StatusOK{
+	if res.Code != http.StatusOK {
 		t.Errorf("invalid code. want %v, got %v", http.StatusOK, res.Code)
 	}
 
