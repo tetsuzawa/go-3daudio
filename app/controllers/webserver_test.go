@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"bytes"
+	"fmt"
 	"github.com/tetsuzawa/go-3daudio/app/models"
 	"html/template"
 	"io/ioutil"
@@ -65,5 +66,12 @@ func TestViewHRTFHandler(t *testing.T) {
 	if string(data) != want {
 		t.Errorf("Error by rr.Body.String().\n \nwant \n%v\n,\n \ngot \n%v", want, string(data))
 	}
+}
+
+func TestApiMakeHandler(t *testing.T) {
+	hf := apiMakeHandler(func(w http.ResponseWriter, r *http.Request) {
+
+	})
+	//TODO
 
 }
