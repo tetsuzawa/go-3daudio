@@ -28,8 +28,9 @@ func init() {
 	}
 	cmd := fmt.Sprintf(
 		`CREATE TABLE IF NOT EXISTS %s (
-		id int PRIMARY KEY NOT NULL,
+		id STRING PRIMARY KEY NOT NULL,
 		name STRING,
+		age INT,
 		azimuth FLOAT, 
 		elevation FLOAT, 
 		data FLOAT)`, tableNameHRTFData)
