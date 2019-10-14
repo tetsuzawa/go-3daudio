@@ -7,9 +7,12 @@ import (
 	"github.com/tetsuzawa/go-3daudio/app/models"
 	"github.com/tetsuzawa/go-3daudio/config"
 	"html/template"
+	"io/ioutil"
 	"log"
 	"math/rand"
 	"net/http"
+	"os"
+	"path/filepath"
 	"regexp"
 	"strconv"
 	"strings"
@@ -69,6 +72,29 @@ func viewHRTFHandler(w http.ResponseWriter, r *http.Request) {
 		if err = hrtf.Create(); err != nil {
 			log.Println(err)
 			http.Error(w, err.Error(), http.StatusInternalServerError)
+		}
+
+		f, h, err := r.FormFile("q")
+		if err != nil {
+			log.Println(err)
+		} else {
+			//TODO complex code
+			func() {
+				defer f.Close()
+				bs, err := ioutil.ReadAll(f)
+				if err != nil {
+					log.Println(err)
+				}
+				dst, err := os.Create(filepath.Join("./resources/", h.Filename))
+				if err != nil {
+					log.Println(err)
+				}
+				defer dst.Close()
+				_, err = dst.Write(bs)
+				if err != nil {
+					log.Println(err)
+				}
+			}()
 		}
 	}
 
