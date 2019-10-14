@@ -67,3 +67,31 @@
 2019/10/14 13:45:03 webserver.go:58: strconv.Atoi: parsing "": invalid syntax
 2019/10/14 13:45:03 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:59)
 2019/10/14 13:45:03 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:88)
+2019/10/14 20:16:09 webserver.go:50: strconv.Atoi: parsing "": invalid syntax
+2019/10/14 20:16:09 webserver.go:55: strconv.Atoi: parsing "": invalid syntax
+2019/10/14 20:16:09 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:56)
+2019/10/14 20:16:09 webserver.go:60: strconv.Atoi: parsing "": invalid syntax
+2019/10/14 20:16:09 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:61)
+2019/10/14 20:16:09 webserver.go:65: strconv.Atoi: parsing "": invalid syntax
+2019/10/14 20:16:09 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:66)
+2019/10/14 20:16:09 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:93)
+2019/10/14 20:16:49 webserver.go:50: strconv.Atoi: parsing "": invalid syntax
+2019/10/14 20:16:49 webserver.go:55: strconv.Atoi: parsing "": invalid syntax
+2019/10/14 20:16:49 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:56)
+2019/10/14 20:16:49 webserver.go:60: strconv.Atoi: parsing "": invalid syntax
+2019/10/14 20:16:49 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:61)
+2019/10/14 20:16:49 webserver.go:65: strconv.Atoi: parsing "": invalid syntax
+2019/10/14 20:16:49 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:66)
+2019/10/14 20:16:49 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:93)
+2019/10/14 20:17:14 webserver.go:50: strconv.Atoi: parsing "": invalid syntax
+2019/10/14 20:17:14 webserver.go:60: strconv.Atoi: parsing "": invalid syntax
+2019/10/14 20:17:14 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:61)
+2019/10/14 20:17:14 webserver.go:65: strconv.Atoi: parsing "": invalid syntax
+2019/10/14 20:17:14 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:66)
+2019/10/14 20:17:14 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:93)
+2019/10/14 20:18:18 webserver.go:50: strconv.Atoi: parsing "": invalid syntax
+2019/10/14 20:18:18 webserver.go:60: strconv.Atoi: parsing "": invalid syntax
+2019/10/14 20:18:18 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:61)
+2019/10/14 20:18:18 webserver.go:65: strconv.Atoi: parsing "": invalid syntax
+2019/10/14 20:18:18 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:66)
+2019/10/14 20:18:18 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:93)
