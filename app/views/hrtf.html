@@ -1,5 +1,10 @@
 {{template "header"}}
 
+<form method="GET">
+    <label for="id">ID</label>
+    <input type="text" id="id" name="id">
+</form>
+
 <ul>
     <li>ID - {{.ID}}</li>
     <li>Name - {{.Name | uc | ft}}</li>

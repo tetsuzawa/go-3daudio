@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"bytes"
-	"fmt"
 	"github.com/tetsuzawa/go-3daudio/app/models"
 	"html/template"
 	"io/ioutil"

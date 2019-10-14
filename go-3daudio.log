@@ -7,3 +7,11 @@
 2019/10/10 18:09:28 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:45)
 2019/10/10 18:16:39 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:45)
 2019/10/10 18:16:40 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:45)
+2019/10/14 09:50:45 hrtf.go:59: sql: no rows in result set
+2019/10/14 09:50:45 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:45)
+2019/10/14 09:50:46 hrtf.go:59: sql: no rows in result set
+2019/10/14 09:50:46 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:45)
+2019/10/14 09:50:53 hrtf.go:59: sql: no rows in result set
+2019/10/14 09:50:53 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:45)
+2019/10/14 09:50:59 hrtf.go:59: sql: no rows in result set
+2019/10/14 09:50:59 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:45)
