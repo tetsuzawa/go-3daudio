@@ -6,7 +6,7 @@ import (
 )
 
 type HRTF struct {
-	ID        int     `json:"id"`
+	ID        string  `json:"id"`
 	Name      string  `json:"name"`
 	Age       uint    `json:"age"`
 	Azimuth   float64 `json:"azimuth"`
@@ -14,7 +14,7 @@ type HRTF struct {
 	Data      float64 `json:"data"`
 }
 
-func NewHRTF(id int, name string, age uint, azimuth, elevation, data float64) *HRTF {
+func NewHRTF(id string, name string, age uint, azimuth, elevation, data float64) *HRTF {
 	return &HRTF{
 		ID:        id,
 		Name:      name,
@@ -47,7 +47,7 @@ func (h *HRTF) Save() error {
 	return err
 }
 
-func GetHRTF(id string) (*HRTF, error){
+func GetHRTF(id string) (*HRTF, error) {
 	//tableName := GetHRTFTableName(string(id))
 	tableName := GetHRTFTableName("hrtf")
 	cmd := fmt.Sprintf(`SELECT id, name, age, azimuth, elevation, data FROM %s WHERE id = '%s'`,

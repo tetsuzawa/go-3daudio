@@ -31,34 +31,57 @@ func firstThree(s string) string {
 }
 
 func viewHRTFHandler(w http.ResponseWriter, r *http.Request) {
-	if r.Method == http.MethodPost{
+	var id string
+
+	if r.Method == http.MethodPost {
 		t := time.Now()
 		entropy := ulid.Monotonic(rand.New(rand.NewSource(t.UnixNano())), 0)
-		id := ulid.MustNew(ulid.Now(), entropy)
+		id = ulid.MustNew(ulid.Now(), entropy).String()
+
+		err := r.ParseForm()
+		if err != nil {
+			log.Println(err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+		}
+
 		name := r.Form.Get("name")
 		age, err := strconv.Atoi(r.Form.Get("age"))
-		if err != nil{
+		if err != nil {
+			log.Println(err)
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
 		azimuth, err := strconv.Atoi(r.Form.Get("azimuth"))
-		if err != nil{
+		if err != nil {
+			log.Println(err)
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
-		elevation, err := strconv.Atoi(r.Form.Get("data"))
-		if err != nil{
+		elevation, err := strconv.Atoi(r.Form.Get("elevation"))
+		if err != nil {
+			log.Println(err)
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
 		data, err := strconv.Atoi(r.Form.Get("data"))
-		if err != nil{
+		if err != nil {
+			log.Println(err)
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
-		hrtf := models.NewHRTF(id.String(), name, uint(age), azimuth, elevation, data)
+		hrtf := models.NewHRTF(id, name, uint(age), float64(azimuth), float64(elevation), float64(data))
+		if err = hrtf.Create(); err != nil {
+			log.Println(err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+		}
 	}
-	id := r.URL.Query().Get("id")
-	if id == "" {
-		APIError(w, "No id param", http.StatusBadRequest)
-		return
+
+	if r.Method == http.MethodGet {
+		id = r.URL.Query().Get("id")
+		if id == "" {
+			//APIError(w, "No id param", http.StatusBadRequest)
+			//return
+			id = "01DQ44KFF4D44TFZA9963GD1VS"
+			//TODO id hard code
+		}
 	}
+
 	hrtf, err := models.GetHRTF(id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusNotFound)
@@ -136,4 +159,3 @@ func StartWebServer() error {
 	http.HandleFunc("/analysis/", viewAnalysisHandler)
 	return http.ListenAndServe(fmt.Sprintf(":%d", config.Config.Port), nil)
 }
-
