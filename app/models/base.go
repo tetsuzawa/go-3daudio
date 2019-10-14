@@ -8,13 +8,17 @@ import (
 	"log"
 )
 
-const tableNameHRTFData = "hrtf_data"
+const tableNameHRTFData = "hrtf"
 
 var DbConnection *sql.DB
 
 func GetHRTFTableName(name string) string {
 	return fmt.Sprintf("%s", name)
 }
+
+//func GetHRTFTableName() string {
+//	return fmt.Sprintf("%s", tableNameHRTFData)
+//}
 
 func init() {
 	var err error
@@ -24,9 +28,9 @@ func init() {
 	}
 	cmd := fmt.Sprintf(
 		`CREATE TABLE IF NOT EXISTS %s (
-		time DATETIME PRIMARY KEY NOT NULL,
-		id int,
+		id STRING PRIMARY KEY NOT NULL,
 		name STRING,
+		age INT,
 		azimuth FLOAT, 
 		elevation FLOAT, 
 		data FLOAT)`, tableNameHRTFData)
