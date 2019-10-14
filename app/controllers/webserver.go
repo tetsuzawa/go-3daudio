@@ -89,8 +89,6 @@ func viewHRTFHandler(w http.ResponseWriter, r *http.Request) {
 
 	//hrtf := models.NewHRTF(1, "tetsu", 20, 20, 0, 0.35555)
 	err = tpls.ExecuteTemplate(w, "hrtf.html", hrtf)
-	//TODO delete index.html sample code
-	//err := tpls.ExecuteTemplate(w, "index.html", hrtf)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
