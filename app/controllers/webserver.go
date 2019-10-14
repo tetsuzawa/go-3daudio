@@ -3,13 +3,17 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/oklog/ulid"
 	"github.com/tetsuzawa/go-3daudio/app/models"
 	"github.com/tetsuzawa/go-3daudio/config"
 	"html/template"
 	"log"
+	"math/rand"
 	"net/http"
 	"regexp"
+	"strconv"
 	"strings"
+	"time"
 )
 
 var fm = template.FuncMap{
@@ -27,6 +31,29 @@ func firstThree(s string) string {
 }
 
 func viewHRTFHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method == http.MethodPost{
+		t := time.Now()
+		entropy := ulid.Monotonic(rand.New(rand.NewSource(t.UnixNano())), 0)
+		id := ulid.MustNew(ulid.Now(), entropy)
+		name := r.Form.Get("name")
+		age, err := strconv.Atoi(r.Form.Get("age"))
+		if err != nil{
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+		}
+		azimuth, err := strconv.Atoi(r.Form.Get("azimuth"))
+		if err != nil{
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+		}
+		elevation, err := strconv.Atoi(r.Form.Get("data"))
+		if err != nil{
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+		}
+		data, err := strconv.Atoi(r.Form.Get("data"))
+		if err != nil{
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+		}
+		hrtf := models.NewHRTF(id.String(), name, uint(age), azimuth, elevation, data)
+	}
 	id := r.URL.Query().Get("id")
 	if id == "" {
 		APIError(w, "No id param", http.StatusBadRequest)
