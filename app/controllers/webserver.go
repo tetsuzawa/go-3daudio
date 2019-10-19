@@ -19,7 +19,7 @@ import (
 	"time"
 )
 
-func viewRootHandler(w http.ResponseWriter, r *http.Request) {
+func viewIndexHandler(w http.ResponseWriter, r *http.Request) {
 	c, err := r.Cookie("visit-count")
 	if err == http.ErrNoCookie {
 		c = &http.Cookie{
@@ -209,7 +209,7 @@ func apiSOFAHandler(w http.ResponseWriter, r *http.Request) {
 
 func StartWebServer() error {
 	http.Handle("/favicon.ico", http.NotFoundHandler())
-	http.HandleFunc("/", viewRootHandler)
+	http.HandleFunc("/", viewIndexHandler)
 	http.HandleFunc("/api/sofa/", apiMakeHandler(apiSOFAHandler))
 	http.HandleFunc("/hrtf/", viewHRTFHandler)
 	http.HandleFunc("/analysis/", viewAnalysisHandler)
