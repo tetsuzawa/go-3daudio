@@ -340,3 +340,7 @@ created by net/http.(*Server).Serve
 2019/10/19 14:47:40 server.go:3055: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:128)
 2019/10/19 14:56:00 hrtf.go:59: sql: no rows in result set
 2019/10/19 14:56:00 server.go:3055: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:131)
+2019/10/19 17:05:54 server.go:3055: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:131)
+2019/10/19 17:06:01 server.go:3055: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:131)
+2019/10/19 17:09:12 server.go:3055: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:143)
+2019/10/19 17:25:18 server.go:3055: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (hrtf.go:146)
