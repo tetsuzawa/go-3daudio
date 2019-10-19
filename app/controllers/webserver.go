@@ -19,6 +19,25 @@ import (
 	"time"
 )
 
+func viewRootHandler(w http.ResponseWriter, r *http.Request) {
+	c, err := r.Cookie("visit-count")
+	if err == http.ErrNoCookie {
+		c = &http.Cookie{
+			Name:  "visit-count",
+			Value: "0",
+		}
+	}
+	cnt, err := strconv.Atoi(c.Value)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+	cnt++
+	c.Value = strconv.Itoa(cnt)
+	http.SetCookie(w, c)
+	fmt.Fprintf(w, "<h1>Your visit count on this web site is %v<h1>", c.Value)
+}
+
 var fm = template.FuncMap{
 	"uc": strings.ToUpper,
 	"ft": firstThree,
@@ -109,7 +128,7 @@ func viewHRTFHandler(w http.ResponseWriter, r *http.Request) {
 				//TODO id hard code
 				log.Println(err)
 				id = "01DQ44KFF4D44TFZA9963GD1VS"
-			}else {
+			} else {
 				id = c.Value
 			}
 		}
@@ -190,6 +209,7 @@ func apiSOFAHandler(w http.ResponseWriter, r *http.Request) {
 
 func StartWebServer() error {
 	http.Handle("/favicon.ico", http.NotFoundHandler())
+	http.HandleFunc("/", viewRootHandler)
 	http.HandleFunc("/api/sofa/", apiMakeHandler(apiSOFAHandler))
 	http.HandleFunc("/hrtf/", viewHRTFHandler)
 	http.HandleFunc("/analysis/", viewAnalysisHandler)
