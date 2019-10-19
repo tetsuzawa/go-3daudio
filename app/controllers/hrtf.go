@@ -48,6 +48,7 @@ func viewHRTFHandler(w http.ResponseWriter, r *http.Request) {
 	u := dbUsers[un]
 
 	if r.Method == http.MethodPost {
+		//if posted from form. add data to db
 		t := time.Now()
 		entropy := ulid.Monotonic(rand.New(rand.NewSource(t.UnixNano())), 0)
 		id = ulid.MustNew(ulid.Now(), entropy).String()
@@ -85,6 +86,7 @@ func viewHRTFHandler(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
 
+		//save file posted from form
 		f, h, err := r.FormFile("q")
 		if err != nil {
 			log.Println(err)
