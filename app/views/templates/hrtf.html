@@ -1,5 +1,16 @@
 {{template "header"}}
 
+<h1>Welcome to the HRTF DataBase. What can I get you to improve your listening experience?</h1>
+{{if .User}}
+    <h2>Welcome {{.User.First}} !!</h2>
+    Here are your registration information.<br>
+    USER NAME {{.User.UserName}}<br>
+    FIRST {{.User.First}}<br>
+    LAST {{.User.Last}}<br>
+{{end}}
+
+<h1>Here is upload form</h1>
+
 <form method="GET">
     <label for="id">ID</label>
     <br>
@@ -37,13 +48,13 @@
 </form>
 
 <ul>
-    <li>ID - {{.ID}}</li>
-    <li>Name - {{.Name | uc | ft}}</li>
-    <li>Age - {{.Age}}</li>
-    <li>Azimuth - {{.Azimuth}}</li>
-    <li>Elevation - {{.Elevation}}</li>
-    <li>Data - {{.Data}}</li>
+    <li>ID - {{.HRTF.ID}}</li>
+    <li>Name - {{.HRTF.Name | uc | ft}}</li>
+    <li>Age - {{.HRTF.Age}}</li>
+    <li>Azimuth - {{.HRTF.Azimuth}}</li>
+    <li>Elevation - {{.HRTF.Elevation}}</li>
+    <li>Data - {{.HRTF.Data}}</li>
 </ul>
 
-{{template "header"}}
+{{template "footer"}}
 

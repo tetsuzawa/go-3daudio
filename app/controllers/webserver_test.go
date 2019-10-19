@@ -47,7 +47,7 @@ func TestViewHRTFHandler(t *testing.T) {
 	}
 	t.Log(data)
 
-	tpls := template.Must(template.New("").Funcs(fm).ParseFiles("app/views/hrtf.html", "app/views/analysis.html"))
+	tpls := template.Must(template.New("").Funcs(fm).ParseFiles("app/views/templates/hrtf.html", "app/views/templates/analysis.html"))
 	hrtf, err := models.GetHRTF("1")
 	if err != nil {
 		t.Fatalf("Error by models.GetHRTF(). %v", err)
