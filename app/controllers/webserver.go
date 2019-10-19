@@ -103,8 +103,15 @@ func viewHRTFHandler(w http.ResponseWriter, r *http.Request) {
 		if id == "" {
 			//APIError(w, "No id param", http.StatusBadRequest)
 			//return
-			id = "01DQ44KFF4D44TFZA9963GD1VS"
-			//TODO id hard code
+			c, err := r.Cookie("id")
+			if err != nil {
+				//TODO error handling
+				//TODO id hard code
+				log.Println(err)
+				id = "01DQ44KFF4D44TFZA9963GD1VS"
+			}else {
+				id = c.Value
+			}
 		}
 	}
 
@@ -112,6 +119,11 @@ func viewHRTFHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusNotFound)
 	}
+
+	http.SetCookie(w, &http.Cookie{
+		Name:  "id",
+		Value: id,
+	})
 
 	//hrtf := models.NewHRTF(1, "tetsu", 20, 20, 0, 0.35555)
 	err = tpls.ExecuteTemplate(w, "hrtf.html", hrtf)

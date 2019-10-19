@@ -120,3 +120,223 @@
 2019/10/14 20:34:39 webserver.go:68: strconv.Atoi: parsing "": invalid syntax
 2019/10/14 20:34:39 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:69)
 2019/10/14 20:34:39 server.go:3012: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:119)
+2019/10/19 14:45:18 server.go:3055: http: panic serving [::1]:50425: runtime error: invalid memory address or nil pointer dereference
+goroutine 37 [running]:
+net/http.(*conn).serve.func1(0xc0000d4780)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x4535120, 0x490c700)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler(0x4646300, 0xc0001fa2a0, 0xc00020a200)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/webserver.go:115 +0x2eb
+net/http.HandlerFunc.ServeHTTP(0x45caf90, 0x4646300, 0xc0001fa2a0, 0xc00020a200)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x491ede0, 0x4646300, 0xc0001fa2a0, 0xc00020a200)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc0000220e0, 0x4646300, 0xc0001fa2a0, 0xc00020a200)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc0000d4780, 0x4646ec0, 0xc000104900)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/19 14:45:18 server.go:3055: http: panic serving [::1]:50465: runtime error: invalid memory address or nil pointer dereference
+goroutine 52 [running]:
+net/http.(*conn).serve.func1(0xc00020c0a0)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x4535120, 0x490c700)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler(0x4646300, 0xc0001b80e0, 0xc000166a00)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/webserver.go:115 +0x2eb
+net/http.HandlerFunc.ServeHTTP(0x45caf90, 0x4646300, 0xc0001b80e0, 0xc000166a00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x491ede0, 0x4646300, 0xc0001b80e0, 0xc000166a00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc0000220e0, 0x4646300, 0xc0001b80e0, 0xc000166a00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc00020c0a0, 0x4646ec0, 0xc0001049c0)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/19 14:45:18 server.go:3055: http: panic serving [::1]:50468: runtime error: invalid memory address or nil pointer dereference
+goroutine 55 [running]:
+net/http.(*conn).serve.func1(0xc00020c140)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x4535120, 0x490c700)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler(0x4646300, 0xc0001fa380, 0xc000166b00)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/webserver.go:115 +0x2eb
+net/http.HandlerFunc.ServeHTTP(0x45caf90, 0x4646300, 0xc0001fa380, 0xc000166b00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x491ede0, 0x4646300, 0xc0001fa380, 0xc000166b00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc0000220e0, 0x4646300, 0xc0001fa380, 0xc000166b00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc00020c140, 0x4646ec0, 0xc000104ac0)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/19 14:45:18 server.go:3055: http: panic serving [::1]:50471: runtime error: invalid memory address or nil pointer dereference
+goroutine 57 [running]:
+net/http.(*conn).serve.func1(0xc00020c1e0)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x4535120, 0x490c700)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler(0x4646300, 0xc0001b81c0, 0xc000160400)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/webserver.go:115 +0x2eb
+net/http.HandlerFunc.ServeHTTP(0x45caf90, 0x4646300, 0xc0001b81c0, 0xc000160400)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x491ede0, 0x4646300, 0xc0001b81c0, 0xc000160400)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc0000220e0, 0x4646300, 0xc0001b81c0, 0xc000160400)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc00020c1e0, 0x4646ec0, 0xc000030340)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/19 14:45:18 server.go:3055: http: panic serving [::1]:50472: runtime error: invalid memory address or nil pointer dereference
+goroutine 58 [running]:
+net/http.(*conn).serve.func1(0xc00020c280)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x4535120, 0x490c700)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler(0x4646300, 0xc0001fa460, 0xc000166c00)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/webserver.go:115 +0x2eb
+net/http.HandlerFunc.ServeHTTP(0x45caf90, 0x4646300, 0xc0001fa460, 0xc000166c00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x491ede0, 0x4646300, 0xc0001fa460, 0xc000166c00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc0000220e0, 0x4646300, 0xc0001fa460, 0xc000166c00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc00020c280, 0x4646ec0, 0xc000104b40)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/19 14:45:18 server.go:3055: http: panic serving [::1]:50474: runtime error: invalid memory address or nil pointer dereference
+goroutine 60 [running]:
+net/http.(*conn).serve.func1(0xc00020c3c0)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x4535120, 0x490c700)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler(0x4646300, 0xc0001d21c0, 0xc000166d00)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/webserver.go:115 +0x2eb
+net/http.HandlerFunc.ServeHTTP(0x45caf90, 0x4646300, 0xc0001d21c0, 0xc000166d00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x491ede0, 0x4646300, 0xc0001d21c0, 0xc000166d00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc0000220e0, 0x4646300, 0xc0001d21c0, 0xc000166d00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc00020c3c0, 0x4646ec0, 0xc000104c40)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/19 14:45:23 server.go:3055: http: panic serving [::1]:50485: runtime error: invalid memory address or nil pointer dereference
+goroutine 28 [running]:
+net/http.(*conn).serve.func1(0xc0001190e0)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x4535120, 0x490c700)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler(0x4646300, 0xc0001d22a0, 0xc000160500)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/webserver.go:115 +0x2eb
+net/http.HandlerFunc.ServeHTTP(0x45caf90, 0x4646300, 0xc0001d22a0, 0xc000160500)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x491ede0, 0x4646300, 0xc0001d22a0, 0xc000160500)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc0000220e0, 0x4646300, 0xc0001d22a0, 0xc000160500)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc0001190e0, 0x4646ec0, 0xc0000303c0)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/19 14:45:23 server.go:3055: http: panic serving [::1]:50486: runtime error: invalid memory address or nil pointer dereference
+goroutine 61 [running]:
+net/http.(*conn).serve.func1(0xc00020c460)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x4535120, 0x490c700)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler(0x4646300, 0xc0001b82a0, 0xc000166e00)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/webserver.go:115 +0x2eb
+net/http.HandlerFunc.ServeHTTP(0x45caf90, 0x4646300, 0xc0001b82a0, 0xc000166e00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x491ede0, 0x4646300, 0xc0001b82a0, 0xc000166e00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc0000220e0, 0x4646300, 0xc0001b82a0, 0xc000166e00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc00020c460, 0x4646ec0, 0xc000104cc0)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/19 14:45:23 server.go:3055: http: panic serving [::1]:50487: runtime error: invalid memory address or nil pointer dereference
+goroutine 30 [running]:
+net/http.(*conn).serve.func1(0xc000119220)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x4535120, 0x490c700)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler(0x4646300, 0xc0001fa540, 0xc000178400)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/webserver.go:115 +0x2eb
+net/http.HandlerFunc.ServeHTTP(0x45caf90, 0x4646300, 0xc0001fa540, 0xc000178400)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x491ede0, 0x4646300, 0xc0001fa540, 0xc000178400)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc0000220e0, 0x4646300, 0xc0001fa540, 0xc000178400)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc000119220, 0x4646ec0, 0xc000174300)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/19 14:45:42 server.go:3055: http: panic serving [::1]:50539: runtime error: invalid memory address or nil pointer dereference
+goroutine 63 [running]:
+net/http.(*conn).serve.func1(0xc00020c5a0)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x4535120, 0x490c700)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler(0x4646300, 0xc0000221c0, 0xc000166f00)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/webserver.go:115 +0x2eb
+net/http.HandlerFunc.ServeHTTP(0x45caf90, 0x4646300, 0xc0000221c0, 0xc000166f00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x491ede0, 0x4646300, 0xc0000221c0, 0xc000166f00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc0000220e0, 0x4646300, 0xc0000221c0, 0xc000166f00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc00020c5a0, 0x4646ec0, 0xc000104dc0)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/19 14:45:42 server.go:3055: http: panic serving [::1]:50540: runtime error: invalid memory address or nil pointer dereference
+goroutine 9 [running]:
+net/http.(*conn).serve.func1(0xc00019c1e0)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x4535120, 0x490c700)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler(0x4646300, 0xc0001d2380, 0xc0002d2000)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/webserver.go:115 +0x2eb
+net/http.HandlerFunc.ServeHTTP(0x45caf90, 0x4646300, 0xc0001d2380, 0xc0002d2000)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x491ede0, 0x4646300, 0xc0001d2380, 0xc0002d2000)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc0000220e0, 0x4646300, 0xc0001d2380, 0xc0002d2000)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc00019c1e0, 0x4646ec0, 0xc0002d0000)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/19 14:45:42 server.go:3055: http: panic serving [::1]:50544: runtime error: invalid memory address or nil pointer dereference
+goroutine 11 [running]:
+net/http.(*conn).serve.func1(0xc00019c320)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x4535120, 0x490c700)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler(0x4646300, 0xc0001d2460, 0xc000178500)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/webserver.go:115 +0x2eb
+net/http.HandlerFunc.ServeHTTP(0x45caf90, 0x4646300, 0xc0001d2460, 0xc000178500)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x491ede0, 0x4646300, 0xc0001d2460, 0xc000178500)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc0000220e0, 0x4646300, 0xc0001d2460, 0xc000178500)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc00019c320, 0x4646ec0, 0xc000174400)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/19 14:47:40 hrtf.go:59: sql: no rows in result set
+2019/10/19 14:47:40 server.go:3055: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:128)
+2019/10/19 14:56:00 hrtf.go:59: sql: no rows in result set
+2019/10/19 14:56:00 server.go:3055: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewHRTFHandler (webserver.go:131)
