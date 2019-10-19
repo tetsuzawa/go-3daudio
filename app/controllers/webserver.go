@@ -19,32 +19,13 @@ import (
 	"time"
 )
 
-func viewIndexHandler(w http.ResponseWriter, r *http.Request) {
-	c, err := r.Cookie("visit-count")
-	if err == http.ErrNoCookie {
-		c = &http.Cookie{
-			Name:  "visit-count",
-			Value: "0",
-		}
-	}
-	cnt, err := strconv.Atoi(c.Value)
-	if err != nil {
-		log.Println(err)
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	}
-	cnt++
-	c.Value = strconv.Itoa(cnt)
-	http.SetCookie(w, c)
-	fmt.Fprintf(w, "<h1>Your visit count on this web site is %v<h1>", c.Value)
-}
-
 var fm = template.FuncMap{
 	"uc": strings.ToUpper,
 	"ft": firstThree,
 }
 
 //var tpls = template.Must(template.New("").Funcs(fm).ParseFiles("app/views/hrtf.html", "app/views/analysis.html"))
-var tpls = template.Must(template.New("").Funcs(fm).ParseGlob("app/views/*.html"))
+var tpls = template.Must(template.New("").Funcs(fm).ParseGlob("app/views/templates/*.html"))
 
 func firstThree(s string) string {
 	s = strings.TrimSpace(s)
