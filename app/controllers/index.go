@@ -2,10 +2,12 @@ package controllers
 
 import (
 	uuid "github.com/satori/go.uuid"
+	"github.com/tetsuzawa/go-3daudio/app/models"
 	"golang.org/x/crypto/bcrypt"
 	"net/http"
 )
 
+/*
 type user struct {
 	UserName string
 	Password []byte
@@ -15,6 +17,7 @@ type user struct {
 
 var dbUsers = make(map[string]user)      // user ID, user
 var dbSessions = make(map[string]string) // session ID, user ID
+*/
 
 func viewIndexHandler(w http.ResponseWriter, r *http.Request) {
 	u := getUser(w, r)
@@ -50,7 +53,7 @@ func viewSignupHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var u user
+	var u models.User
 
 	// process form submission
 	if r.Method == http.MethodPost {
@@ -61,13 +64,20 @@ func viewSignupHandler(w http.ResponseWriter, r *http.Request) {
 		f := r.FormValue("firstname")
 		l := r.FormValue("lastname")
 
-		// username taken?
-		if _, ok := dbUsers[un]; ok {
+		// ########## username taken? ##########
+		//if _, ok := dbUsers[un]; ok {
+		//	http.Error(w, "Username already taken", http.StatusForbidden)
+		//	return
+		//}
+
+		user, err := models.GetUserByUserName(un)
+		if err == nil {
 			http.Error(w, "Username already taken", http.StatusForbidden)
 			return
 		}
+		// ########## username taken? ##########
 
-		// create session
+		// ########## create session ##########
 		sID, _ := uuid.NewV4()
 		c := &http.Cookie{
 			Name:  "session",
@@ -75,6 +85,8 @@ func viewSignupHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		http.SetCookie(w, c)
 		dbSessions[c.Value] = un
+
+		// ########## create session ##########
 
 		// store user in dbUsers
 		bs, err := bcrypt.GenerateFromPassword([]byte(p), bcrypt.DefaultCost)
