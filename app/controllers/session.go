@@ -18,6 +18,7 @@ func getUser(w http.ResponseWriter, r *http.Request) models.User {
 			Value: sID.String(),
 		}
 	}
+	c.MaxAge = 3600
 	http.SetCookie(w, c)
 
 	// if the user exists already, get user
