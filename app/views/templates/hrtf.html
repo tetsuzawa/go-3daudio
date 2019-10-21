@@ -2,12 +2,12 @@
 
 <h1>Welcome to the HRTF DataBase. What can I get you to improve your listening experience?</h1>
 {{if .User}}
-    <h2>Welcome {{.User.First}} !!</h2>
+    <h2>Welcome {{.User.FirstName}} !!</h2>
     Here are your registration information.<br>
     USER NAME {{.User.UserName}}<br>
-    PASSWORD {{.Password}}<br>
-    FIRST {{.User.First}}<br>
-    LAST {{.User.Last}}<br>
+    PASSWORD {{.User.Password}}<br>
+    FIRST {{.User.FirstName}}<br>
+    LAST {{.User.LastName}}<br>
 {{end}}
 
 <h1>Here is upload form</h1>

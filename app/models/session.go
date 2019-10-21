@@ -40,8 +40,8 @@ func (s *Session) Save() error {
 }
 
 func GetSession(sessionID string) (*Session, error) {
-	tableName := GetUserTableName("user")
-	cmd := fmt.Sprintf(`SELECT sessionid, username FROM %s WHERE sessionID = '%s'`,
+	tableName := GetSessionTableName("session")
+	cmd := fmt.Sprintf(`SELECT sessionid, username FROM %s WHERE sessionid = '%s'`,
 		tableName, sessionID)
 	row := DbConnection.QueryRow(cmd)
 	var s Session

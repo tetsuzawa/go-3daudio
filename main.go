@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/tetsuzawa/go-3daudio/app/controllers"
@@ -12,8 +11,8 @@ import (
 
 func main() {
 	utils.LoggingSettings(config.Config.LogFile)
-	fmt.Println(config.Config.MockString)
-	fmt.Println(models.DbConnection)
+	//fmt.Println(config.Config.MockString)
+	log.Println(models.DbConnection)
 
 	//insert data to db for examination
 	//t := time.Now()

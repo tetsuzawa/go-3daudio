@@ -8,7 +8,7 @@ import (
 	"github.com/tetsuzawa/go-3daudio/app/models"
 )
 
-func getUser(w http.ResponseWriter, r *http.Request) *models.User {
+func getUser(w http.ResponseWriter, r *http.Request) models.User {
 	// get cookie
 	c, err := r.Cookie("session")
 	if err != nil {
@@ -28,20 +28,21 @@ func getUser(w http.ResponseWriter, r *http.Request) *models.User {
 	//}
 
 	s, err := models.GetSession(c.Value)
-	if err != nil {
+	if err == nil {
 		u, err = models.GetUserByUserName(s.UserName)
 		if err != nil {
 			log.Println(err)
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
+		return *u
 	}
-
-	return u
+	return models.User{}
 }
 
 func alreadyLoggedIn(req *http.Request) bool {
 	c, err := req.Cookie("session")
 	if err != nil {
+		log.Println(err)
 		return false
 	}
 	//un := dbSessions[c.Value]
@@ -50,6 +51,7 @@ func alreadyLoggedIn(req *http.Request) bool {
 	s, err := models.GetSession(c.Value)
 	if err != nil {
 		log.Println(err)
+		return false
 	}
 
 	_, err = models.GetUserByUserName(s.UserName)

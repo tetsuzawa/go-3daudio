@@ -17,7 +17,7 @@ import (
 )
 
 type hrtfData struct {
-	User *models.User
+	User models.User
 	HRTF *models.HRTF
 }
 
@@ -36,7 +36,7 @@ func viewHRTFHandler(w http.ResponseWriter, r *http.Request) {
 	var id string
 
 	u := getUser(w, r)
-	if !alreadyLoggedIn(r){
+	if !alreadyLoggedIn(r) {
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 		return
 	}
@@ -86,22 +86,20 @@ func viewHRTFHandler(w http.ResponseWriter, r *http.Request) {
 			log.Println(err)
 		} else {
 			//TODO complex code
-			func() {
-				defer f.Close()
-				bs, err := ioutil.ReadAll(f)
-				if err != nil {
-					log.Println(err)
-				}
-				dst, err := os.Create(filepath.Join("./resources/", h.Filename))
-				if err != nil {
-					log.Println(err)
-				}
-				defer dst.Close()
-				_, err = dst.Write(bs)
-				if err != nil {
-					log.Println(err)
-				}
-			}()
+			bs, err := ioutil.ReadAll(f)
+			if err != nil {
+				log.Println(err)
+			}
+			f.Close()
+			dst, err := os.Create(filepath.Join("./resources/", h.Filename))
+			if err != nil {
+				log.Println(err)
+			}
+			_, err = dst.Write(bs)
+			if err != nil {
+				log.Println(err)
+			}
+			dst.Close()
 		}
 	}
 

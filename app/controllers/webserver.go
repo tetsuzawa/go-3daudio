@@ -78,8 +78,8 @@ func init() {
 func StartWebServer() error {
 	http.Handle("/favicon.ico", http.NotFoundHandler())
 	http.HandleFunc("/", viewIndexHandler)
-	http.HandleFunc("/signup/", viewSignupHandler)
-	http.HandleFunc("/hrtf/", viewHRTFHandler)
+	http.HandleFunc("/signup", viewSignupHandler)
+	http.HandleFunc("/hrtf", viewHRTFHandler)
 	http.HandleFunc("/analysis/", viewAnalysisHandler)
 	http.HandleFunc("/api/sofa/", apiMakeHandler(apiSOFAHandler))
 	return http.ListenAndServe(fmt.Sprintf(":%d", config.Config.Port), nil)

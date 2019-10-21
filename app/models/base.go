@@ -53,7 +53,7 @@ func init() {
 		username STRING,
 		password STRING,
 		firstname STRING, 
-		lastname STRING`, tableNameUserData)
+		lastname STRING)`, tableNameUserData)
 	_, err = DbConnection.Exec(cmd)
 	if err != nil {
 		log.Fatalln(err)
@@ -62,7 +62,7 @@ func init() {
 	cmd = fmt.Sprintf(
 		`CREATE TABLE IF NOT EXISTS %s (
 		sessionid STRING PRIMARY KEY NOT NULL,
-		username STRING`, tableNameSession)
+		username STRING)`, tableNameSession)
 	_, err = DbConnection.Exec(cmd)
 	if err != nil {
 		log.Fatalln(err)
