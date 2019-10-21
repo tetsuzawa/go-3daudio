@@ -8,7 +8,7 @@ import (
 
 type user struct {
 	UserName string
-	PassWord []byte
+	Password []byte
 	First    string
 	Last     string
 }
