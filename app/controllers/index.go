@@ -2,44 +2,22 @@ package controllers
 
 import (
 	uuid "github.com/satori/go.uuid"
+	"golang.org/x/crypto/bcrypt"
 	"net/http"
 )
 
 type user struct {
 	UserName string
+	PassWord []byte
 	First    string
 	Last     string
 }
 
-var dbUsers = map[string]user{}      // user ID, user
-var dbSessions = map[string]string{} // session ID, user ID
+var dbUsers = make(map[string]user)      // user ID, user
+var dbSessions = make(map[string]string) // session ID, user ID
 
 func viewIndexHandler(w http.ResponseWriter, r *http.Request) {
-	c1, err := r.Cookie("session")
-	if err != nil {
-		sID, _ := uuid.NewV4()
-		c1 = &http.Cookie{
-			Name:  "session",
-			Value: sID.String(),
-		}
-		http.SetCookie(w, c1)
-	}
-
-	// if the user exists already, get user
-	var u user
-	if un, ok := dbSessions[c1.Value]; ok {
-		u = dbUsers[un]
-	}
-
-	// process form submission
-	if r.Method == http.MethodPost {
-		un := r.FormValue("username")
-		f := r.FormValue("firstname")
-		l := r.FormValue("lastname")
-		u = user{un, f, l}
-		dbSessions[c1.Value] = un
-		dbUsers[un] = u
-	}
+	u := getUser(w, r)
 
 	// visit count
 	/*
@@ -60,7 +38,60 @@ func viewIndexHandler(w http.ResponseWriter, r *http.Request) {
 		http.SetCookie(w, c2)
 	*/
 
-	err = tpls.ExecuteTemplate(w, "index.html", u)
+	err := tpls.ExecuteTemplate(w, "index.html", u)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
+func viewSignupHandler(w http.ResponseWriter, r *http.Request) {
+	if alreadyLoggedIn(r) {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
+	}
+
+	var u user
+
+	// process form submission
+	if r.Method == http.MethodPost {
+
+		// get form values
+		un := r.FormValue("username")
+		p := r.FormValue("password")
+		f := r.FormValue("firstname")
+		l := r.FormValue("lastname")
+
+		// username taken?
+		if _, ok := dbUsers[un]; ok {
+			http.Error(w, "Username already taken", http.StatusForbidden)
+			return
+		}
+
+		// create session
+		sID, _ := uuid.NewV4()
+		c := &http.Cookie{
+			Name:  "session",
+			Value: sID.String(),
+		}
+		http.SetCookie(w, c)
+		dbSessions[c.Value] = un
+
+		// store user in dbUsers
+		bs, err := bcrypt.GenerateFromPassword([]byte(p), bcrypt.DefaultCost)
+		if err != nil {
+			http.Error(w, "Internal server error", http.StatusInternalServerError)
+			return
+		}
+
+		// store user in dbUsers
+		u := user{un, bs, f, l}
+		dbUsers[un] = u
+
+		// redirect
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
+	}
+	err := tpls.ExecuteTemplate(w, "signup.html", u)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}

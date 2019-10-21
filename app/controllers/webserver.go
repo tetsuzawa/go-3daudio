@@ -12,9 +12,6 @@ import (
 	"github.com/tetsuzawa/go-3daudio/config"
 )
 
-//var tpls = template.Must(template.New("").Funcs(fm).ParseFiles("app/views/hrtf.html", "app/views/analysis.html"))
-var tpls = template.Must(template.New("").Funcs(fm).ParseGlob("app/views/templates/*.html"))
-
 func viewAnalysisHandler(w http.ResponseWriter, r *http.Request) {
 	err := tpls.ExecuteTemplate(w, "analysis.html", nil)
 	if err != nil {
@@ -71,11 +68,19 @@ func apiSOFAHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(js)
 }
 
+var tpls *template.Template
+
+func init() {
+	//tpls = template.Must(template.New("").Funcs(fm).ParseFiles("app/views/hrtf.html", "app/views/analysis.html"))
+	tpls = template.Must(template.New("").Funcs(fm).ParseGlob("app/views/templates/*.html"))
+}
+
 func StartWebServer() error {
 	http.Handle("/favicon.ico", http.NotFoundHandler())
 	http.HandleFunc("/", viewIndexHandler)
-	http.HandleFunc("/api/sofa/", apiMakeHandler(apiSOFAHandler))
+	http.HandleFunc("/signup/", viewSignupHandler)
 	http.HandleFunc("/hrtf/", viewHRTFHandler)
 	http.HandleFunc("/analysis/", viewAnalysisHandler)
+	http.HandleFunc("/api/sofa/", apiMakeHandler(apiSOFAHandler))
 	return http.ListenAndServe(fmt.Sprintf(":%d", config.Config.Port), nil)
 }

@@ -1,27 +1,13 @@
 {{template "header"}}
 
-<!--
 <form method="post">
 
     <input type="email" name="username" placeholder="email"><br>
+    <input type="text" name="password" placeholder="password"><br>
     <input type="text" name="firstname" placeholder="first name"><br>
     <input type="text" name="lastname" placeholder="last name"><br>
     <input type="submit">
 
 </form>
--->
-
-
-{{if .First}}
-    USER NAME {{.UserName}}<br>
-    PASSWORD {{.Password}}<br>
-    FIRST {{.First}}<br>
-    LAST {{.Last}}<br>
-{{else}}
-    <h2><a href="/signup">sign up</a></h2>
-{{end}}
-
-<br>
-<h2>Go to <a href="/hrtf">HRTF DataBase</a></h2>
 
 {{template "footer"}}
