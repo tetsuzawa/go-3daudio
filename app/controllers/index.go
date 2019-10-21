@@ -9,18 +9,6 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-/*
-type user struct {
-	UserName string
-	Password []byte
-	First    string
-	Last     string
-}
-
-var dbUsers = make(map[string]user)      // user ID, user
-var dbSessions = make(map[string]string) // session ID, user ID
-*/
-
 func viewIndexHandler(w http.ResponseWriter, r *http.Request) {
 	u := getUser(w, r)
 
@@ -46,13 +34,9 @@ func viewSignupHandler(w http.ResponseWriter, r *http.Request) {
 		p := r.FormValue("password")
 		f := r.FormValue("firstname")
 		l := r.FormValue("lastname")
+		ro := r.FormValue("role")
 
 		// ########## username taken? ##########
-		//if _, ok := dbUsers[un]; ok {
-		//	http.Error(w, "Username already taken", http.StatusForbidden)
-		//	return
-		//}
-
 		_, err := models.GetUserByUserName(un)
 		if err == nil {
 			http.Error(w, "Username already taken", http.StatusForbidden)
@@ -66,9 +50,7 @@ func viewSignupHandler(w http.ResponseWriter, r *http.Request) {
 			Name:  "session",
 			Value: sID.String(),
 		}
-		c.MaxAge = 3600
 		http.SetCookie(w, c)
-		//dbSessions[c.Value] = un
 
 		s := models.NewSession(c.Value, un)
 		if err = s.Create(); err != nil {
@@ -88,10 +70,7 @@ func viewSignupHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		//u := models.User{uID.String(),un, string(bs), f, l}
-		//dbUsers[un] = u
-
-		u := models.NewUser(uID.String(), un, string(bs), f, l)
+		u := models.NewUser(uID.String(), un, string(bs), f, l, ro)
 		if err = u.Create(); err != nil {
 			log.Println(err)
 			http.Error(w, err.Error(), http.StatusInternalServerError)

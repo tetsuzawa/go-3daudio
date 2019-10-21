@@ -46,9 +46,6 @@ func alreadyLoggedIn(r *http.Request) bool {
 		log.Println(err)
 		return false
 	}
-	//un := dbSessions[c.Value]
-	//_, ok := dbUsers[un]
-	//return ok
 	s, err := models.GetSession(c.Value)
 	if err != nil {
 		log.Println(err)

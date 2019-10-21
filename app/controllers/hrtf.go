@@ -41,6 +41,11 @@ func viewHRTFHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if u.Role != "academic"{
+		http.Error(w, "Sorry. Hrtf database is for academic use only for now.", http.StatusForbidden)
+		return
+	}
+
 	if r.Method == http.MethodPost {
 		//if posted from form. add data to db
 		t := time.Now()

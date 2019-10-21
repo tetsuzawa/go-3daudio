@@ -11,17 +11,17 @@ type User struct {
 	Password  string `json:"password"`
 	FirstName string `json:"firstname"`
 	LastName  string `json:"lastname"`
-	Roll      string `json:"roll"`
+	Role      string `json:"role"`
 }
 
-func NewUser(id, username, password, firstname, lastname, roll string) *User {
+func NewUser(id, username, password, firstname, lastname, role string) *User {
 	return &User{
 		ID:        id,
 		UserName:  username,
 		Password:  password,
 		FirstName: firstname,
 		LastName:  lastname,
-		Roll:      roll,
+		Role:      role,
 	}
 }
 
@@ -30,8 +30,8 @@ func (u *User) TableName() string {
 }
 
 func (u *User) Create() error {
-	cmd := fmt.Sprintf("INSERT INTO %s (id, username, password, firstname, lastname, roll) VALUES (?, ?, ?, ?, ?, ?)", u.TableName())
-	_, err := DbConnection.Exec(cmd, u.ID, u.UserName, u.Password, u.FirstName, u.LastName, u.Roll)
+	cmd := fmt.Sprintf("INSERT INTO %s (id, username, password, firstname, lastname, role) VALUES (?, ?, ?, ?, ?, ?)", u.TableName())
+	_, err := DbConnection.Exec(cmd, u.ID, u.UserName, u.Password, u.FirstName, u.LastName, u.Role)
 	if err != nil {
 		return err
 	}
@@ -39,8 +39,8 @@ func (u *User) Create() error {
 }
 
 func (u *User) Save() error {
-	cmd := fmt.Sprintf("UPDATE %s SET username = ?, password = ?, firstname = ?, lastname = ?, roll = ? WHERE id = ?", u.TableName())
-	_, err := DbConnection.Exec(cmd, u.UserName, u.Password, u.FirstName, u.LastName, u.Roll, u.ID)
+	cmd := fmt.Sprintf("UPDATE %s SET username = ?, password = ?, firstname = ?, lastname = ?, role = ? WHERE id = ?", u.TableName())
+	_, err := DbConnection.Exec(cmd, u.UserName, u.Password, u.FirstName, u.LastName, u.Role, u.ID)
 	if err != nil {
 		return err
 	}
@@ -49,28 +49,28 @@ func (u *User) Save() error {
 
 func GetUser(id string) (*User, error) {
 	tableName := GetUserTableName("user")
-	cmd := fmt.Sprintf(`SELECT id, username, password, firstname, lastname, roll FROM %s WHERE id = '%s'`,
+	cmd := fmt.Sprintf(`SELECT id, username, password, firstname, lastname, role FROM %s WHERE id = '%s'`,
 		tableName, id)
 	row := DbConnection.QueryRow(cmd)
 	var u User
-	err := row.Scan(&u.ID, &u.UserName, &u.Password, &u.FirstName, &u.LastName, &u.Roll)
+	err := row.Scan(&u.ID, &u.UserName, &u.Password, &u.FirstName, &u.LastName, &u.Role)
 	if err != nil {
 		log.Println(err)
 		return nil, err
 	}
-	return NewUser(u.ID, u.UserName, u.Password, u.FirstName, u.LastName, u.Roll), nil
+	return NewUser(u.ID, u.UserName, u.Password, u.FirstName, u.LastName, u.Role), nil
 }
 
 func GetUserByUserName(un string) (*User, error) {
 	tableName := GetUserTableName("user")
-	cmd := fmt.Sprintf(`SELECT id, username, password, firstname, lastname, roll FROM %s WHERE username = '%s'`,
+	cmd := fmt.Sprintf(`SELECT id, username, password, firstname, lastname, role FROM %s WHERE username = '%s'`,
 		tableName, un)
 	row := DbConnection.QueryRow(cmd)
 	var u User
-	err := row.Scan(&u.ID, &u.UserName, &u.Password, &u.FirstName, &u.LastName, &u.Roll)
+	err := row.Scan(&u.ID, &u.UserName, &u.Password, &u.FirstName, &u.LastName, &u.Role)
 	if err != nil {
 		log.Println(err)
 		return nil, err
 	}
-	return NewUser(u.ID, u.UserName, u.Password, u.FirstName, u.LastName, u.Roll), nil
+	return NewUser(u.ID, u.UserName, u.Password, u.FirstName, u.LastName, u.Role), nil
 }
