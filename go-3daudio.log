@@ -1234,3 +1234,82 @@ created by net/http.(*Server).Serve
 2019/10/21 21:24:25 session.go:50: sql: no rows in result set
 2019/10/21 21:24:25 session.go:54: sql: no rows in result set
 2019/10/21 21:24:25 session.go:50: sql: no rows in result set
+2019/10/21 21:59:05 main.go:15: &{0 {hrtf_data.sql 0xc0000dc2c0} 0 {0 0} [0xc000138000] map[] 0 1 0xc00012e000 0xc0000ac0c0 false map[0xc000138000:map[0xc000138000:true]] map[] 0 0 0 <nil> 0 0 0 0x41c10f0}
+2019/10/21 21:59:11 session.go:59: sql: no rows in result set
+2019/10/21 21:59:13 session.go:59: sql: no rows in result set
+2019/10/21 21:59:13 session.go:54: sql: no rows in result set
+2019/10/21 21:59:27 session.go:59: sql: no rows in result set
+2019/10/21 21:59:27 session.go:54: sql: no rows in result set
+2019/10/21 22:00:20 main.go:15: &{0 {hrtf_data.sql 0xc0000ea2c0} 0 {0 0} [0xc00014a000] map[] 0 1 0xc000140000 0xc0000b8180 false map[0xc00014a000:map[0xc00014a000:true]] map[] 0 0 0 <nil> 0 0 0 0x41c10f0}
+2019/10/21 22:00:28 session.go:46: http: named cookie not present
+2019/10/21 22:00:40 session.go:46: http: named cookie not present
+2019/10/21 22:00:46 session.go:46: http: named cookie not present
+2019/10/21 22:00:49 session.go:59: sql: no rows in result set
+2019/10/21 22:00:49 session.go:59: sql: no rows in result set
+2019/10/21 22:00:49 session.go:54: sql: no rows in result set
+2019/10/21 22:00:49 session.go:59: sql: no rows in result set
+2019/10/21 22:00:56 session.go:59: sql: no rows in result set
+2019/10/21 22:00:56 session.go:54: sql: no rows in result set
+2019/10/21 22:01:03 session.go:59: sql: no rows in result set
+2019/10/21 22:01:03 session.go:54: sql: no rows in result set
+2019/10/21 22:01:16 session.go:59: sql: no rows in result set
+2019/10/21 22:01:16 session.go:46: http: named cookie not present
+2019/10/21 22:01:16 session.go:59: sql: no rows in result set
+2019/10/21 22:01:18 session.go:59: sql: no rows in result set
+2019/10/21 22:01:18 session.go:54: sql: no rows in result set
+2019/10/21 22:01:19 session.go:59: sql: no rows in result set
+2019/10/21 22:01:19 session.go:54: sql: no rows in result set
+2019/10/21 22:01:26 session.go:59: sql: no rows in result set
+2019/10/21 22:01:26 session.go:54: sql: no rows in result set
+2019/10/21 22:01:29 hrtf.go:115: http: named cookie not present
+2019/10/21 22:01:38 session.go:46: http: named cookie not present
+2019/10/21 22:01:42 session.go:46: http: named cookie not present
+2019/10/21 22:01:42 session.go:59: sql: no rows in result set
+2019/10/21 22:01:42 session.go:59: sql: no rows in result set
+2019/10/21 22:01:43 session.go:59: sql: no rows in result set
+2019/10/21 22:01:43 session.go:59: sql: no rows in result set
+2019/10/21 22:01:45 session.go:59: sql: no rows in result set
+2019/10/21 22:01:45 session.go:54: sql: no rows in result set
+2019/10/21 22:01:51 session.go:59: sql: no rows in result set
+2019/10/21 22:01:51 session.go:59: sql: no rows in result set
+2019/10/21 22:01:51 session.go:59: sql: no rows in result set
+2019/10/21 22:01:51 session.go:59: sql: no rows in result set
+2019/10/21 22:01:51 session.go:59: sql: no rows in result set
+2019/10/21 22:01:51 session.go:59: sql: no rows in result set
+2019/10/21 22:01:51 session.go:59: sql: no rows in result set
+2019/10/21 22:01:51 session.go:59: sql: no rows in result set
+2019/10/21 22:01:51 session.go:59: sql: no rows in result set
+2019/10/21 22:01:51 session.go:59: sql: no rows in result set
+2019/10/21 22:01:51 session.go:59: sql: no rows in result set
+2019/10/21 22:01:51 session.go:59: sql: no rows in result set
+2019/10/21 22:01:59 session.go:59: sql: no rows in result set
+2019/10/21 22:01:59 session.go:46: http: named cookie not present
+2019/10/21 22:01:59 session.go:59: sql: no rows in result set
+2019/10/21 22:02:00 session.go:59: sql: no rows in result set
+2019/10/21 22:02:00 session.go:54: sql: no rows in result set
+2019/10/21 22:02:06 session.go:59: sql: no rows in result set
+2019/10/21 22:02:06 session.go:54: sql: no rows in result set
+2019/10/21 22:02:11 hrtf.go:115: http: named cookie not present
+2019/10/21 22:02:18 session.go:46: http: named cookie not present
+2019/10/21 22:02:21 session.go:59: sql: no rows in result set
+2019/10/21 22:02:21 session.go:59: sql: no rows in result set
+2019/10/21 22:02:21 session.go:59: sql: no rows in result set
+2019/10/21 22:02:21 session.go:59: sql: no rows in result set
+2019/10/21 22:02:21 session.go:59: sql: no rows in result set
+2019/10/21 22:02:21 session.go:59: sql: no rows in result set
+2019/10/21 22:02:21 session.go:59: sql: no rows in result set
+2019/10/21 22:02:21 session.go:59: sql: no rows in result set
+2019/10/21 22:02:21 session.go:59: sql: no rows in result set
+2019/10/21 22:02:21 session.go:59: sql: no rows in result set
+2019/10/21 22:02:33 session.go:46: http: named cookie not present
+2019/10/21 22:02:36 hrtf.go:115: http: named cookie not present
+2019/10/21 22:02:53 session.go:59: sql: no rows in result set
+2019/10/21 22:02:53 session.go:59: sql: no rows in result set
+2019/10/21 22:02:53 session.go:59: sql: no rows in result set
+2019/10/21 22:02:53 session.go:59: sql: no rows in result set
+2019/10/21 22:02:53 session.go:59: sql: no rows in result set
+2019/10/21 22:02:53 session.go:59: sql: no rows in result set
+2019/10/21 22:02:53 session.go:59: sql: no rows in result set
+2019/10/21 22:02:53 session.go:59: sql: no rows in result set
+2019/10/21 22:02:53 session.go:59: sql: no rows in result set
+2019/10/21 22:02:53 session.go:59: sql: no rows in result set

@@ -39,9 +39,9 @@ func (s *Session) Save() error {
 	return err
 }
 
-func Delete(sessionID string) error {
-	cmd := fmt.Sprintf("DELETE FROM %s SET username = ? WHERE sessionid = ?", s.TableName())
-	_, err := DbConnection.Exec(cmd, s.UserName, s.SessionID)
+func (s *Session) Delete() error {
+	cmd := fmt.Sprintf("DELETE FROM %s WHERE sessionid = ?", s.TableName())
+	_, err := DbConnection.Exec(cmd, s.SessionID)
 	if err != nil {
 		return err
 	}

@@ -68,8 +68,21 @@ func viewLogoutHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	c, err := r.Cookie("session")
+	if err != nil {
+		log.Println(err)
+	}
 	// delete the session
-	delete(dbSessions, c.Value)
+	//delete(dbSessions, c.Value)
+	s, err := models.GetSession(c.Value)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+	if err := s.Delete(); err != nil {
+		log.Println(err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+
 	// remove the cookie
 	c = &http.Cookie{
 		Name:   "session",
