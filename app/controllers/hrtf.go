@@ -35,17 +35,11 @@ func firstThree(s string) string {
 func viewHRTFHandler(w http.ResponseWriter, r *http.Request) {
 	var id string
 
-	c, err := r.Cookie("session")
-	if err != nil {
+	u := getUser(w, r)
+	if !alreadyLoggedIn(r){
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 		return
 	}
-	un, ok := dbSessions[c.Value]
-	if !ok {
-		http.Redirect(w, r, "/", http.StatusSeeOther)
-		return
-	}
-	u := dbUsers[un]
 
 	if r.Method == http.MethodPost {
 		//if posted from form. add data to db
