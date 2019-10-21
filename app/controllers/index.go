@@ -2,6 +2,7 @@ package controllers
 
 import (
 	uuid "github.com/satori/go.uuid"
+	"golang.org/x/crypto/bcrypt"
 	"net/http"
 )
 
@@ -49,6 +50,8 @@ func viewSignupHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	var u user
+
 	// process form submission
 	if r.Method == http.MethodPost {
 
@@ -74,14 +77,21 @@ func viewSignupHandler(w http.ResponseWriter, r *http.Request) {
 		dbSessions[c.Value] = un
 
 		// store user in dbUsers
-		u := user{un, p, f, l}
+		bs, err := bcrypt.GenerateFromPassword([]byte(p), bcrypt.DefaultCost)
+		if err != nil {
+			http.Error(w, "Internal server error", http.StatusInternalServerError)
+			return
+		}
+
+		// store user in dbUsers
+		u := user{un, bs, f, l}
 		dbUsers[un] = u
 
 		// redirect
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 		return
 	}
-	err := tpls.ExecuteTemplate(w, "signup.html", nil)
+	err := tpls.ExecuteTemplate(w, "signup.html", u)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}

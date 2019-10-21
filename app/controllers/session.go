@@ -14,10 +14,8 @@ func getUser(w http.ResponseWriter, r *http.Request) user {
 			Name:  "session",
 			Value: sID.String(),
 		}
-
 	}
-	//Next line may not be required, commenting it
-	//http.SetCookie(w, c)
+	http.SetCookie(w, c)
 
 	// if the user exists already, get user
 	var u user
