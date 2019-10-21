@@ -3,98 +3,14 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/oklog/ulid"
-	"github.com/tetsuzawa/go-3daudio/app/models"
-	"github.com/tetsuzawa/go-3daudio/config"
 	"html/template"
 	"log"
-	"math/rand"
 	"net/http"
 	"regexp"
-	"strconv"
-	"strings"
-	"time"
+
+	"github.com/tetsuzawa/go-3daudio/app/models"
+	"github.com/tetsuzawa/go-3daudio/config"
 )
-
-var fm = template.FuncMap{
-	"uc": strings.ToUpper,
-	"ft": firstThree,
-}
-
-//var tpls = template.Must(template.New("").Funcs(fm).ParseFiles("app/views/hrtf.html", "app/views/analysis.html"))
-var tpls = template.Must(template.New("").Funcs(fm).ParseGlob("app/views/*.html"))
-
-func firstThree(s string) string {
-	s = strings.TrimSpace(s)
-	s = s[:3]
-	return s
-}
-
-func viewHRTFHandler(w http.ResponseWriter, r *http.Request) {
-	var id string
-
-	if r.Method == http.MethodPost {
-		t := time.Now()
-		entropy := ulid.Monotonic(rand.New(rand.NewSource(t.UnixNano())), 0)
-		id = ulid.MustNew(ulid.Now(), entropy).String()
-
-		err := r.ParseForm()
-		if err != nil {
-			log.Println(err)
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-		}
-
-		name := r.Form.Get("name")
-		age, err := strconv.Atoi(r.Form.Get("age"))
-		if err != nil {
-			log.Println(err)
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-		}
-		azimuth, err := strconv.Atoi(r.Form.Get("azimuth"))
-		if err != nil {
-			log.Println(err)
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-		}
-		elevation, err := strconv.Atoi(r.Form.Get("elevation"))
-		if err != nil {
-			log.Println(err)
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-		}
-		data, err := strconv.Atoi(r.Form.Get("data"))
-		if err != nil {
-			log.Println(err)
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-		}
-		hrtf := models.NewHRTF(id, name, uint(age), float64(azimuth), float64(elevation), float64(data))
-		if err = hrtf.Create(); err != nil {
-			log.Println(err)
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-		}
-	}
-
-	if r.Method == http.MethodGet {
-		id = r.URL.Query().Get("id")
-		if id == "" {
-			//APIError(w, "No id param", http.StatusBadRequest)
-			//return
-			id = "01DQ44KFF4D44TFZA9963GD1VS"
-			//TODO id hard code
-		}
-	}
-
-	hrtf, err := models.GetHRTF(id)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusNotFound)
-	}
-
-	//hrtf := models.NewHRTF(1, "tetsu", 20, 20, 0, 0.35555)
-	err = tpls.ExecuteTemplate(w, "hrtf.html", hrtf)
-	//TODO delete index.html sample code
-	//err := tpls.ExecuteTemplate(w, "index.html", hrtf)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	}
-}
 
 func viewAnalysisHandler(w http.ResponseWriter, r *http.Request) {
 	err := tpls.ExecuteTemplate(w, "analysis.html", nil)
@@ -152,10 +68,21 @@ func apiSOFAHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(js)
 }
 
+var tpls *template.Template
+
+func init() {
+	//tpls = template.Must(template.New("").Funcs(fm).ParseFiles("app/views/hrtf.html", "app/views/analysis.html"))
+	tpls = template.Must(template.New("").Funcs(fm).ParseGlob("app/views/templates/*.html"))
+}
+
 func StartWebServer() error {
 	http.Handle("/favicon.ico", http.NotFoundHandler())
-	http.HandleFunc("/api/sofa/", apiMakeHandler(apiSOFAHandler))
-	http.HandleFunc("/hrtf/", viewHRTFHandler)
+	http.HandleFunc("/", viewIndexHandler)
+	http.HandleFunc("/signup", viewSignupHandler)
+	http.HandleFunc("/login", viewLoginHandler)
+	http.HandleFunc("/logout", viewLogoutHandler)
+	http.HandleFunc("/hrtf", viewHRTFHandler)
 	http.HandleFunc("/analysis/", viewAnalysisHandler)
+	http.HandleFunc("/api/sofa/", apiMakeHandler(apiSOFAHandler))
 	return http.ListenAndServe(fmt.Sprintf(":%d", config.Config.Port), nil)
 }
