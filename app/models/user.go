@@ -46,9 +46,23 @@ func (u *User) Save() error {
 }
 
 func GetUser(id string) (*User, error) {
-	tableName := GetUserTableName("u")
+	tableName := GetUserTableName("user")
 	cmd := fmt.Sprintf(`SELECT id, username, password, firstname, lastname FROM %s WHERE id = '%s'`,
 		tableName, id)
+	row := DbConnection.QueryRow(cmd)
+	var u User
+	err := row.Scan(&u.ID, &u.UserName, &u.Password, &u.FirstName, &u.LastName)
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+	return NewUser(u.ID, u.UserName, u.Password, u.FirstName, u.LastName), nil
+}
+
+func GetUserByUserName(un string) (*User, error) {
+	tableName := GetUserTableName("user")
+	cmd := fmt.Sprintf(`SELECT id, username, password, firstname, lastname FROM %s WHERE username = '%s'`,
+		tableName, un)
 	row := DbConnection.QueryRow(cmd)
 	var u User
 	err := row.Scan(&u.ID, &u.UserName, &u.Password, &u.FirstName, &u.LastName)
