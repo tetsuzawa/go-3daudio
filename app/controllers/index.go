@@ -24,25 +24,6 @@ var dbSessions = make(map[string]string) // session ID, user ID
 func viewIndexHandler(w http.ResponseWriter, r *http.Request) {
 	u := getUser(w, r)
 
-	// visit count
-	/*
-		c2, err := r.Cookie("visit-count")
-		if err == http.ErrNoCookie {
-			c2 = &http.Cookie{
-				Name:  "visit-count",
-				Value: "0",
-			}
-		}
-		cnt, err := strconv.Atoi(c2.Value)
-		if err != nil {
-			log.Println(err)
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-		}
-		cnt++
-		c2.Value = strconv.Itoa(cnt)
-		http.SetCookie(w, c2)
-	*/
-
 	err := tpls.ExecuteTemplate(w, "index.html", u)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
