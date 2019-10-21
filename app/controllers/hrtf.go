@@ -17,7 +17,7 @@ import (
 )
 
 type hrtfData struct {
-	User user
+	User *models.User
 	HRTF *models.HRTF
 }
 

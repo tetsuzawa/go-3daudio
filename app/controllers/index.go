@@ -1,10 +1,12 @@
 package controllers
 
 import (
+	"log"
+	"net/http"
+
 	uuid "github.com/satori/go.uuid"
 	"github.com/tetsuzawa/go-3daudio/app/models"
 	"golang.org/x/crypto/bcrypt"
-	"net/http"
 )
 
 /*
@@ -70,7 +72,7 @@ func viewSignupHandler(w http.ResponseWriter, r *http.Request) {
 		//	return
 		//}
 
-		user, err := models.GetUserByUserName(un)
+		_, err := models.GetUserByUserName(un)
 		if err == nil {
 			http.Error(w, "Username already taken", http.StatusForbidden)
 			return
@@ -84,20 +86,35 @@ func viewSignupHandler(w http.ResponseWriter, r *http.Request) {
 			Value: sID.String(),
 		}
 		http.SetCookie(w, c)
-		dbSessions[c.Value] = un
+		//dbSessions[c.Value] = un
 
+		s := models.NewSession(c.Value, un)
+		if err = s.Create(); err != nil {
+			log.Println(err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+		}
 		// ########## create session ##########
 
-		// store user in dbUsers
+		// ########## create user id ##########
+		uID, _ := uuid.NewV4()
+		// ########## create user id ##########
+
+		// ########## store user in dbUsers ##########
 		bs, err := bcrypt.GenerateFromPassword([]byte(p), bcrypt.DefaultCost)
 		if err != nil {
 			http.Error(w, "Internal server error", http.StatusInternalServerError)
 			return
 		}
 
-		// store user in dbUsers
-		u := user{un, bs, f, l}
-		dbUsers[un] = u
+		//u := models.User{uID.String(),un, string(bs), f, l}
+		//dbUsers[un] = u
+
+		u := models.NewUser(uID.String(), un, string(bs), f, l)
+		if err = u.Create(); err != nil {
+			log.Println(err)
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+		}
+		// ########## store user in dbUsers ##########
 
 		// redirect
 		http.Redirect(w, r, "/", http.StatusSeeOther)
