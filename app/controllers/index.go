@@ -85,6 +85,7 @@ func viewSignupHandler(w http.ResponseWriter, r *http.Request) {
 			Name:  "session",
 			Value: sID.String(),
 		}
+		c.MaxAge = 3600
 		http.SetCookie(w, c)
 		//dbSessions[c.Value] = un
 
