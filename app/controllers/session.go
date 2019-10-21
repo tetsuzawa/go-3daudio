@@ -40,8 +40,8 @@ func getUser(w http.ResponseWriter, r *http.Request) models.User {
 	return models.User{}
 }
 
-func alreadyLoggedIn(req *http.Request) bool {
-	c, err := req.Cookie("session")
+func alreadyLoggedIn(r *http.Request) bool {
+	c, err := r.Cookie("session")
 	if err != nil {
 		log.Println(err)
 		return false

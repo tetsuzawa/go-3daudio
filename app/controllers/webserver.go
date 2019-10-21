@@ -79,6 +79,8 @@ func StartWebServer() error {
 	http.Handle("/favicon.ico", http.NotFoundHandler())
 	http.HandleFunc("/", viewIndexHandler)
 	http.HandleFunc("/signup", viewSignupHandler)
+	http.HandleFunc("/login", viewLoginHandler)
+	http.HandleFunc("/logout", viewLogoutHandler)
 	http.HandleFunc("/hrtf", viewHRTFHandler)
 	http.HandleFunc("/analysis/", viewAnalysisHandler)
 	http.HandleFunc("/api/sofa/", apiMakeHandler(apiSOFAHandler))
