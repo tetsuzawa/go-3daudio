@@ -16,10 +16,6 @@ func GetHRTFTableName(name string) string {
 	return fmt.Sprintf("%s", name)
 }
 
-//func GetHRTFTableName() string {
-//	return fmt.Sprintf("%s", tableNameHRTFData)
-//}
-
 func init() {
 	var err error
 	DbConnection, err = sql.Open(config.Config.SQLDriver, config.Config.DbName)
