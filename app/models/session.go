@@ -39,6 +39,15 @@ func (s *Session) Save() error {
 	return err
 }
 
+func (s *Session) Delete() error {
+	cmd := fmt.Sprintf("DELETE FROM %s WHERE sessionid = ?", s.TableName())
+	_, err := DbConnection.Exec(cmd, s.SessionID)
+	if err != nil {
+		return err
+	}
+	return err
+}
+
 func GetSession(sessionID string) (*Session, error) {
 	tableName := GetSessionTableName("session")
 	cmd := fmt.Sprintf(`SELECT sessionid, username FROM %s WHERE sessionid = '%s'`,
