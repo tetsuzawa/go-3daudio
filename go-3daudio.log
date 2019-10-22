@@ -1786,3 +1786,14 @@ created by net/http.(*Server).Serve
 2019/10/22 12:29:18 session.go:46: http: named cookie not present
 2019/10/22 12:29:56 session.go:46: http: named cookie not present
 2019/10/22 12:30:41 session.go:46: http: named cookie not present
+2019/10/22 22:00:16 main.go:15: &{0 0xc000010018 0 {0 0} [0xc000144000] map[] 0 1 0xc0000240c0 0xc00007a120 false map[0xc000144000:map[0xc000144000:true]] map[] 0 0 0 <nil> 0 0 0 0x11c0c80}
+2019/10/22 22:00:25 session.go:62: sql: no rows in result set
+2019/10/22 22:00:29 session.go:62: sql: no rows in result set
+2019/10/22 22:00:29 session.go:51: sql: no rows in result set
+2019/10/22 22:00:33 session.go:62: sql: no rows in result set
+2019/10/22 22:00:33 session.go:51: sql: no rows in result set
+2019/10/22 22:00:44 session.go:62: sql: no rows in result set
+2019/10/22 22:00:44 session.go:51: sql: no rows in result set
+2019/10/22 22:00:44 user.go:72: sql: no rows in result set
+2019/10/22 22:00:44 index.go:60: Error 1292: Incorrect datetime value: '2019-10-22T22:00:44+09:00' for column 'time' at row 1
+2019/10/22 22:00:44 server.go:3055: http: superfluous response.WriteHeader call from github.com/tetsuzawa/go-3daudio/app/controllers.viewSignupHandler (index.go:84)
