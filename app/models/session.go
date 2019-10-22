@@ -64,3 +64,53 @@ func GetSession(sessionID string) (*Session, error) {
 	}
 	return NewSession(s.SessionID, s.UserName, s.Time), nil
 }
+
+func GetRecentSessions(t time.Time) ([]Session, error) {
+	tableName := GetSessionTableName("session")
+	cmd := fmt.Sprintf(`SELECT sessionid, username, time FROM %s WHERE time > '%s'`,
+		tableName, t)
+	rows, err := DbConnection.Query(cmd)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var ss []Session
+	for rows.Next() {
+		var s Session
+		err := rows.Scan(&s.SessionID, &s.UserName, &s.Time)
+		if err != nil {
+			log.Println(err)
+			return nil, err
+		}
+		ss = append(ss, s)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return ss, nil
+}
+
+func GetOldSessions(t time.Time) ([]Session, error) {
+	tableName := GetSessionTableName("session")
+	cmd := fmt.Sprintf(`SELECT sessionid, username, time FROM %s WHERE time < '%s'`,
+		tableName, t)
+	rows, err := DbConnection.Query(cmd)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var ss []Session
+	for rows.Next() {
+		var s Session
+		err := rows.Scan(&s.SessionID, &s.UserName, &s.Time)
+		if err != nil {
+			log.Println(err)
+			return nil, err
+		}
+		ss = append(ss, s)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return ss, nil
+}

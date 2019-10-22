@@ -94,5 +94,10 @@ func viewLogoutHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	http.SetCookie(w, c)
 
+	// clean up dbSessions
+	if time.Now().Sub(dbSessionsCleaned) > (time.Second * 30) {
+		go cleanSessions()
+	}
+
 	http.Redirect(w, r, "/login", http.StatusSeeOther)
 }

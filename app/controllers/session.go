@@ -3,10 +3,13 @@ package controllers
 import (
 	"log"
 	"net/http"
+	"time"
 
 	uuid "github.com/satori/go.uuid"
 	"github.com/tetsuzawa/go-3daudio/app/models"
 )
+
+var dbSessionsCleaned time.Time
 
 func getUser(w http.ResponseWriter, r *http.Request) models.User {
 	// get cookie
@@ -57,3 +60,18 @@ func alreadyLoggedIn(r *http.Request) bool {
 	return true
 }
 
+func cleanSessions() {
+	t := time.Now()
+	t.Add(-30 * time.Second)
+	ss, err := models.GetOldSessions(t)
+	if err != nil {
+		log.Println(err)
+	}
+	dbSessionsCleaned = time.Now()
+
+	for _, s := range ss {
+		if err := s.Delete(); err != nil {
+			log.Println(err)
+		}
+	}
+}
