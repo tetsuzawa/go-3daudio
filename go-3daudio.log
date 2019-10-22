@@ -1313,3 +1313,476 @@ created by net/http.(*Server).Serve
 2019/10/21 22:02:53 session.go:59: sql: no rows in result set
 2019/10/21 22:02:53 session.go:59: sql: no rows in result set
 2019/10/21 22:02:53 session.go:59: sql: no rows in result set
+2019/10/22 08:31:00 main.go:15: &{0 {hrtf_data.sql 0xc00000e300} 0 {0 0} [0xc00012e000] map[] 0 1 0xc00011e000 0xc0000b4060 false map[0xc00012e000:map[0xc00012e000:true]] map[] 0 0 0 <nil> 0 0 0 0x41c0cd0}
+2019/10/22 08:31:05 session.go:59: sql: no rows in result set
+2019/10/22 08:31:05 session.go:59: sql: no rows in result set
+2019/10/22 08:31:05 session.go:59: sql: no rows in result set
+2019/10/22 08:31:14 user.go:72: no such column: roll
+2019/10/22 08:31:14 session.go:35: no such column: roll
+2019/10/22 08:31:14 server.go:3055: http: panic serving [::1]:54283: runtime error: invalid memory address or nil pointer dereference
+goroutine 51 [running]:
+net/http.(*conn).serve.func1(0xc000220000)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x4540200, 0x4922900)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.getUser(0x4653da0, 0xc0001940e0, 0xc000164800, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, ...)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/session.go:38 +0x1b4
+github.com/tetsuzawa/go-3daudio/app/controllers.viewIndexHandler(0x4653da0, 0xc0001940e0, 0xc000164800)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/index.go:13 +0x5a
+net/http.HandlerFunc.ServeHTTP(0x45d73c0, 0x4653da0, 0xc0001940e0, 0xc000164800)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x4935080, 0x4653da0, 0xc0001940e0, 0xc000164800)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc000194000, 0x4653da0, 0xc0001940e0, 0xc000164800)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc000220000, 0x4654ae0, 0xc000030800)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/22 08:31:14 user.go:72: no such column: roll
+2019/10/22 08:31:14 session.go:35: no such column: roll
+2019/10/22 08:31:14 server.go:3055: http: panic serving [::1]:54284: runtime error: invalid memory address or nil pointer dereference
+goroutine 52 [running]:
+net/http.(*conn).serve.func1(0xc0002200a0)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x4540200, 0x4922900)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.getUser(0x4653da0, 0xc0001941c0, 0xc000152400, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, ...)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/session.go:38 +0x1b4
+github.com/tetsuzawa/go-3daudio/app/controllers.viewIndexHandler(0x4653da0, 0xc0001941c0, 0xc000152400)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/index.go:13 +0x5a
+net/http.HandlerFunc.ServeHTTP(0x45d73c0, 0x4653da0, 0xc0001941c0, 0xc000152400)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x4935080, 0x4653da0, 0xc0001941c0, 0xc000152400)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc000194000, 0x4653da0, 0xc0001941c0, 0xc000152400)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc0002200a0, 0x4654ae0, 0xc0001505c0)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/22 08:31:14 user.go:72: no such column: roll
+2019/10/22 08:31:14 session.go:35: no such column: roll
+2019/10/22 08:31:14 server.go:3055: http: panic serving [::1]:54285: runtime error: invalid memory address or nil pointer dereference
+goroutine 36 [running]:
+net/http.(*conn).serve.func1(0xc000258000)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x4540200, 0x4922900)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.getUser(0x4653da0, 0xc0000222a0, 0xc00014a900, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, ...)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/session.go:38 +0x1b4
+github.com/tetsuzawa/go-3daudio/app/controllers.viewIndexHandler(0x4653da0, 0xc0000222a0, 0xc00014a900)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/index.go:13 +0x5a
+net/http.HandlerFunc.ServeHTTP(0x45d73c0, 0x4653da0, 0xc0000222a0, 0xc00014a900)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x4935080, 0x4653da0, 0xc0000222a0, 0xc00014a900)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc000194000, 0x4653da0, 0xc0000222a0, 0xc00014a900)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc000258000, 0x4654ae0, 0xc00011a700)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/22 08:31:15 user.go:72: no such column: roll
+2019/10/22 08:31:15 session.go:35: no such column: roll
+2019/10/22 08:31:15 server.go:3055: http: panic serving [::1]:54286: runtime error: invalid memory address or nil pointer dereference
+goroutine 15 [running]:
+net/http.(*conn).serve.func1(0xc0000c1720)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x4540200, 0x4922900)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.getUser(0x4653da0, 0xc000022380, 0xc00014aa00, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, ...)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/session.go:38 +0x1b4
+github.com/tetsuzawa/go-3daudio/app/controllers.viewIndexHandler(0x4653da0, 0xc000022380, 0xc00014aa00)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/index.go:13 +0x5a
+net/http.HandlerFunc.ServeHTTP(0x45d73c0, 0x4653da0, 0xc000022380, 0xc00014aa00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x4935080, 0x4653da0, 0xc000022380, 0xc00014aa00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc000194000, 0x4653da0, 0xc000022380, 0xc00014aa00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc0000c1720, 0x4654ae0, 0xc00011a780)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/22 08:31:15 user.go:72: no such column: roll
+2019/10/22 08:31:15 session.go:35: no such column: roll
+2019/10/22 08:31:15 server.go:3055: http: panic serving [::1]:54287: runtime error: invalid memory address or nil pointer dereference
+goroutine 16 [running]:
+net/http.(*conn).serve.func1(0xc0000c17c0)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x4540200, 0x4922900)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.getUser(0x4653da0, 0xc000022460, 0xc00014ab00, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, ...)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/session.go:38 +0x1b4
+github.com/tetsuzawa/go-3daudio/app/controllers.viewIndexHandler(0x4653da0, 0xc000022460, 0xc00014ab00)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/index.go:13 +0x5a
+net/http.HandlerFunc.ServeHTTP(0x45d73c0, 0x4653da0, 0xc000022460, 0xc00014ab00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x4935080, 0x4653da0, 0xc000022460, 0xc00014ab00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc000194000, 0x4653da0, 0xc000022460, 0xc00014ab00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc0000c17c0, 0x4654ae0, 0xc00011a800)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/22 08:31:15 user.go:72: no such column: roll
+2019/10/22 08:31:15 session.go:35: no such column: roll
+2019/10/22 08:31:15 server.go:3055: http: panic serving [::1]:54288: runtime error: invalid memory address or nil pointer dereference
+goroutine 68 [running]:
+net/http.(*conn).serve.func1(0xc0000c1860)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x4540200, 0x4922900)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.getUser(0x4653da0, 0xc0001ee0e0, 0xc00014ac00, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, ...)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/session.go:38 +0x1b4
+github.com/tetsuzawa/go-3daudio/app/controllers.viewIndexHandler(0x4653da0, 0xc0001ee0e0, 0xc00014ac00)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/index.go:13 +0x5a
+net/http.HandlerFunc.ServeHTTP(0x45d73c0, 0x4653da0, 0xc0001ee0e0, 0xc00014ac00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x4935080, 0x4653da0, 0xc0001ee0e0, 0xc00014ac00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc000194000, 0x4653da0, 0xc0001ee0e0, 0xc00014ac00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc0000c1860, 0x4654ae0, 0xc00011a8c0)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/22 08:31:58 main.go:15: &{0 {hrtf_data.sql 0xc0000b62e0} 0 {0 0} [0xc00012e000] map[] 0 1 0xc0000e4060 0xc000094360 false map[0xc00012e000:map[0xc00012e000:true]] map[] 0 0 0 <nil> 0 0 0 0x41c0cd0}
+2019/10/22 08:32:05 user.go:72: no such column: roll
+2019/10/22 08:32:05 session.go:35: no such column: roll
+2019/10/22 08:32:05 server.go:3055: http: panic serving [::1]:54601: runtime error: invalid memory address or nil pointer dereference
+goroutine 28 [running]:
+net/http.(*conn).serve.func1(0xc0000c75e0)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x4540200, 0x4922900)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.getUser(0x4653da0, 0xc0001b6000, 0xc00013a800, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, ...)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/session.go:38 +0x1b4
+github.com/tetsuzawa/go-3daudio/app/controllers.viewIndexHandler(0x4653da0, 0xc0001b6000, 0xc00013a800)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/index.go:13 +0x5a
+net/http.HandlerFunc.ServeHTTP(0x45d73c0, 0x4653da0, 0xc0001b6000, 0xc00013a800)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x4935080, 0x4653da0, 0xc0001b6000, 0xc00013a800)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc0000ba0e0, 0x4653da0, 0xc0001b6000, 0xc00013a800)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc0000c75e0, 0x4654ae0, 0xc000136440)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/22 08:32:05 user.go:72: no such column: roll
+2019/10/22 08:32:05 session.go:35: no such column: roll
+2019/10/22 08:32:05 server.go:3055: http: panic serving [::1]:54602: runtime error: invalid memory address or nil pointer dereference
+goroutine 50 [running]:
+net/http.(*conn).serve.func1(0xc0001a0000)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x4540200, 0x4922900)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.getUser(0x4653da0, 0xc0000ba1c0, 0xc000150700, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, ...)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/session.go:38 +0x1b4
+github.com/tetsuzawa/go-3daudio/app/controllers.viewIndexHandler(0x4653da0, 0xc0000ba1c0, 0xc000150700)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/index.go:13 +0x5a
+net/http.HandlerFunc.ServeHTTP(0x45d73c0, 0x4653da0, 0xc0000ba1c0, 0xc000150700)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x4935080, 0x4653da0, 0xc0000ba1c0, 0xc000150700)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc0000ba0e0, 0x4653da0, 0xc0000ba1c0, 0xc000150700)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc0001a0000, 0x4654ae0, 0xc000090840)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/22 08:32:05 user.go:72: no such column: roll
+2019/10/22 08:32:05 session.go:35: no such column: roll
+2019/10/22 08:32:05 server.go:3055: http: panic serving [::1]:54603: runtime error: invalid memory address or nil pointer dereference
+goroutine 30 [running]:
+net/http.(*conn).serve.func1(0xc0000c7680)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x4540200, 0x4922900)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.getUser(0x4653da0, 0xc0001b60e0, 0xc00013a900, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, ...)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/session.go:38 +0x1b4
+github.com/tetsuzawa/go-3daudio/app/controllers.viewIndexHandler(0x4653da0, 0xc0001b60e0, 0xc00013a900)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/index.go:13 +0x5a
+net/http.HandlerFunc.ServeHTTP(0x45d73c0, 0x4653da0, 0xc0001b60e0, 0xc00013a900)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x4935080, 0x4653da0, 0xc0001b60e0, 0xc00013a900)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc0000ba0e0, 0x4653da0, 0xc0001b60e0, 0xc00013a900)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc0000c7680, 0x4654ae0, 0xc0001365c0)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/22 08:32:11 user.go:72: no such column: roll
+2019/10/22 08:32:11 session.go:35: no such column: roll
+2019/10/22 08:32:11 server.go:3055: http: panic serving [::1]:54640: runtime error: invalid memory address or nil pointer dereference
+goroutine 40 [running]:
+net/http.(*conn).serve.func1(0xc00011a3c0)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x4540200, 0x4922900)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.getUser(0x4653da0, 0xc0000ba2a0, 0xc00013aa00, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, ...)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/session.go:38 +0x1b4
+github.com/tetsuzawa/go-3daudio/app/controllers.viewIndexHandler(0x4653da0, 0xc0000ba2a0, 0xc00013aa00)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/index.go:13 +0x5a
+net/http.HandlerFunc.ServeHTTP(0x45d73c0, 0x4653da0, 0xc0000ba2a0, 0xc00013aa00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x4935080, 0x4653da0, 0xc0000ba2a0, 0xc00013aa00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc0000ba0e0, 0x4653da0, 0xc0000ba2a0, 0xc00013aa00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc00011a3c0, 0x4654ae0, 0xc0001366c0)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/22 08:32:11 user.go:72: no such column: roll
+2019/10/22 08:32:11 session.go:35: no such column: roll
+2019/10/22 08:32:11 server.go:3055: http: panic serving [::1]:54641: runtime error: invalid memory address or nil pointer dereference
+goroutine 3 [running]:
+net/http.(*conn).serve.func1(0xc0001f8000)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x4540200, 0x4922900)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.getUser(0x4653da0, 0xc0000ba380, 0xc00013ab00, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, ...)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/session.go:38 +0x1b4
+github.com/tetsuzawa/go-3daudio/app/controllers.viewIndexHandler(0x4653da0, 0xc0000ba380, 0xc00013ab00)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/index.go:13 +0x5a
+net/http.HandlerFunc.ServeHTTP(0x45d73c0, 0x4653da0, 0xc0000ba380, 0xc00013ab00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x4935080, 0x4653da0, 0xc0000ba380, 0xc00013ab00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc0000ba0e0, 0x4653da0, 0xc0000ba380, 0xc00013ab00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc0001f8000, 0x4654ae0, 0xc000136740)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/22 08:32:11 user.go:72: no such column: roll
+2019/10/22 08:32:11 session.go:35: no such column: roll
+2019/10/22 08:32:11 server.go:3055: http: panic serving [::1]:54642: runtime error: invalid memory address or nil pointer dereference
+goroutine 33 [running]:
+net/http.(*conn).serve.func1(0xc0000c7720)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x4540200, 0x4922900)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.getUser(0x4653da0, 0xc0000220e0, 0xc00013ac00, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, ...)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/session.go:38 +0x1b4
+github.com/tetsuzawa/go-3daudio/app/controllers.viewIndexHandler(0x4653da0, 0xc0000220e0, 0xc00013ac00)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/index.go:13 +0x5a
+net/http.HandlerFunc.ServeHTTP(0x45d73c0, 0x4653da0, 0xc0000220e0, 0xc00013ac00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x4935080, 0x4653da0, 0xc0000220e0, 0xc00013ac00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc0000ba0e0, 0x4653da0, 0xc0000220e0, 0xc00013ac00)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc0000c7720, 0x4654ae0, 0xc000136800)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/22 08:33:33 main.go:15: &{0 {hrtf_data.sql 0xc00000e320} 0 {0 0} [0xc00010e000] map[] 0 1 0xc000024120 0xc00007a360 false map[0xc00010e000:map[0xc00010e000:true]] map[] 0 0 0 <nil> 0 0 0 0x41c0cb0}
+2019/10/22 08:33:50 main.go:15: &{0 {hrtf_data.sql 0xc0000da2c0} 0 {0 0} [0xc000136000] map[] 0 1 0xc0000e6060 0xc0000b02a0 false map[0xc000136000:map[0xc000136000:true]] map[] 0 0 0 <nil> 0 0 0 0x41c0cb0}
+2019/10/22 08:33:55 user.go:72: sql: no rows in result set
+2019/10/22 08:33:55 session.go:35: sql: no rows in result set
+2019/10/22 08:33:55 server.go:3055: http: panic serving [::1]:55289: runtime error: invalid memory address or nil pointer dereference
+goroutine 52 [running]:
+net/http.(*conn).serve.func1(0xc0001203c0)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x45401e0, 0x4922900)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.getUser(0x4653da0, 0xc0001ec000, 0xc00016c300, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, ...)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/session.go:38 +0x1b4
+github.com/tetsuzawa/go-3daudio/app/controllers.viewIndexHandler(0x4653da0, 0xc0001ec000, 0xc00016c300)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/index.go:13 +0x5a
+net/http.HandlerFunc.ServeHTTP(0x45d73a8, 0x4653da0, 0xc0001ec000, 0xc00016c300)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x4935080, 0x4653da0, 0xc0001ec000, 0xc00016c300)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc0001c4000, 0x4653da0, 0xc0001ec000, 0xc00016c300)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc0001203c0, 0x4654ae0, 0xc000158340)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/22 08:33:55 user.go:72: sql: no rows in result set
+2019/10/22 08:33:55 session.go:35: sql: no rows in result set
+2019/10/22 08:33:55 server.go:3055: http: panic serving [::1]:55290: runtime error: invalid memory address or nil pointer dereference
+goroutine 22 [running]:
+net/http.(*conn).serve.func1(0xc0000c3540)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x45401e0, 0x4922900)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.getUser(0x4653da0, 0xc000216000, 0xc0001e8000, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, ...)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/session.go:38 +0x1b4
+github.com/tetsuzawa/go-3daudio/app/controllers.viewIndexHandler(0x4653da0, 0xc000216000, 0xc0001e8000)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/index.go:13 +0x5a
+net/http.HandlerFunc.ServeHTTP(0x45d73a8, 0x4653da0, 0xc000216000, 0xc0001e8000)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x4935080, 0x4653da0, 0xc000216000, 0xc0001e8000)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc0001c4000, 0x4653da0, 0xc000216000, 0xc0001e8000)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc0000c3540, 0x4654ae0, 0xc0001d2000)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/22 08:33:55 user.go:72: sql: no rows in result set
+2019/10/22 08:33:55 session.go:35: sql: no rows in result set
+2019/10/22 08:33:55 server.go:3055: http: panic serving [::1]:55291: runtime error: invalid memory address or nil pointer dereference
+goroutine 67 [running]:
+net/http.(*conn).serve.func1(0xc00023a000)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x45401e0, 0x4922900)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.getUser(0x4653da0, 0xc0001c40e0, 0xc00016c400, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, ...)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/session.go:38 +0x1b4
+github.com/tetsuzawa/go-3daudio/app/controllers.viewIndexHandler(0x4653da0, 0xc0001c40e0, 0xc00016c400)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/index.go:13 +0x5a
+net/http.HandlerFunc.ServeHTTP(0x45d73a8, 0x4653da0, 0xc0001c40e0, 0xc00016c400)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x4935080, 0x4653da0, 0xc0001c40e0, 0xc00016c400)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc0001c4000, 0x4653da0, 0xc0001c40e0, 0xc00016c400)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc00023a000, 0x4654ae0, 0xc0000c47c0)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/22 08:35:03 main.go:15: &{0 {hrtf_data.sql 0xc00000e300} 0 {0 0} [0xc000138000] map[] 0 1 0xc0000240c0 0xc0000bc2a0 false map[0xc000138000:map[0xc000138000:true]] map[] 0 0 0 <nil> 0 0 0 0x41c0cb0}
+2019/10/22 08:35:10 user.go:72: sql: no rows in result set
+2019/10/22 08:35:10 session.go:35: sql: no rows in result set
+2019/10/22 08:35:10 server.go:3055: http: panic serving [::1]:55760: runtime error: invalid memory address or nil pointer dereference
+goroutine 38 [running]:
+net/http.(*conn).serve.func1(0xc0001b2000)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x45401e0, 0x4922900)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.getUser(0x4653da0, 0xc0001ac0e0, 0xc000178300, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, ...)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/session.go:38 +0x1b4
+github.com/tetsuzawa/go-3daudio/app/controllers.viewIndexHandler(0x4653da0, 0xc0001ac0e0, 0xc000178300)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/index.go:13 +0x5a
+net/http.HandlerFunc.ServeHTTP(0x45d73a8, 0x4653da0, 0xc0001ac0e0, 0xc000178300)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x4935080, 0x4653da0, 0xc0001ac0e0, 0xc000178300)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc0001ac000, 0x4653da0, 0xc0001ac0e0, 0xc000178300)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc0001b2000, 0x4654ae0, 0xc00016c540)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/22 08:35:10 user.go:72: sql: no rows in result set
+2019/10/22 08:35:10 session.go:35: sql: no rows in result set
+2019/10/22 08:35:10 server.go:3055: http: panic serving [::1]:55761: runtime error: invalid memory address or nil pointer dereference
+goroutine 39 [running]:
+net/http.(*conn).serve.func1(0xc0001b20a0)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x45401e0, 0x4922900)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.getUser(0x4653da0, 0xc0000220e0, 0xc0001ce000, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, ...)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/session.go:38 +0x1b4
+github.com/tetsuzawa/go-3daudio/app/controllers.viewIndexHandler(0x4653da0, 0xc0000220e0, 0xc0001ce000)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/index.go:13 +0x5a
+net/http.HandlerFunc.ServeHTTP(0x45d73a8, 0x4653da0, 0xc0000220e0, 0xc0001ce000)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x4935080, 0x4653da0, 0xc0000220e0, 0xc0001ce000)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc0001ac000, 0x4653da0, 0xc0000220e0, 0xc0001ce000)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc0001b20a0, 0x4654ae0, 0xc000090040)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/22 08:35:10 user.go:72: sql: no rows in result set
+2019/10/22 08:35:10 session.go:35: sql: no rows in result set
+2019/10/22 08:35:10 server.go:3055: http: panic serving [::1]:55762: runtime error: invalid memory address or nil pointer dereference
+goroutine 21 [running]:
+net/http.(*conn).serve.func1(0xc000210000)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1767 +0x139
+panic(0x45401e0, 0x4922900)
+	/usr/local/Cellar/go/1.13.1/libexec/src/runtime/panic.go:679 +0x1b2
+github.com/tetsuzawa/go-3daudio/app/controllers.getUser(0x4653da0, 0xc0001ac1c0, 0xc000162600, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, ...)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/session.go:38 +0x1b4
+github.com/tetsuzawa/go-3daudio/app/controllers.viewIndexHandler(0x4653da0, 0xc0001ac1c0, 0xc000162600)
+	/Users/tetsu/go/src/github.com/tetsuzawa/go-3daudio/app/controllers/index.go:13 +0x5a
+net/http.HandlerFunc.ServeHTTP(0x45d73a8, 0x4653da0, 0xc0001ac1c0, 0xc000162600)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2007 +0x44
+net/http.(*ServeMux).ServeHTTP(0x4935080, 0x4653da0, 0xc0001ac1c0, 0xc000162600)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2387 +0x1bd
+net/http.serverHandler.ServeHTTP(0xc0001ac000, 0x4653da0, 0xc0001ac1c0, 0xc000162600)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2802 +0xa4
+net/http.(*conn).serve(0xc000210000, 0x4654ae0, 0xc0000308c0)
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
+created by net/http.(*Server).Serve
+	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/22 08:40:55 main.go:15: &{0 {hrtf_data.sql 0xc0000d62c0} 0 {0 0} [0xc00012e000] map[] 0 1 0xc0000e0060 0xc0000ac300 false map[0xc00012e000:map[0xc00012e000:true]] map[] 0 0 0 <nil> 0 0 0 0x41c0cb0}
+2019/10/22 08:41:00 session.go:59: sql: no rows in result set
+2019/10/22 08:41:03 session.go:59: sql: no rows in result set
+2019/10/22 08:41:03 session.go:51: sql: no rows in result set
+2019/10/22 08:41:23 session.go:59: sql: no rows in result set
+2019/10/22 08:41:23 session.go:51: sql: no rows in result set
+2019/10/22 08:41:23 user.go:72: sql: no rows in result set
+2019/10/22 08:41:40 session.go:46: http: named cookie not present
+2019/10/22 08:41:43 session.go:46: http: named cookie not present
+2019/10/22 08:43:45 session.go:46: http: named cookie not present
+2019/10/22 08:43:45 user.go:72: sql: no rows in result set
+2019/10/22 08:46:52 main.go:15: &{0 {hrtf_data.sql 0xc0000e42c0} 0 {0 0} [0xc000138000] map[] 0 1 0xc000024060 0xc00007a060 false map[0xc000138000:map[0xc000138000:true]] map[] 0 0 0 <nil> 0 0 0 0x41c0cb0}
+2019/10/22 08:47:05 session.go:59: sql: no rows in result set
+2019/10/22 08:47:09 session.go:59: sql: no rows in result set
+2019/10/22 08:47:09 session.go:51: sql: no rows in result set
+2019/10/22 08:47:25 session.go:59: sql: no rows in result set
+2019/10/22 08:47:25 session.go:51: sql: no rows in result set
+2019/10/22 08:47:25 user.go:72: sql: no rows in result set
+2019/10/22 08:47:29 session.go:46: http: named cookie not present
+2019/10/22 08:47:31 session.go:46: http: named cookie not present
+2019/10/22 08:47:48 session.go:46: http: named cookie not present
+2019/10/22 08:47:48 user.go:72: sql: no rows in result set
+2019/10/22 09:08:03 main.go:15: &{0 {hrtf_data.sql 0xc0000de2c0} 0 {0 0} [0xc000138000] map[] 0 1 0xc0000ea060 0xc0000b4300 false map[0xc000138000:map[0xc000138000:true]] map[] 0 0 0 <nil> 0 0 0 0x41c0c70}
+2019/10/22 09:08:16 session.go:48: http: named cookie not present
+2019/10/22 09:08:18 session.go:48: http: named cookie not present
+2019/10/22 09:08:29 session.go:48: http: named cookie not present
+2019/10/22 09:08:29 user.go:72: sql: no rows in result set
+2019/10/22 09:09:28 main.go:15: &{0 {hrtf_data.sql 0xc0000d62c0} 0 {0 0} [0xc000120000] map[] 0 1 0xc0000240c0 0xc00007a0c0 false map[0xc000120000:map[0xc000120000:true]] map[] 0 0 0 <nil> 0 0 0 0x41c0c50}
+2019/10/22 09:09:35 session.go:48: http: named cookie not present
+2019/10/22 09:09:37 session.go:48: http: named cookie not present
+2019/10/22 09:09:40 session.go:48: http: named cookie not present
+2019/10/22 09:09:47 session.go:48: http: named cookie not present
+2019/10/22 09:09:58 session.go:48: http: named cookie not present
+2019/10/22 09:09:58 session.go:59: sql: no rows in result set
+2019/10/22 09:10:00 session.go:59: sql: no rows in result set
+2019/10/22 09:10:00 session.go:53: sql: no rows in result set
+2019/10/22 09:10:07 session.go:59: sql: no rows in result set
+2019/10/22 09:10:07 session.go:53: sql: no rows in result set
+2019/10/22 09:10:11 hrtf.go:120: http: named cookie not present
+2019/10/22 09:11:49 session.go:48: http: named cookie not present
+2019/10/22 09:12:13 session.go:48: http: named cookie not present
+2019/10/22 10:59:27 main.go:15: &{0 {hrtf_data.sql 0xc00000e300} 0 {0 0} [0xc000124000] map[] 0 1 0xc000092060 0xc0000b60c0 false map[0xc000124000:map[0xc000124000:true]] map[] 0 0 0 <nil> 0 0 0 0x41c17c0}
+2019/10/22 11:00:10 session.go:62: sql: no rows in result set
+2019/10/22 11:00:13 session.go:62: sql: no rows in result set
+2019/10/22 11:00:13 session.go:48: sql: no rows in result set
+2019/10/22 11:00:23 session.go:62: sql: no rows in result set
+2019/10/22 11:00:23 session.go:48: sql: no rows in result set
+2019/10/22 11:00:23 user.go:72: sql: no rows in result set
+2019/10/22 11:00:48 session.go:43: http: named cookie not present
+2019/10/22 11:01:12 session.go:43: http: named cookie not present
+2019/10/22 11:01:42 session.go:43: http: named cookie not present
+2019/10/22 12:28:34 main.go:15: &{0 {hrtf_data.sql 0xc00000e300} 0 {0 0} [0xc000120000] map[] 0 1 0xc000092060 0xc0000b60c0 false map[0xc000120000:map[0xc000120000:true]] map[] 0 0 0 <nil> 0 0 0 0x41c17a0}
+2019/10/22 12:28:45 session.go:62: sql: no rows in result set
+2019/10/22 12:28:46 session.go:62: sql: no rows in result set
+2019/10/22 12:28:46 session.go:51: sql: no rows in result set
+2019/10/22 12:28:55 session.go:62: sql: no rows in result set
+2019/10/22 12:28:55 session.go:51: sql: no rows in result set
+2019/10/22 12:29:03 session.go:62: sql: no rows in result set
+2019/10/22 12:29:03 session.go:51: sql: no rows in result set
+2019/10/22 12:29:04 session.go:62: sql: no rows in result set
+2019/10/22 12:29:04 session.go:51: sql: no rows in result set
+2019/10/22 12:29:05 session.go:62: sql: no rows in result set
+2019/10/22 12:29:07 session.go:62: sql: no rows in result set
+2019/10/22 12:29:07 session.go:51: sql: no rows in result set
+2019/10/22 12:29:12 session.go:62: sql: no rows in result set
+2019/10/22 12:29:12 session.go:51: sql: no rows in result set
+2019/10/22 12:29:18 session.go:46: http: named cookie not present
+2019/10/22 12:29:56 session.go:46: http: named cookie not present
+2019/10/22 12:30:41 session.go:46: http: named cookie not present

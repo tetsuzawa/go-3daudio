@@ -11,7 +11,7 @@ import (
 const (
 	tableNameHRTFData = "hrtf"
 	tableNameUserData = "user"
-	tableNameSession = "session"
+	tableNameSession  = "session"
 )
 
 var DbConnection *sql.DB
@@ -53,7 +53,8 @@ func init() {
 		username STRING,
 		password STRING,
 		firstname STRING, 
-		lastname STRING)`, tableNameUserData)
+		lastname STRING,
+		role STRING)`, tableNameUserData)
 	_, err = DbConnection.Exec(cmd)
 	if err != nil {
 		log.Fatalln(err)
@@ -62,7 +63,8 @@ func init() {
 	cmd = fmt.Sprintf(
 		`CREATE TABLE IF NOT EXISTS %s (
 		sessionid STRING PRIMARY KEY NOT NULL,
-		username STRING)`, tableNameSession)
+		username STRING,
+		time DATETIME)`, tableNameSession)
 	_, err = DbConnection.Exec(cmd)
 	if err != nil {
 		log.Fatalln(err)
