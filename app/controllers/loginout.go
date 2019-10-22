@@ -6,6 +6,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 	"log"
 	"net/http"
+	"time"
 )
 
 func viewLoginHandler(w http.ResponseWriter, r *http.Request) {
@@ -37,13 +38,13 @@ func viewLoginHandler(w http.ResponseWriter, r *http.Request) {
 		// create session
 		sID, _ := uuid.NewV4()
 		c := &http.Cookie{
-			Name:  "session",
-			Value: sID.String(),
+			Name:     "session",
+			Value:    sID.String(),
+			Path:     "/",
+			HttpOnly: true,
 		}
-		c.MaxAge = 3600
 		http.SetCookie(w, c)
-		//dbSessions[c.Value] = un
-		s := models.NewSession(c.Value, un)
+		s := models.NewSession(c.Value, un, time.Now())
 		err = s.Create()
 		if err != nil {
 			log.Println(err)
@@ -85,9 +86,11 @@ func viewLogoutHandler(w http.ResponseWriter, r *http.Request) {
 
 	// remove the cookie
 	c = &http.Cookie{
-		Name:   "session",
-		Value:  "",
-		MaxAge: -1,
+		Name:     "session",
+		Value:    "",
+		Path:     "/",
+		HttpOnly: true,
+		MaxAge:   -1,
 	}
 	http.SetCookie(w, c)
 

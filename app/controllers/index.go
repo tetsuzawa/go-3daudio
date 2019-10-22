@@ -3,6 +3,7 @@ package controllers
 import (
 	"log"
 	"net/http"
+	"time"
 
 	uuid "github.com/satori/go.uuid"
 	"github.com/tetsuzawa/go-3daudio/app/models"
@@ -54,7 +55,7 @@ func viewSignupHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		http.SetCookie(w, c)
 
-		s := models.NewSession(c.Value, un)
+		s := models.NewSession(c.Value, un, time.Now())
 		if err = s.Create(); err != nil {
 			log.Println(err)
 			http.Error(w, err.Error(), http.StatusInternalServerError)

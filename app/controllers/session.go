@@ -20,15 +20,10 @@ func getUser(w http.ResponseWriter, r *http.Request) models.User {
 			HttpOnly: true,
 		}
 	}
-	c.MaxAge = 3600
 	http.SetCookie(w, c)
 
 	// if the user exists already, get user
 	var u *models.User
-
-	//if un, ok := dbSessions[c.Value]; ok {
-	//	u = dbUsers[un]
-	//}
 
 	s, err := models.GetSession(c.Value)
 	if err == nil {

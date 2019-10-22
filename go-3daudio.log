@@ -1758,3 +1758,13 @@ created by net/http.(*Server).Serve
 2019/10/22 09:10:11 hrtf.go:120: http: named cookie not present
 2019/10/22 09:11:49 session.go:48: http: named cookie not present
 2019/10/22 09:12:13 session.go:48: http: named cookie not present
+2019/10/22 10:59:27 main.go:15: &{0 {hrtf_data.sql 0xc00000e300} 0 {0 0} [0xc000124000] map[] 0 1 0xc000092060 0xc0000b60c0 false map[0xc000124000:map[0xc000124000:true]] map[] 0 0 0 <nil> 0 0 0 0x41c17c0}
+2019/10/22 11:00:10 session.go:62: sql: no rows in result set
+2019/10/22 11:00:13 session.go:62: sql: no rows in result set
+2019/10/22 11:00:13 session.go:48: sql: no rows in result set
+2019/10/22 11:00:23 session.go:62: sql: no rows in result set
+2019/10/22 11:00:23 session.go:48: sql: no rows in result set
+2019/10/22 11:00:23 user.go:72: sql: no rows in result set
+2019/10/22 11:00:48 session.go:43: http: named cookie not present
+2019/10/22 11:01:12 session.go:43: http: named cookie not present
+2019/10/22 11:01:42 session.go:43: http: named cookie not present
