@@ -14,8 +14,10 @@ func getUser(w http.ResponseWriter, r *http.Request) models.User {
 	if err != nil {
 		sID, _ := uuid.NewV4()
 		c = &http.Cookie{
-			Name:  "session",
-			Value: sID.String(),
+			Name:     "session",
+			Value:    sID.String(),
+			Path:     "/",
+			HttpOnly: true,
 		}
 	}
 	c.MaxAge = 3600
@@ -59,3 +61,4 @@ func alreadyLoggedIn(r *http.Request) bool {
 	}
 	return true
 }
+

@@ -41,7 +41,7 @@ func viewHRTFHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if u.Role != "academic"{
+	if u.Role != "academic" {
 		http.Error(w, "Sorry. Hrtf database is for academic use only for now.", http.StatusForbidden)
 		return
 	}
@@ -131,8 +131,10 @@ func viewHRTFHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	http.SetCookie(w, &http.Cookie{
-		Name:  "id",
-		Value: id,
+		Name:     "id",
+		Value:    id,
+		Path:     "/",
+		HttpOnly: true,
 	})
 
 	//hrtf := models.NewHRTF(1, "tetsu", 20, 20, 0, 0.35555)

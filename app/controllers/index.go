@@ -49,6 +49,8 @@ func viewSignupHandler(w http.ResponseWriter, r *http.Request) {
 		c := &http.Cookie{
 			Name:  "session",
 			Value: sID.String(),
+			Path:     "/",
+			HttpOnly: true,
 		}
 		http.SetCookie(w, c)
 

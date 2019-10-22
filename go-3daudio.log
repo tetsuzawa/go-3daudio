@@ -1739,3 +1739,22 @@ created by net/http.(*Server).Serve
 2019/10/22 08:47:31 session.go:46: http: named cookie not present
 2019/10/22 08:47:48 session.go:46: http: named cookie not present
 2019/10/22 08:47:48 user.go:72: sql: no rows in result set
+2019/10/22 09:08:03 main.go:15: &{0 {hrtf_data.sql 0xc0000de2c0} 0 {0 0} [0xc000138000] map[] 0 1 0xc0000ea060 0xc0000b4300 false map[0xc000138000:map[0xc000138000:true]] map[] 0 0 0 <nil> 0 0 0 0x41c0c70}
+2019/10/22 09:08:16 session.go:48: http: named cookie not present
+2019/10/22 09:08:18 session.go:48: http: named cookie not present
+2019/10/22 09:08:29 session.go:48: http: named cookie not present
+2019/10/22 09:08:29 user.go:72: sql: no rows in result set
+2019/10/22 09:09:28 main.go:15: &{0 {hrtf_data.sql 0xc0000d62c0} 0 {0 0} [0xc000120000] map[] 0 1 0xc0000240c0 0xc00007a0c0 false map[0xc000120000:map[0xc000120000:true]] map[] 0 0 0 <nil> 0 0 0 0x41c0c50}
+2019/10/22 09:09:35 session.go:48: http: named cookie not present
+2019/10/22 09:09:37 session.go:48: http: named cookie not present
+2019/10/22 09:09:40 session.go:48: http: named cookie not present
+2019/10/22 09:09:47 session.go:48: http: named cookie not present
+2019/10/22 09:09:58 session.go:48: http: named cookie not present
+2019/10/22 09:09:58 session.go:59: sql: no rows in result set
+2019/10/22 09:10:00 session.go:59: sql: no rows in result set
+2019/10/22 09:10:00 session.go:53: sql: no rows in result set
+2019/10/22 09:10:07 session.go:59: sql: no rows in result set
+2019/10/22 09:10:07 session.go:53: sql: no rows in result set
+2019/10/22 09:10:11 hrtf.go:120: http: named cookie not present
+2019/10/22 09:11:49 session.go:48: http: named cookie not present
+2019/10/22 09:12:13 session.go:48: http: named cookie not present
