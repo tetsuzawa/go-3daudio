@@ -26,7 +26,7 @@ func (s *Session) TableName() string {
 
 func (s *Session) Create() error {
 	cmd := fmt.Sprintf("INSERT INTO %s (sessionid, username, time) VALUES (?, ?, ?)", s.TableName())
-	_, err := DbConnection.Exec(cmd, s.SessionID, s.UserName, s.Time.Format(time.RFC3339))
+	_, err := DbConnection.Exec(cmd, s.SessionID, s.UserName, s.Time.Format(tFormat))
 	if err != nil {
 		return err
 	}
@@ -35,7 +35,7 @@ func (s *Session) Create() error {
 
 func (s *Session) Save() error {
 	cmd := fmt.Sprintf("UPDATE %s SET username = ?, time = ? WHERE sessionid = ?", s.TableName())
-	_, err := DbConnection.Exec(cmd, s.UserName, s.Time.Format(time.RFC3339), s.SessionID)
+	_, err := DbConnection.Exec(cmd, s.UserName, s.Time.Format(tFormat), s.SessionID)
 	if err != nil {
 		return err
 	}
