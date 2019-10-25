@@ -1,0 +1,1 @@
+docker run --name test_mysql -v ~/docker/mysql/custom:/etc/mysql/conf.d -v ~/docker/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_USER=test -e MYSQL_PASSWORD=test -e MYSQL_DATABASE=test -d -p 3306:3306 mysql:8.0.18
