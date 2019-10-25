@@ -4,13 +4,10 @@ RUN mkdir -p /go/src/github.com/tetsuzawa/go-3daudio/web-app
 WORKDIR /go/src/github.com/tetsuzawa/go-3daudio/web-app
 ADD . /go/src/github.com/tetsuzawa/go-3daudio/web-app
 
-RUN apt update && apt install vim -y
-
-#RUN go get github.com/tetsuzawa/go-3daudio
 RUN go get github.com/oklog/ulid
 RUN go get github.com/go-sql-driver/mysql
 RUN go get github.com/satori/go.uuid
 RUN go get golang.org/x/crypto/bcrypt
 RUN go get gopkg.in/ini.v1
 
-#CMD ["go", "run", "main.go"]
+CMD ["go", "run", "main.go"]

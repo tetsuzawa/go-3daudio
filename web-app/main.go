@@ -19,10 +19,10 @@ func main() {
 	//entropy := ulid.Monotonic(rand.New(rand.NewSource(t.UnixNano())), 0)
 	//id := ulid.MustNew(ulid.Now(), entropy)
 	//hrtf := models.NewHRTF(id.String(), "tetsu", 20, 20, 0, 0.35555)
-	hrtf := models.NewHRTF("01DQ44KFF4D44TFZA9963GD1VS", "tetsu", 20, 20, 0, 0.35555)
-	if err := hrtf.Create(); err != nil {
-		log.Fatalln(err)
-	}
+	//hrtf := models.NewHRTF("01DQ44KFF4D44TFZA9963GD1VS", "tetsu", 20, 20, 0, 0.35555)
+	//if err := hrtf.Create(); err != nil {
+	//	log.Fatalln(err)
+	//}
 
 	//get data for examination
 	//hrtf, err := models.GetHRTF("01DQ44KFF4D44TFZA9963GD1VS")
