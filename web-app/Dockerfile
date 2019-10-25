@@ -4,6 +4,8 @@ RUN mkdir -p /go/src/github.com/tetsuzawa/go-3daudio/web-app
 WORKDIR /go/src/github.com/tetsuzawa/go-3daudio/web-app
 ADD . /go/src/github.com/tetsuzawa/go-3daudio/web-app
 
+RUN apt update && apt install vim -y
+
 #RUN go get github.com/tetsuzawa/go-3daudio
 RUN go get github.com/oklog/ulid
 RUN go get github.com/go-sql-driver/mysql

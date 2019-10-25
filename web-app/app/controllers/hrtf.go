@@ -115,9 +115,7 @@ func viewHRTFHandler(w http.ResponseWriter, r *http.Request) {
 			//APIError(w, "No id param", http.StatusBadRequest)
 			//return
 			c, err := r.Cookie("id")
-			if err.Error() == "no rows in result set" {
-
-			} else if err != nil {
+			if err != nil {
 				//TODO error handling
 				//TODO id hard code
 				log.Println(err)
