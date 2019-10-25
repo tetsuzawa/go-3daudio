@@ -1,4 +1,4 @@
-package web_app
+package main
 
 import (
 	"log"

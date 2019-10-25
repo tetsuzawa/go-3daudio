@@ -2,6 +2,7 @@ version: '3'
 services:
   app:
     build: web-app
+    tty: true
     ports:
       - "8080:80"
   # MySQL
@@ -11,8 +12,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: go3daudio
-      MYSQL_USER: docker
-      MYSQL_PASSWORD: docker
+#      MYSQL_USER: docker
+#      MYSQL_PASSWORD: docker
       TZ: 'Asia/Tokyo'
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
