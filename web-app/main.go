@@ -4,7 +4,6 @@ import (
 	"log"
 
 	"github.com/tetsuzawa/go-3daudio/web-app/app/controllers"
-	"github.com/tetsuzawa/go-3daudio/web-app/app/models"
 	"github.com/tetsuzawa/go-3daudio/web-app/config"
 	"github.com/tetsuzawa/go-3daudio/web-app/utils"
 )
@@ -12,7 +11,7 @@ import (
 func main() {
 	utils.LoggingSettings(config.Config.LogFile)
 	//fmt.Println(config.Config.MockString)
-	log.Println(models.DbConnection)
+	//log.Println(models.DbConnection)
 
 	//insert data to db for examination
 	//t := time.Now()
@@ -35,4 +34,5 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
+	log.Println("start web server")
 }
