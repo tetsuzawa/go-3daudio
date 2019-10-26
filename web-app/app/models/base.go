@@ -4,8 +4,10 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"os"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/joho/godotenv"
 	"github.com/tetsuzawa/go-3daudio/web-app/config"
 )
 
@@ -33,7 +35,12 @@ func GetSessionTableName(name string) string {
 
 func init() {
 	var err error
-	DbConnection, err = sql.Open(config.Config.SQLDriver, config.Config.DbName)
+	err = godotenv.Load() //Load env.file
+	if err != nil {
+		log.Fatalln(err)
+	}
+	dbName := fmt.Sprintf(config.Config.DbName, os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"))
+	DbConnection, err = sql.Open(config.Config.SQLDriver, dbName)
 	if err != nil {
 		log.Fatalln(err)
 	}

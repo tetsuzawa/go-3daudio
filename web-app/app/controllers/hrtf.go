@@ -65,17 +65,17 @@ func viewHRTFHandler(w http.ResponseWriter, r *http.Request) {
 			log.Println(err)
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
-		azimuth, err := strconv.Atoi(r.Form.Get("azimuth"))
+		azimuth, err := strconv.ParseFloat(r.Form.Get("azimuth"), 64)
 		if err != nil {
 			log.Println(err)
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
-		elevation, err := strconv.Atoi(r.Form.Get("elevation"))
+		elevation, err := strconv.ParseFloat(r.Form.Get("elevation"), 64)
 		if err != nil {
 			log.Println(err)
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
-		data, err := strconv.Atoi(r.Form.Get("data"))
+		data, err := strconv.ParseFloat(r.Form.Get("data"), 64)
 		if err != nil {
 			log.Println(err)
 			http.Error(w, err.Error(), http.StatusInternalServerError)
