@@ -9,5 +9,6 @@ RUN go get github.com/go-sql-driver/mysql
 RUN go get github.com/satori/go.uuid
 RUN go get golang.org/x/crypto/bcrypt
 RUN go get gopkg.in/ini.v1
+RUN go get github.com/joho/godotenv
 
 CMD ["go", "run", "main.go"]

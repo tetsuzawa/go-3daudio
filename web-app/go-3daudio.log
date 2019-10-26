@@ -2202,3 +2202,29 @@ net/http.(*conn).serve(0xc000144640, 0x1533ca0, 0xc0000c9380)
 	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:1890 +0x875
 created by net/http.(*Server).Serve
 	/usr/local/Cellar/go/1.13.1/libexec/src/net/http/server.go:2927 +0x38e
+2019/10/26 17:47:18 main.go:15: &{0 0xc0000b8010 0 {0 0} [0xc000158100] map[] 0 1 0xc00014a000 0xc0000ba120 false map[0xc000158100:map[0xc000158100:true]] map[] 0 0 0 <nil> 0 0 0 0x11c1610}
+2019/10/26 17:52:14 session.go:62: sql: no rows in result set
+2019/10/26 17:52:14 session.go:62: sql: no rows in result set
+2019/10/26 17:52:14 session.go:62: sql: no rows in result set
+2019/10/26 17:52:15 session.go:62: sql: no rows in result set
+2019/10/26 17:52:15 session.go:62: sql: no rows in result set
+2019/10/26 17:52:15 session.go:51: sql: no rows in result set
+2019/10/26 17:52:15 session.go:62: sql: no rows in result set
+2019/10/26 17:52:17 session.go:62: sql: no rows in result set
+2019/10/26 17:52:17 session.go:51: sql: no rows in result set
+2019/10/26 17:52:24 session.go:62: sql: no rows in result set
+2019/10/26 17:52:24 session.go:51: sql: no rows in result set
+2019/10/26 17:52:24 user.go:72: sql: no rows in result set
+2019/10/26 17:52:29 session.go:62: sql: no rows in result set
+2019/10/26 17:52:29 session.go:51: sql: no rows in result set
+2019/10/26 17:52:30 session.go:62: sql: no rows in result set
+2019/10/26 17:52:32 session.go:62: sql: no rows in result set
+2019/10/26 17:52:32 session.go:51: sql: no rows in result set
+2019/10/26 17:52:41 session.go:62: sql: no rows in result set
+2019/10/26 17:52:41 session.go:51: sql: no rows in result set
+2019/10/26 17:52:41 user.go:72: sql: no rows in result set
+2019/10/26 17:52:42 hrtf.go:121: http: named cookie not present
+2019/10/26 17:53:12 hrtf.go:80: strconv.Atoi: parsing "0.4342": invalid syntax
+2019/10/26 17:53:12 hrtf.go:92: request Content-Type isn't multipart/form-data
+2019/10/26 18:08:29 main.go:33: start web server
+2019/10/26 18:09:09 hrtf.go:92: request Content-Type isn't multipart/form-data
