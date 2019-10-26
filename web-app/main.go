@@ -30,9 +30,9 @@ func main() {
 	//}
 	//fmt.Println("hrtf: ", hrtf)
 
+	log.Println("start web server")
 	err := controllers.StartWebServer()
 	if err != nil {
 		log.Fatalln(err)
 	}
-	log.Println("start web server")
 }

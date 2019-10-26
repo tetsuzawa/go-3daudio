@@ -2226,3 +2226,5 @@ created by net/http.(*Server).Serve
 2019/10/26 17:52:42 hrtf.go:121: http: named cookie not present
 2019/10/26 17:53:12 hrtf.go:80: strconv.Atoi: parsing "0.4342": invalid syntax
 2019/10/26 17:53:12 hrtf.go:92: request Content-Type isn't multipart/form-data
+2019/10/26 18:08:29 main.go:33: start web server
+2019/10/26 18:09:09 hrtf.go:92: request Content-Type isn't multipart/form-data
