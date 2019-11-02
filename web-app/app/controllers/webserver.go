@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"html/template"
+	"io"
 	"log"
 	"net/http"
 	"regexp"
@@ -12,6 +13,12 @@ import (
 	"github.com/tetsuzawa/go-3daudio/web-app/config"
 )
 
+func viewPingHandler(w http.ResponseWriter, r *http.Request) {
+	_, err := io.WriteString(w, "OK")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
 func viewAnalysisHandler(w http.ResponseWriter, r *http.Request) {
 	err := tpls.ExecuteTemplate(w, "analysis.html", nil)
 	if err != nil {
@@ -81,6 +88,7 @@ func StartWebServer() error {
 	http.HandleFunc("/signup", viewSignupHandler)
 	http.HandleFunc("/login", viewLoginHandler)
 	http.HandleFunc("/logout", viewLogoutHandler)
+	http.HandleFunc("/ping", viewPingHandler)
 	http.HandleFunc("/hrtf", viewHRTFHandler)
 	http.HandleFunc("/analysis/", viewAnalysisHandler)
 	http.HandleFunc("/api/sofa/", apiMakeHandler(apiSOFAHandler))

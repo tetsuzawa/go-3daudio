@@ -2228,3 +2228,8 @@ created by net/http.(*Server).Serve
 2019/10/26 17:53:12 hrtf.go:92: request Content-Type isn't multipart/form-data
 2019/10/26 18:08:29 main.go:33: start web server
 2019/10/26 18:09:09 hrtf.go:92: request Content-Type isn't multipart/form-data
+2019/10/26 18:24:30 main.go:33: start web server
+2019/10/26 18:25:03 session.go:46: http: named cookie not present
+2019/10/26 18:25:14 session.go:46: http: named cookie not present
+2019/10/26 20:27:25 main.go:33: start web server
+2019/10/26 20:27:43 session.go:46: http: named cookie not present
