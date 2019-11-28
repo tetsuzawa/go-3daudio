@@ -28,8 +28,8 @@ func NewHRTF(id string, name string, age uint, azimuth, elevation, data float64)
 	}
 }
 
-var hrtfCollection *mongo.Collection
 var DbConnection *sql.DB
+var hrtfCollection *mongo.Collection
 
 func init() {
 	hrtfCollection = db.Collection("hrtf")
