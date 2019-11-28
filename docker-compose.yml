@@ -20,4 +20,4 @@ services:
       - ./db/mysql/data:/var/lib/mysql
       - ./db/mysql/custom.docker-config.cnf:/etc/mysql/conf.d/my.cnf
     ports:
-      - 3306:3306
+      - 33060:33060

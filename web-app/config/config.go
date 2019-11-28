@@ -25,7 +25,7 @@ type DBConfig struct {
 }
 
 type Web struct {
-	Port string `toml:"port"`
+	Port int `toml:"port"`
 }
 
 type Config struct {
@@ -42,7 +42,7 @@ var Cfg Config
 func init() {
 	_, err := toml.DecodeFile(fileName, &Cfg)
 	if err != nil {
-		log.Printf("Failed to read file: %v", fileName)
+		log.Printf("Failed to read file: %v", err)
 		os.Exit(1)
 	}
 }
