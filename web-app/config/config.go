@@ -1,38 +1,48 @@
 package config
 
 import (
-	"gopkg.in/ini.v1"
 	"log"
 	"os"
+
+	"github.com/BurntSushi/toml"
 )
 
-type ConfigList struct {
-	ApiKey     string
-	ApiSecret  string
-	LogFile    string
-	MockString string
-
-	DbName    string
-	SQLDriver string
-	Port      int
+type SOFALib struct {
+	ApiKey    string `toml:"api_key"`
+	ApiSecret string `toml:"api_secret"`
 }
 
-var Config ConfigList
+type Logging struct {
+	LogFile string `toml:"log_file"`
+}
+
+type DBConfig struct {
+	Driver string `toml:"driver"`
+	Host   string `toml:"host"`
+	Port   int    `toml:"port"`
+	Name   string `toml:"name"`
+	ETC    string `toml:"etc"`
+}
+
+type Web struct {
+	Port string `toml:"port"`
+}
+
+type Config struct {
+	SOFALib SOFALib  `toml:"sofalib"`
+	Log     Logging  `toml:"logging"`
+	DB      DBConfig `toml:"db"`
+	Web     Web      `toml:"web"`
+}
+
+const fileName = "config.toml"
+
+var Cfg Config
 
 func init() {
-	cfg, err := ini.Load("config.ini")
+	_, err := toml.DecodeFile(fileName, &Cfg)
 	if err != nil {
-		log.Printf("Failed to read file: %v")
+		log.Printf("Failed to read file: %v", fileName)
 		os.Exit(1)
-	}
-
-	Config = ConfigList{
-		ApiKey:     cfg.Section("sofalib").Key("api_key").String(),
-		ApiSecret:  cfg.Section("sofalib").Key("api_secret").String(),
-		LogFile:    cfg.Section("go-3daudio").Key("log_file").String(),
-		MockString: cfg.Section("mock").Key("mock_string").String(),
-		DbName: cfg.Section("db").Key("name").String(),
-		SQLDriver: cfg.Section("db").Key("driver").String(),
-		Port: cfg.Section("web").Key("port").MustInt(),
 	}
 }
