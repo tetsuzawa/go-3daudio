@@ -1,15 +1,16 @@
 package models
 
 import (
-	"database/sql"
+	"context"
 	"fmt"
 	"github.com/pkg/errors"
-	"log"
-	"os"
-
-	_ "github.com/go-sql-driver/mysql"
-	"github.com/joho/godotenv"
 	"github.com/tetsuzawa/go-3daudio/web-app/config"
+	"log"
+	"time"
+
+	"github.com/joho/godotenv"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 const (
@@ -19,8 +20,6 @@ const (
 )
 
 const tFormat = "2006-01-02 15:04:05"
-
-var DbConnection *sql.DB
 
 func GetHRTFTableName(name string) string {
 	return fmt.Sprintf("%s", name)
@@ -34,61 +33,40 @@ func GetSessionTableName(name string) string {
 	return fmt.Sprintf("%s", name)
 }
 
+var client *mongo.Client
+var db *mongo.Database
+
 func init() {
 	var err error
 	err = godotenv.Load() //Load env.file
 	if err != nil {
 		log.Fatalln(errors.Wrap(err, "failed to load .env file at godotenv.Load()"))
 	}
-	dbName := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s%s",
-		os.Getenv("DB_USER"),
-		os.Getenv("DB_PASSWORD"),
-		config.Cfg.DB.Host,
-		config.Cfg.DB.Port,
-		config.Cfg.DB.Name,
-		config.Cfg.DB.ETC,
-	)
-	//dbName := fmt.Sprintf(config.Cfg.DB.Name, os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"))
-	DbConnection, err = sql.Open(config.Cfg.DB.Driver, dbName)
+	//dbName := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s%s",
+	//	os.Getenv("DB_USER"),
+	//	os.Getenv("DB_PASSWORD"),
+	//	config.Cfg.DB.Host,
+	//	config.Cfg.DB.Port,
+	//	config.Cfg.DB.Name,
+	//	config.Cfg.DB.ETC,
+	//)
+	//DbConnection, err = sql.Open(config.Cfg.DB.Driver, dbName)
+
+	clientOptions := options.Client().ApplyURI("mongodb://db:27017")
+	client, err = mongo.NewClient(clientOptions)
 	if err != nil {
-		log.Fatalln(errors.Wrap(err, "failed to connect to DB at sql.Open()"))
-	}
-	cmd := fmt.Sprintf(
-		`CREATE TABLE IF NOT EXISTS %s (
-		id TEXT NOT NULL,
-		name TEXT,
-		age INT,
-		azimuth FLOAT, 
-		elevation FLOAT, 
-		data FLOAT,
-		PRIMARY KEY(id(128)))`, tableNameHRTFData)
-	_, err = DbConnection.Exec(cmd)
-	if err != nil {
-		log.Fatalln(err)
+		log.Fatalln(errors.Wrap(err, "failed to make a instance of client at mongo.NewClient()"))
 	}
 
-	cmd = fmt.Sprintf(
-		`CREATE TABLE IF NOT EXISTS %s (
-		id TEXT NOT NULL,
-		username TEXT,
-		password TEXT,
-		firstname TEXT, 
-		lastname TEXT,
-		role TEXT,
-		PRIMARY KEY(id(128)))`, tableNameUserData)
-	_, err = DbConnection.Exec(cmd)
+	ctx, _ := context.WithTimeout(context.TODO(), 10*time.Second)
+	err = client.Connect(ctx)
 	if err != nil {
-		log.Fatalln(err)
+		log.Fatalln(errors.Wrap(err, "failed to connect to DB at mongo.NewClient()"))
 	}
-
-	cmd = fmt.Sprintf(
-		`CREATE TABLE IF NOT EXISTS %s (
-		sessionid TEXT NOT NULL,
-		username TEXT,
-		time DATETIME,
-		PRIMARY KEY(sessionid(128)))`, tableNameSession)
-	_, err = DbConnection.Exec(cmd)
+	// Check the connection
+	err = client.Ping(context.TODO(), nil)
 	if err != nil {
-		log.Fatalln(err)
+		log.Fatal(errors.Wrap(err, "failed to connect to DB at mongo.NewClient()"))
 	}
+	db = client.Database(config.Cfg.DB.Name)
 }
