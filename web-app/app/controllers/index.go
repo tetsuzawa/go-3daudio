@@ -46,10 +46,10 @@ func viewSignupHandler(w http.ResponseWriter, r *http.Request) {
 		// ########## username taken? ##########
 
 		// ########## create session ##########
-		sID, _ := uuid.NewV4()
+		sID := uuid.NewV4()
 		c := &http.Cookie{
-			Name:  "session",
-			Value: sID.String(),
+			Name:     "session",
+			Value:    sID.String(),
 			Path:     "/",
 			HttpOnly: true,
 		}
@@ -63,7 +63,7 @@ func viewSignupHandler(w http.ResponseWriter, r *http.Request) {
 		// ########## create session ##########
 
 		// ########## create user id ##########
-		uID, _ := uuid.NewV4()
+		uID := uuid.NewV4()
 		// ########## create user id ##########
 
 		// ########## store user in dbUsers ##########
