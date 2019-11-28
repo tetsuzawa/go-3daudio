@@ -9,8 +9,8 @@ import (
 )
 
 func main() {
-	utils.LoggingSettings(config.Config.LogFile)
-	//fmt.Println(config.Config.MockString)
+	utils.LoggingSettings(config.Cfg.Log.LogFile)
+	//fmt.Println(config.Cfg.MockString)
 	//log.Println(models.DbConnection)
 
 	//insert data to db for examination

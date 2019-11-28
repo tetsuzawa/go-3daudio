@@ -39,8 +39,16 @@ func init() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	dbName := fmt.Sprintf(config.Config.DbName, os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"))
-	DbConnection, err = sql.Open(config.Config.SQLDriver, dbName)
+	dbName := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s%s",
+		os.Getenv("DB_USER"),
+		os.Getenv("DB_PASSWORD"),
+		config.Cfg.DB.Host,
+		config.Cfg.DB.Port,
+		config.Cfg.DB.Name,
+		config.Cfg.DB.ETC,
+	)
+	//dbName := fmt.Sprintf(config.Cfg.DB.Name, os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"))
+	DbConnection, err = sql.Open(config.Cfg.DB.Driver, dbName)
 	if err != nil {
 		log.Fatalln(err)
 	}

@@ -92,5 +92,5 @@ func StartWebServer() error {
 	http.HandleFunc("/hrtf", viewHRTFHandler)
 	http.HandleFunc("/analysis/", viewAnalysisHandler)
 	http.HandleFunc("/api/sofa/", apiMakeHandler(apiSOFAHandler))
-	return http.ListenAndServe(fmt.Sprintf(":%d", config.Config.Port), nil)
+	return http.ListenAndServe(fmt.Sprintf(":%d", config.Cfg.Web.Port), nil)
 }
