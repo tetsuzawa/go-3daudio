@@ -30,11 +30,11 @@ func NewUser(id, username, password, firstname, lastname, role string) *User {
 var userCollection *mongo.Collection
 
 func init() {
-	userCollection = db.Collection("user")
+	userCollection = db.Collection(tableNameUserData)
 }
 
 func (u *User) TableName() string {
-	return GetUserTableName("user")
+	return GetUserTableName(tableNameUserData)
 }
 
 func (u *User) Create() error {

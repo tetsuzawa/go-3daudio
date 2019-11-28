@@ -26,21 +26,31 @@ func NewSession(sessionId, userName string, timeDate time.Time) *Session {
 var sCollection *mongo.Collection
 
 func init() {
-	hrtfCollection = db.Collection("session")
+	sCollection = db.Collection(tableNameSession)
 }
 
 func (s *Session) TableName() string {
-	return GetSessionTableName("session")
+	return GetSessionTableName(tableNameSession)
 }
 
 func (s *Session) Create() error {
 	//cmd := fmt.Sprintf("INSERT INTO %s (sessionid, username, time) VALUES (?, ?, ?)", s.TableName())
 	//_, err := DbConnection.Exec(cmd, s.SessionID, s.UserName, s.Time.Format(tFormat))
+
 	b, err := bson.Marshal(s)
+	//b, err := bson.Marshal(struct {
+	//	SessionID string `json:"session_id" bson:"session_id"`
+	//	UserName  string `json:"user_name" bson:"user_name"`
+	//	Time      string `json:"time" bson:"time"`
+	//}{
+	//	SessionID: s.SessionID,
+	//	UserName:  s.UserName,
+	//	Time:      s.Time.Format(tFormat),
+	//})
 	if err != nil {
 		return errors.Wrap(err, "failed to encode at bson.Marshal()")
 	}
-	_, err = sCollection.InsertOne(context.TODO(), b)
+	_, err = sCollection.InsertOne(context.Background(), b)
 	if err != nil {
 		return errors.Wrap(err, "failed to insert data at InsertOne()")
 	}
@@ -87,7 +97,7 @@ func GetSession(sessionID string) (*Session, error) {
 	filter := bson.D{{"session_id", sessionID}}
 
 	var s Session
-	err := sCollection.FindOne(context.TODO(), filter).Decode(&s)
+	err := sCollection.FindOne(context.Background(), filter).Decode(&s)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to find data at FindOne()")
 	}

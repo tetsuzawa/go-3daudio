@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"time"
 
 	"github.com/pkg/errors"
 
@@ -23,19 +24,34 @@ func main() {
 	//id := ulid.MustNew(ulid.Now(), entropy)
 
 	//hrtf := models.NewHRTF(id.String(), "tetsu", 20, 20, 0, 0.35555)
-	log.Println("create and insert HRTF")
-	hrtf := models.NewHRTF("01DQ44KFF4D44TFZA9963GD1VS", "tetsu", 20, 20, 0, 0.35555)
-	if err := hrtf.Create(); err != nil {
-		log.Fatalln(errors.Wrap(err, "failed to create new HRTF instance in main()"))
+	//log.Println("create and insert HRTF")
+	//hrtf := models.NewHRTF("01DQ44KFF4D44TFZA9963GD1VS", "tetsu", 20, 20, 0, 0.35555)
+	//if err := hrtf.Create(); err != nil {
+	//	log.Fatalln(errors.Wrap(err, "failed to create new HRTF instance in main()"))
+	//}
+	//
+	//get data for examination
+	//log.Println("get HRTF")
+	//hrtf, err := models.GetHRTF("01DQ44KFF4D44TFZA9963GD1VS")
+	//if err != nil {
+	//	log.Fatalln(err)
+	//}
+	//fmt.Println("hrtf: ", hrtf)
+
+	//sessiontest
+	log.Println("create and insert session")
+	session := models.NewSession("01DQ44KFF4D44TFZA9963GD1VS", "tetsuzawa", time.Now())
+	if err := session.Create(); err != nil {
+		log.Fatalln(errors.Wrap(err, "failed to create new session instance in main()"))
 	}
 
 	//get data for examination
-	log.Println("get HRTF")
-	hrtf, err := models.GetHRTF("01DQ44KFF4D44TFZA9963GD1VS")
+	log.Println("get session")
+	session, err := models.GetSession("01DQ44KFF4D44TFZA9963GD1VS")
 	if err != nil {
 		log.Fatalln(err)
 	}
-	fmt.Println("hrtf: ", hrtf)
+	fmt.Println("session: ", session)
 
 	log.Println("start web server")
 	err = controllers.StartWebServer()

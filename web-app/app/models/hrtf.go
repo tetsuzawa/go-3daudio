@@ -32,11 +32,11 @@ var DbConnection *sql.DB
 var hrtfCollection *mongo.Collection
 
 func init() {
-	hrtfCollection = db.Collection("hrtf")
+	hrtfCollection = db.Collection(tableNameHRTFData)
 }
 
 func (h *HRTF) TableName() string {
-	return GetHRTFTableName("hrtf")
+	return GetHRTFTableName(tableNameHRTFData)
 }
 
 func (h *HRTF) Create() error {
