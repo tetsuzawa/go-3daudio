@@ -6,6 +6,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/tetsuzawa/go-3daudio/web-app/config"
 	"log"
+	"os"
 	"time"
 
 	"github.com/joho/godotenv"
@@ -51,8 +52,16 @@ func init() {
 	//	config.Cfg.DB.ETC,
 	//)
 	//DbConnection, err = sql.Open(config.Cfg.DB.Driver, dbName)
+	dbName := fmt.Sprintf("mongodb://%s:%s@%s:%d",
+		os.Getenv("DB_USER"),
+		os.Getenv("DB_PASSWORD"),
+		config.Cfg.DB.Host,
+		config.Cfg.DB.Port,
+		//config.Cfg.DB.Name,
+		//config.Cfg.DB.ETC,
+	)
 
-	clientOptions := options.Client().ApplyURI("mongodb://db:27017")
+	clientOptions := options.Client().ApplyURI(dbName)
 	client, err = mongo.NewClient(clientOptions)
 	if err != nil {
 		log.Fatalln(errors.Wrap(err, "failed to make a instance of client at mongo.NewClient()"))

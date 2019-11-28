@@ -23,12 +23,14 @@ func main() {
 	//id := ulid.MustNew(ulid.Now(), entropy)
 
 	//hrtf := models.NewHRTF(id.String(), "tetsu", 20, 20, 0, 0.35555)
+	log.Println("create and insert HRTF")
 	hrtf := models.NewHRTF("01DQ44KFF4D44TFZA9963GD1VS", "tetsu", 20, 20, 0, 0.35555)
 	if err := hrtf.Create(); err != nil {
 		log.Fatalln(errors.Wrap(err, "failed to create new HRTF instance in main()"))
 	}
 
 	//get data for examination
+	log.Println("get HRTF")
 	hrtf, err := models.GetHRTF("01DQ44KFF4D44TFZA9963GD1VS")
 	if err != nil {
 		log.Fatalln(err)
