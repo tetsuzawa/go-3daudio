@@ -17,3 +17,6 @@ web-app/.env
 
 # mysql
 db/mysql/data/
+
+# Useless
+.idea/

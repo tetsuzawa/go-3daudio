@@ -3,6 +3,7 @@ package models
 import (
 	"database/sql"
 	"fmt"
+	"github.com/pkg/errors"
 	"log"
 	"os"
 
@@ -37,12 +38,20 @@ func init() {
 	var err error
 	err = godotenv.Load() //Load env.file
 	if err != nil {
-		log.Fatalln(err)
+		log.Fatalln(errors.Wrap(err, "failed to load .env file at godotenv.Load()"))
 	}
-	dbName := fmt.Sprintf(config.Config.DbName, os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"))
-	DbConnection, err = sql.Open(config.Config.SQLDriver, dbName)
+	dbName := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s%s",
+		os.Getenv("DB_USER"),
+		os.Getenv("DB_PASSWORD"),
+		config.Cfg.DB.Host,
+		config.Cfg.DB.Port,
+		config.Cfg.DB.Name,
+		config.Cfg.DB.ETC,
+	)
+	//dbName := fmt.Sprintf(config.Cfg.DB.Name, os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"))
+	DbConnection, err = sql.Open(config.Cfg.DB.Driver, dbName)
 	if err != nil {
-		log.Fatalln(err)
+		log.Fatalln(errors.Wrap(err, "failed to connect to DB at sql.Open()"))
 	}
 	cmd := fmt.Sprintf(
 		`CREATE TABLE IF NOT EXISTS %s (
