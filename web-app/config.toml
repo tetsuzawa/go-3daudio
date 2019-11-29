@@ -17,9 +17,10 @@ driver = "mysql"
 
 #host = "go-3daudio.czgopozochto.ap-northeast-1.rds.amazonaws.com"
 host = "db"
-port = 33060
+port = 27017
 name = "go3daudio"
-etc = "?parseTime=true"
+#etc = "?parseTime=true"
+etc = ""
 
 [web]
 port = 80

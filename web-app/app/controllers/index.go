@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	models2 "github.com/tetsuzawa/go-3daudio/web-app/app/models"
+	"github.com/tetsuzawa/go-3daudio/web-app/app/models"
 	"log"
 	"net/http"
 	"time"
@@ -25,7 +25,7 @@ func viewSignupHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var u models2.User
+	var u models.User
 
 	// process form submission
 	if r.Method == http.MethodPost {
@@ -38,7 +38,7 @@ func viewSignupHandler(w http.ResponseWriter, r *http.Request) {
 		ro := r.FormValue("role")
 
 		// ########## username taken? ##########
-		_, err := models2.GetUserByUserName(un)
+		_, err := models.GetUserByUserName(un)
 		if err == nil {
 			http.Error(w, "Username already taken", http.StatusForbidden)
 			return
@@ -55,7 +55,7 @@ func viewSignupHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		http.SetCookie(w, c)
 
-		s := models2.NewSession(c.Value, un, time.Now())
+		s := models.NewSession(c.Value, un, time.Now())
 		if err = s.Create(); err != nil {
 			log.Println(err)
 			http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -73,7 +73,7 @@ func viewSignupHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		u := models2.NewUser(uID.String(), un, string(bs), f, l, ro)
+		u := models.NewUser(uID.String(), un, string(bs), f, l, ro)
 		if err = u.Create(); err != nil {
 			log.Println(err)
 			http.Error(w, err.Error(), http.StatusInternalServerError)
