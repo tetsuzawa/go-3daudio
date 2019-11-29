@@ -2,7 +2,6 @@ package models
 
 import (
 	"context"
-	"fmt"
 	"github.com/pkg/errors"
 	"go.mongodb.org/mongo-driver/bson"
 )
@@ -32,11 +31,6 @@ func (u *User) TableName() string {
 }
 
 func (u *User) Create() error {
-	//cmd := fmt.Sprintf("INSERT INTO %s (id, username, password, firstname, lastname, role) VALUES (?, ?, ?, ?, ?, ?)", u.TableName())
-	//_, err := DbConnection.Exec(cmd, u.ID, u.UserName, u.Password, u.FirstName, u.LastName, u.Role)
-	//if err != nil {
-	//	return err
-	//}
 	userCollection := db.Collection(u.TableName())
 
 	b, err := bson.Marshal(u)
@@ -47,18 +41,11 @@ func (u *User) Create() error {
 	if err != nil {
 		return errors.Wrap(err, "failed to insert data at InsertOne()")
 	}
-	fmt.Println("created User:", u)
 
 	return nil
 }
 
 func (u *User) Save() error {
-	//cmd := fmt.Sprintf("UPDATE %s SET username = ?, password = ?, firstname = ?, lastname = ?, role = ? WHERE id = ?", u.TableName())
-	//_, err := DbConnection.Exec(cmd, u.UserName, u.Password, u.FirstName, u.LastName, u.Role, u.ID)
-	//if err != nil {
-	//	return err
-	//}
-	//return err
 	userCollection := db.Collection(u.TableName())
 
 	filter := bson.D{{"id", u.ID}}
@@ -74,18 +61,6 @@ func (u *User) Save() error {
 }
 
 func GetUser(id string) (*User, error) {
-	//tableName := GetUserTableName("user")
-	//cmd := fmt.Sprintf(`SELECT id, username, password, firstname, lastname, role FROM %s WHERE id = '%s'`,
-	//	tableName, id)
-	//row := DbConnection.QueryRow(cmd)
-	//var u User
-	//err := row.Scan(&u.ID, &u.UserName, &u.Password, &u.FirstName, &u.LastName, &u.Role)
-	//if err != nil {
-	//	log.Println(err)
-	//	return nil, err
-	//}
-	//return NewUser(u.ID, u.UserName, u.Password, u.FirstName, u.LastName, u.Role), nil
-
 	userCollection := db.Collection(GetTableName(tableNameUserData))
 
 	filter := bson.D{{"id", id}}
@@ -95,22 +70,10 @@ func GetUser(id string) (*User, error) {
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to find data at FindOne()")
 	}
-	fmt.Println("got User:", u)
 	return NewUser(u.ID, u.UserName, u.Password, u.FirstName, u.LastName, u.Role), nil
 }
 
 func GetUserByUserName(un string) (*User, error) {
-	//tableName := GetUserTableName("user")
-	//cmd := fmt.Sprintf(`SELECT id, username, password, firstname, lastname, role FROM %s WHERE username = '%s'`,
-	//	tableName, un)
-	//row := DbConnection.QueryRow(cmd)
-	//var u User
-	//err := row.Scan(&u.ID, &u.UserName, &u.Password, &u.FirstName, &u.LastName, &u.Role)
-	//if err != nil {
-	//	log.Println(err)
-	//	return nil, err
-	//}
-	//return NewUser(u.ID, u.UserName, u.Password, u.FirstName, u.LastName, u.Role), nil
 	userCollection := db.Collection(GetTableName(tableNameUserData))
 
 	filter := bson.D{{"user_name", un}}

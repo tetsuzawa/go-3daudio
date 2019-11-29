@@ -28,22 +28,9 @@ func (s *Session) TableName() string {
 }
 
 func (s *Session) Create() error {
-	//cmd := fmt.Sprintf("INSERT INTO %s (sessionid, username, time) VALUES (?, ?, ?)", s.TableName())
-	//_, err := DbConnection.Exec(cmd, s.SessionID, s.UserName, s.Time.Format(tFormat))
-
-	b, err := bson.Marshal(s)
-	//b, err := bson.Marshal(struct {
-	//	SessionID string `json:"session_id" bson:"session_id"`
-	//	UserName  string `json:"user_name" bson:"user_name"`
-	//	Time      string `json:"time" bson:"time"`
-	//}{
-	//	SessionID: s.SessionID,
-	//	UserName:  s.UserName,
-	//	Time:      s.Time.Format(tFormat),
-	//})
-
 	sCollection := db.Collection(tableNameSession)
 
+	b, err := bson.Marshal(s)
 	if err != nil {
 		return errors.Wrap(err, "failed to encode at bson.Marshal()")
 	}
@@ -51,14 +38,10 @@ func (s *Session) Create() error {
 	if err != nil {
 		return errors.Wrap(err, "failed to insert data at InsertOne()")
 	}
-	fmt.Println("insertedID:", insertedID)
-	fmt.Println("created session:", s)
 	return nil
 }
 
 func (s *Session) Save() error {
-	//cmd := fmt.Sprintf("UPDATE %s SET username = ?, time = ? WHERE sessionid = ?", s.TableName())
-	//_, err := DbConnection.Exec(cmd, s.UserName, s.Time.Format(tFormat), s.SessionID)
 	sCollection := db.Collection(tableNameSession)
 
 	filter := bson.D{{"session_id", s.SessionID}}
@@ -74,8 +57,6 @@ func (s *Session) Save() error {
 }
 
 func (s *Session) Delete() error {
-	//cmd := fmt.Sprintf("DELETE FROM %s WHERE sessionid = ?", s.TableName())
-	//_, err := DbConnection.Exec(cmd, s.SessionID)
 	sCollection := db.Collection(tableNameSession)
 
 	filter := bson.D{{"session_id", s.SessionID}}
@@ -88,12 +69,6 @@ func (s *Session) Delete() error {
 }
 
 func GetSession(sessionID string) (*Session, error) {
-	//tableName := GetSessionTableName("session")
-	//cmd := fmt.Sprintf(`SELECT sessionid, username, time FROM %s WHERE sessionid = '%s'`,
-	//	tableName, sessionID)
-	//row := DbConnection.QueryRow(cmd)
-	//var s Session
-	//err := row.Scan(&s.SessionID, &s.UserName, &s.Time)
 	sCollection := db.Collection(tableNameSession)
 
 	filter := bson.D{{"session_id", sessionID}}
@@ -108,28 +83,6 @@ func GetSession(sessionID string) (*Session, error) {
 }
 
 func GetRecentSessions(t time.Time) ([]Session, error) {
-	//tableName := GetSessionTableName("session")
-	//cmd := fmt.Sprintf(`SELECT sessionid, username, time FROM %s WHERE time > '%s'`,
-	//	tableName, t)
-	//rows, err := DbConnection.Query(cmd)
-	//if err != nil {
-	//	return nil, err
-	//}
-	//defer rows.Close()
-	//var ss []Session
-	//for rows.Next() {
-	//	var s Session
-	//	err := rows.Scan(&s.SessionID, &s.UserName, &s.Time)
-	//	if err != nil {
-	//		log.Println(err)
-	//		return nil, err
-	//	}
-	//	ss = append(ss, s)
-	//}
-	//if err := rows.Err(); err != nil {
-	//	return nil, err
-	//}
-	//return ss, nil
 	sCollection := db.Collection(tableNameSession)
 
 	findOptions := options.Find()
@@ -151,28 +104,6 @@ func GetRecentSessions(t time.Time) ([]Session, error) {
 }
 
 func GetOldSessions(t time.Time) ([]Session, error) {
-	//tableName := GetSessionTableName("session")
-	//cmd := fmt.Sprintf(`SELECT sessionid, username, time FROM %s WHERE time < '%s'`,
-	//	tableName, t)
-	//rows, err := DbConnection.Query(cmd)
-	//if err != nil {
-	//	return nil, err
-	//}
-	//defer rows.Close()
-	//var ss []Session
-	//for rows.Next() {
-	//	var s Session
-	//	err := rows.Scan(&s.SessionID, &s.UserName, &s.Time)
-	//	if err != nil {
-	//		log.Println(err)
-	//		return nil, err
-	//	}
-	//	ss = append(ss, s)
-	//}
-	//if err := rows.Err(); err != nil {
-	//	return nil, err
-	//}
-	//return ss, nil
 	sCollection := db.Collection(tableNameSession)
 
 	findOptions := options.Find()

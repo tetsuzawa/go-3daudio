@@ -36,15 +36,7 @@ func init() {
 	if err != nil {
 		log.Fatalln(errors.Wrap(err, "failed to load .env file at godotenv.Load()"))
 	}
-	//dbName := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s%s",
-	//	os.Getenv("DB_USER"),
-	//	os.Getenv("DB_PASSWORD"),
-	//	config.Cfg.DB.Host,
-	//	config.Cfg.DB.Port,
-	//	config.Cfg.DB.Name,
-	//	config.Cfg.DB.ETC,
-	//)
-	//DbConnection, err = sql.Open(config.Cfg.DB.Driver, dbName)
+
 	dbName := fmt.Sprintf("mongodb://%s:%s@%s:%d",
 		os.Getenv("DB_USER"),
 		os.Getenv("DB_PASSWORD"),
@@ -70,5 +62,6 @@ func init() {
 	if err != nil {
 		log.Fatal(errors.Wrap(err, "failed to connect to DB at mongo.NewClient()"))
 	}
+
 	db = client.Database(config.Cfg.DB.Name)
 }

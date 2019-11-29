@@ -45,8 +45,6 @@ func (h *HRTF) Create() error {
 }
 
 func (h *HRTF) Save() error {
-	//cmd := fmt.Sprintf("UPDATE %s SET name = ?, age = ?, azimuth = ?, elevation = ?, data = ? WHERE time = ?", h.TableName())
-	//_, err := DbConnection.Exec(cmd, h.Name, h.Age, h.Azimuth, h.Elevation, h.Data, h.Name)
 	hrtfCollection := db.Collection(h.TableName())
 
 	filter := bson.D{{"id", h.ID}}
@@ -62,17 +60,6 @@ func (h *HRTF) Save() error {
 }
 
 func GetHRTF(id string) (*HRTF, error) {
-	//tableName := GetHRTFTableName(string(id))
-	//tableName := GetHRTFTableName("hrtf")
-	//cmd := fmt.Sprintf(`SELECT id, name, age, azimuth, elevation, data FROM %s WHERE id = '%s'`,
-	//	tableName, id)
-	//row := DbConnection.QueryRow(cmd)
-	//var hrtf HRTF
-	//err := row.Scan(&hrtf.ID, &hrtf.Name, &hrtf.Age, &hrtf.Azimuth, &hrtf.Elevation, &hrtf.Data)
-	//if err != nil {
-	//	log.Println(err)
-	//	return nil, err
-	//}
 	hrtfCollection := db.Collection(GetTableName(tableNameHRTFData))
 
 	filter := bson.D{{"id", id}}
