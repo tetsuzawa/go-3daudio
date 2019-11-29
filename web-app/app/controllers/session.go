@@ -1,6 +1,8 @@
 package controllers
 
 import (
+	"fmt"
+	"github.com/pkg/errors"
 	"log"
 	"net/http"
 	"time"
@@ -26,18 +28,21 @@ func getUser(w http.ResponseWriter, r *http.Request) models.User {
 	http.SetCookie(w, c)
 
 	// if the user exists already, get user
-	var u *models.User
+	//var u models.User
 
 	s, err := models.GetSession(c.Value)
-	if err == nil {
-		u, err = models.GetUserByUserName(s.UserName)
-		if err != nil {
-			log.Println(err)
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-		}
-		return *u
+	if err != nil {
+		log.Println(errors.Wrap(err, "failed to get session"))
+		return models.User{}
 	}
-	return models.User{}
+
+	u, err := models.GetUserByUserName(s.UserName)
+	if err != nil {
+		log.Println(errors.Wrap(err, "failed to get user"))
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+	fmt.Println("got user in controller:", u)
+	return *u
 }
 
 func alreadyLoggedIn(r *http.Request) bool {

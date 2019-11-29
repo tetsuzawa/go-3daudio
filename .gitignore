@@ -17,6 +17,7 @@ web-app/.env
 
 # mysql
 db/mysql/data/
+db/mongo/data/
 
 # Useless
 .idea/
