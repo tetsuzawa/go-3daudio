@@ -2,9 +2,9 @@ package models
 
 import (
 	"context"
+	"fmt"
 	"github.com/pkg/errors"
 	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
 )
 
 type User struct {
@@ -27,14 +27,8 @@ func NewUser(id, username, password, firstname, lastname, role string) *User {
 	}
 }
 
-var userCollection *mongo.Collection
-
-func init() {
-	userCollection = db.Collection(tableNameUserData)
-}
-
 func (u *User) TableName() string {
-	return GetUserTableName(tableNameUserData)
+	return GetTableName(tableNameUserData)
 }
 
 func (u *User) Create() error {
@@ -43,6 +37,7 @@ func (u *User) Create() error {
 	//if err != nil {
 	//	return err
 	//}
+	userCollection := db.Collection(u.TableName())
 
 	b, err := bson.Marshal(u)
 	if err != nil {
@@ -52,6 +47,7 @@ func (u *User) Create() error {
 	if err != nil {
 		return errors.Wrap(err, "failed to insert data at InsertOne()")
 	}
+	fmt.Println("created User:", u)
 
 	return nil
 }
@@ -63,6 +59,7 @@ func (u *User) Save() error {
 	//	return err
 	//}
 	//return err
+	userCollection := db.Collection(u.TableName())
 
 	filter := bson.D{{"id", u.ID}}
 	b, err := bson.Marshal(u)
@@ -89,6 +86,8 @@ func GetUser(id string) (*User, error) {
 	//}
 	//return NewUser(u.ID, u.UserName, u.Password, u.FirstName, u.LastName, u.Role), nil
 
+	userCollection := db.Collection(GetTableName(tableNameUserData))
+
 	filter := bson.D{{"id", id}}
 
 	var u User
@@ -96,6 +95,7 @@ func GetUser(id string) (*User, error) {
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to find data at FindOne()")
 	}
+	fmt.Println("got User:", u)
 	return NewUser(u.ID, u.UserName, u.Password, u.FirstName, u.LastName, u.Role), nil
 }
 
@@ -111,11 +111,12 @@ func GetUserByUserName(un string) (*User, error) {
 	//	return nil, err
 	//}
 	//return NewUser(u.ID, u.UserName, u.Password, u.FirstName, u.LastName, u.Role), nil
+	userCollection := db.Collection(GetTableName(tableNameUserData))
 
 	filter := bson.D{{"user_name", un}}
 
 	var u User
-	err := sCollection.FindOne(context.TODO(), filter).Decode(&u)
+	err := userCollection.FindOne(context.TODO(), filter).Decode(&u)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to find data at FindOne()")
 	}

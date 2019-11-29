@@ -2,9 +2,9 @@ package models
 
 import (
 	"context"
+	"fmt"
 	"github.com/pkg/errors"
 	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"time"
 )
@@ -23,14 +23,8 @@ func NewSession(sessionId, userName string, timeDate time.Time) *Session {
 	}
 }
 
-var sCollection *mongo.Collection
-
-func init() {
-	sCollection = db.Collection(tableNameSession)
-}
-
 func (s *Session) TableName() string {
-	return GetSessionTableName(tableNameSession)
+	return GetTableName(tableNameSession)
 }
 
 func (s *Session) Create() error {
@@ -47,26 +41,32 @@ func (s *Session) Create() error {
 	//	UserName:  s.UserName,
 	//	Time:      s.Time.Format(tFormat),
 	//})
+
+	sCollection := db.Collection(tableNameSession)
+
 	if err != nil {
 		return errors.Wrap(err, "failed to encode at bson.Marshal()")
 	}
-	_, err = sCollection.InsertOne(context.Background(), b)
+	insertedID, err := sCollection.InsertOne(context.Background(), b)
 	if err != nil {
 		return errors.Wrap(err, "failed to insert data at InsertOne()")
 	}
+	fmt.Println("insertedID:", insertedID)
+	fmt.Println("created session:", s)
 	return nil
 }
 
 func (s *Session) Save() error {
 	//cmd := fmt.Sprintf("UPDATE %s SET username = ?, time = ? WHERE sessionid = ?", s.TableName())
 	//_, err := DbConnection.Exec(cmd, s.UserName, s.Time.Format(tFormat), s.SessionID)
+	sCollection := db.Collection(tableNameSession)
 
 	filter := bson.D{{"session_id", s.SessionID}}
 	b, err := bson.Marshal(s)
 	if err != nil {
 		return errors.Wrap(err, "failed to encode at bson.Marshal()")
 	}
-	_, err = hrtfCollection.UpdateOne(context.TODO(), filter, b)
+	_, err = sCollection.UpdateOne(context.TODO(), filter, b)
 	if err != nil {
 		return errors.Wrap(err, "failed to update data at UpdateOne()")
 	}
@@ -76,9 +76,10 @@ func (s *Session) Save() error {
 func (s *Session) Delete() error {
 	//cmd := fmt.Sprintf("DELETE FROM %s WHERE sessionid = ?", s.TableName())
 	//_, err := DbConnection.Exec(cmd, s.SessionID)
+	sCollection := db.Collection(tableNameSession)
 
 	filter := bson.D{{"session_id", s.SessionID}}
-	_, err := hrtfCollection.DeleteOne(context.TODO(), filter)
+	_, err := sCollection.DeleteOne(context.TODO(), filter)
 
 	if err != nil {
 		return errors.Wrap(err, "failed to insert data at InsertOne()")
@@ -93,6 +94,7 @@ func GetSession(sessionID string) (*Session, error) {
 	//row := DbConnection.QueryRow(cmd)
 	//var s Session
 	//err := row.Scan(&s.SessionID, &s.UserName, &s.Time)
+	sCollection := db.Collection(tableNameSession)
 
 	filter := bson.D{{"session_id", sessionID}}
 
@@ -101,6 +103,7 @@ func GetSession(sessionID string) (*Session, error) {
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to find data at FindOne()")
 	}
+	fmt.Println("got session:", s)
 	return NewSession(s.SessionID, s.UserName, s.Time), nil
 }
 
@@ -127,6 +130,7 @@ func GetRecentSessions(t time.Time) ([]Session, error) {
 	//	return nil, err
 	//}
 	//return ss, nil
+	sCollection := db.Collection(tableNameSession)
 
 	findOptions := options.Find()
 	filter := bson.D{{"time", bson.D{{"$gt", t}}}}
@@ -169,6 +173,7 @@ func GetOldSessions(t time.Time) ([]Session, error) {
 	//	return nil, err
 	//}
 	//return ss, nil
+	sCollection := db.Collection(tableNameSession)
 
 	findOptions := options.Find()
 	filter := bson.D{{"time", bson.D{{"$lt", t}}}}

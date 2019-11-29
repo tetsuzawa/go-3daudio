@@ -2,10 +2,8 @@ package models
 
 import (
 	"context"
-	"database/sql"
 	"github.com/pkg/errors"
 	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
 )
 
 type HRTF struct {
@@ -28,18 +26,13 @@ func NewHRTF(id string, name string, age uint, azimuth, elevation, data float64)
 	}
 }
 
-var DbConnection *sql.DB
-var hrtfCollection *mongo.Collection
-
-func init() {
-	hrtfCollection = db.Collection(tableNameHRTFData)
-}
-
 func (h *HRTF) TableName() string {
-	return GetHRTFTableName(tableNameHRTFData)
+	return GetTableName(tableNameHRTFData)
 }
 
 func (h *HRTF) Create() error {
+	hrtfCollection := db.Collection(h.TableName())
+
 	b, err := bson.Marshal(h)
 	if err != nil {
 		return errors.Wrap(err, "failed to encode at bson.Marshal()")
@@ -54,6 +47,8 @@ func (h *HRTF) Create() error {
 func (h *HRTF) Save() error {
 	//cmd := fmt.Sprintf("UPDATE %s SET name = ?, age = ?, azimuth = ?, elevation = ?, data = ? WHERE time = ?", h.TableName())
 	//_, err := DbConnection.Exec(cmd, h.Name, h.Age, h.Azimuth, h.Elevation, h.Data, h.Name)
+	hrtfCollection := db.Collection(h.TableName())
+
 	filter := bson.D{{"id", h.ID}}
 	b, err := bson.Marshal(h)
 	if err != nil {
@@ -78,6 +73,7 @@ func GetHRTF(id string) (*HRTF, error) {
 	//	log.Println(err)
 	//	return nil, err
 	//}
+	hrtfCollection := db.Collection(GetTableName(tableNameHRTFData))
 
 	filter := bson.D{{"id", id}}
 

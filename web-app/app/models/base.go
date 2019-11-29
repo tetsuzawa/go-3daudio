@@ -23,15 +23,7 @@ const (
 //const tFormat = "2006-01-02 15:04:05"
 const tFormat = "2006-01-02T15:04:05.000Z"
 
-func GetHRTFTableName(name string) string {
-	return fmt.Sprintf("%s", name)
-}
-
-func GetUserTableName(name string) string {
-	return fmt.Sprintf("%s", name)
-}
-
-func GetSessionTableName(name string) string {
+func GetTableName(name string) string {
 	return fmt.Sprintf("%s", name)
 }
 
