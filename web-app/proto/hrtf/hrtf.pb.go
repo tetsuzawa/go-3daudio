@@ -63,7 +63,7 @@ func (m *GetRandomHRTFReq) GetDatabaseName() string {
 	return ""
 }
 
-type HRTFResponse struct {
+type HRTF struct {
 	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Path                 string   `protobuf:"bytes,2,opt,name=path,proto3" json:"path,omitempty"`
 	Name                 string   `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
@@ -73,53 +73,53 @@ type HRTFResponse struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *HRTFResponse) Reset()         { *m = HRTFResponse{} }
-func (m *HRTFResponse) String() string { return proto.CompactTextString(m) }
-func (*HRTFResponse) ProtoMessage()    {}
-func (*HRTFResponse) Descriptor() ([]byte, []int) {
+func (m *HRTF) Reset()         { *m = HRTF{} }
+func (m *HRTF) String() string { return proto.CompactTextString(m) }
+func (*HRTF) ProtoMessage()    {}
+func (*HRTF) Descriptor() ([]byte, []int) {
 	return fileDescriptor_412c03aea376c519, []int{1}
 }
 
-func (m *HRTFResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_HRTFResponse.Unmarshal(m, b)
+func (m *HRTF) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_HRTF.Unmarshal(m, b)
 }
-func (m *HRTFResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_HRTFResponse.Marshal(b, m, deterministic)
+func (m *HRTF) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_HRTF.Marshal(b, m, deterministic)
 }
-func (m *HRTFResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_HRTFResponse.Merge(m, src)
+func (m *HRTF) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_HRTF.Merge(m, src)
 }
-func (m *HRTFResponse) XXX_Size() int {
-	return xxx_messageInfo_HRTFResponse.Size(m)
+func (m *HRTF) XXX_Size() int {
+	return xxx_messageInfo_HRTF.Size(m)
 }
-func (m *HRTFResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_HRTFResponse.DiscardUnknown(m)
+func (m *HRTF) XXX_DiscardUnknown() {
+	xxx_messageInfo_HRTF.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_HRTFResponse proto.InternalMessageInfo
+var xxx_messageInfo_HRTF proto.InternalMessageInfo
 
-func (m *HRTFResponse) GetId() string {
+func (m *HRTF) GetId() string {
 	if m != nil {
 		return m.Id
 	}
 	return ""
 }
 
-func (m *HRTFResponse) GetPath() string {
+func (m *HRTF) GetPath() string {
 	if m != nil {
 		return m.Path
 	}
 	return ""
 }
 
-func (m *HRTFResponse) GetName() string {
+func (m *HRTF) GetName() string {
 	if m != nil {
 		return m.Name
 	}
 	return ""
 }
 
-func (m *HRTFResponse) GetDatabaseName() string {
+func (m *HRTF) GetDatabaseName() string {
 	if m != nil {
 		return m.DatabaseName
 	}
@@ -128,24 +128,24 @@ func (m *HRTFResponse) GetDatabaseName() string {
 
 func init() {
 	proto.RegisterType((*GetRandomHRTFReq)(nil), "hrtf.GetRandomHRTFReq")
-	proto.RegisterType((*HRTFResponse)(nil), "hrtf.HRTFResponse")
+	proto.RegisterType((*HRTF)(nil), "hrtf.HRTF")
 }
 
 func init() { proto.RegisterFile("proto/hrtf/hrtf.proto", fileDescriptor_412c03aea376c519) }
 
 var fileDescriptor_412c03aea376c519 = []byte{
-	// 175 bytes of a gzipped FileDescriptorProto
+	// 169 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x2d, 0x28, 0xca, 0x2f,
 	0xc9, 0xd7, 0xcf, 0x28, 0x2a, 0x49, 0x03, 0x13, 0x7a, 0x60, 0xbe, 0x10, 0x0b, 0x88, 0xad, 0x64,
 	0xc6, 0x25, 0xe0, 0x9e, 0x5a, 0x12, 0x94, 0x98, 0x97, 0x92, 0x9f, 0xeb, 0x11, 0x14, 0xe2, 0x16,
 	0x94, 0x5a, 0x28, 0xa4, 0xc4, 0xc5, 0xe3, 0x92, 0x58, 0x92, 0x98, 0x94, 0x58, 0x9c, 0xea, 0x97,
-	0x98, 0x9b, 0x2a, 0xc1, 0xa8, 0xc0, 0xa8, 0xc1, 0x19, 0x84, 0x22, 0xa6, 0x94, 0xc5, 0xc5, 0x03,
-	0x51, 0x5e, 0x5c, 0x90, 0x9f, 0x57, 0x9c, 0x2a, 0xc4, 0xc7, 0xc5, 0x94, 0x99, 0x02, 0x55, 0xc9,
-	0x94, 0x99, 0x22, 0x24, 0xc4, 0xc5, 0x52, 0x90, 0x58, 0x92, 0x21, 0xc1, 0x04, 0x16, 0x01, 0xb3,
-	0x41, 0x62, 0x79, 0x20, 0xf3, 0x98, 0x21, 0x62, 0x20, 0x36, 0x86, 0x5d, 0x2c, 0x98, 0x76, 0x19,
-	0xb9, 0x72, 0xb1, 0x80, 0xec, 0x12, 0xb2, 0xe5, 0xe2, 0x45, 0x71, 0xab, 0x90, 0x98, 0x1e, 0xd8,
-	0x3f, 0xe8, 0x1e, 0x90, 0x12, 0x82, 0x88, 0x23, 0x3b, 0x50, 0x89, 0x21, 0x89, 0x0d, 0xec, 0x6f,
-	0x63, 0x40, 0x00, 0x00, 0x00, 0xff, 0xff, 0xca, 0xe5, 0x9f, 0x4c, 0x10, 0x01, 0x00, 0x00,
+	0x98, 0x9b, 0x2a, 0xc1, 0xa8, 0xc0, 0xa8, 0xc1, 0x19, 0x84, 0x22, 0xa6, 0x94, 0xc4, 0xc5, 0x02,
+	0x52, 0x2e, 0xc4, 0xc7, 0xc5, 0x94, 0x99, 0x02, 0x55, 0xc1, 0x94, 0x99, 0x22, 0x24, 0xc4, 0xc5,
+	0x52, 0x90, 0x58, 0x92, 0x21, 0xc1, 0x04, 0x16, 0x01, 0xb3, 0x41, 0x62, 0x79, 0x20, 0x73, 0x98,
+	0x21, 0x62, 0x20, 0x36, 0x86, 0x1d, 0x2c, 0x98, 0x76, 0x18, 0xd9, 0x71, 0xb1, 0x82, 0xec, 0x28,
+	0x16, 0x32, 0xe5, 0xe2, 0x45, 0x71, 0xa4, 0x90, 0x98, 0x1e, 0xd8, 0x23, 0xe8, 0x2e, 0x97, 0xe2,
+	0x82, 0x88, 0x83, 0xb8, 0x4a, 0x0c, 0x49, 0x6c, 0x60, 0x8f, 0x1a, 0x03, 0x02, 0x00, 0x00, 0xff,
+	0xff, 0x4a, 0x6c, 0x17, 0xda, 0x01, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -156,72 +156,72 @@ var _ grpc.ClientConn
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
 
-// HRTFClient is the client API for HRTF service.
+// HRTFsClient is the client API for HRTFs service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type HRTFClient interface {
-	GetRandomHRTF(ctx context.Context, in *GetRandomHRTFReq, opts ...grpc.CallOption) (*HRTFResponse, error)
+type HRTFsClient interface {
+	GetRandomHRTF(ctx context.Context, in *GetRandomHRTFReq, opts ...grpc.CallOption) (*HRTF, error)
 }
 
-type hRTFClient struct {
+type hRTFsClient struct {
 	cc *grpc.ClientConn
 }
 
-func NewHRTFClient(cc *grpc.ClientConn) HRTFClient {
-	return &hRTFClient{cc}
+func NewHRTFsClient(cc *grpc.ClientConn) HRTFsClient {
+	return &hRTFsClient{cc}
 }
 
-func (c *hRTFClient) GetRandomHRTF(ctx context.Context, in *GetRandomHRTFReq, opts ...grpc.CallOption) (*HRTFResponse, error) {
-	out := new(HRTFResponse)
-	err := c.cc.Invoke(ctx, "/hrtf.HRTF/GetRandomHRTF", in, out, opts...)
+func (c *hRTFsClient) GetRandomHRTF(ctx context.Context, in *GetRandomHRTFReq, opts ...grpc.CallOption) (*HRTF, error) {
+	out := new(HRTF)
+	err := c.cc.Invoke(ctx, "/hrtf.HRTFs/GetRandomHRTF", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// HRTFServer is the server API for HRTF service.
-type HRTFServer interface {
-	GetRandomHRTF(context.Context, *GetRandomHRTFReq) (*HRTFResponse, error)
+// HRTFsServer is the server API for HRTFs service.
+type HRTFsServer interface {
+	GetRandomHRTF(context.Context, *GetRandomHRTFReq) (*HRTF, error)
 }
 
-// UnimplementedHRTFServer can be embedded to have forward compatible implementations.
-type UnimplementedHRTFServer struct {
+// UnimplementedHRTFsServer can be embedded to have forward compatible implementations.
+type UnimplementedHRTFsServer struct {
 }
 
-func (*UnimplementedHRTFServer) GetRandomHRTF(ctx context.Context, req *GetRandomHRTFReq) (*HRTFResponse, error) {
+func (*UnimplementedHRTFsServer) GetRandomHRTF(ctx context.Context, req *GetRandomHRTFReq) (*HRTF, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRandomHRTF not implemented")
 }
 
-func RegisterHRTFServer(s *grpc.Server, srv HRTFServer) {
-	s.RegisterService(&_HRTF_serviceDesc, srv)
+func RegisterHRTFsServer(s *grpc.Server, srv HRTFsServer) {
+	s.RegisterService(&_HRTFs_serviceDesc, srv)
 }
 
-func _HRTF_GetRandomHRTF_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _HRTFs_GetRandomHRTF_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetRandomHRTFReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(HRTFServer).GetRandomHRTF(ctx, in)
+		return srv.(HRTFsServer).GetRandomHRTF(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hrtf.HRTF/GetRandomHRTF",
+		FullMethod: "/hrtf.HRTFs/GetRandomHRTF",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HRTFServer).GetRandomHRTF(ctx, req.(*GetRandomHRTFReq))
+		return srv.(HRTFsServer).GetRandomHRTF(ctx, req.(*GetRandomHRTFReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _HRTF_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "hrtf.HRTF",
-	HandlerType: (*HRTFServer)(nil),
+var _HRTFs_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "hrtf.HRTFs",
+	HandlerType: (*HRTFsServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GetRandomHRTF",
-			Handler:    _HRTF_GetRandomHRTF_Handler,
+			Handler:    _HRTFs_GetRandomHRTF_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
