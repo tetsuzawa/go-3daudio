@@ -3,14 +3,14 @@ syntax = "proto3";
 package hrtf;
 
 message GetHRTFFromNameReq {
-    string name = 1;
+    string Name = 1;
 }
 
 message HRTFData {
-    string id = 1;
-    string path = 2;
-    string name = 3;
-    string databaseName = 4;
+    string ID = 1;
+    string Path = 2;
+    string Name = 3;
+    string DatabaseName = 4;
 }
 
 service HRTF {
