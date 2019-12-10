@@ -2,19 +2,19 @@ syntax = "proto3";
 
 package hrtf;
 
-message GetRandomHRTFReq {
-    string DatabaseName = 1;
+message GetHRTFFromNameReq {
+    string name = 1;
 }
 
-message HRTF {
+message HRTFData {
     string id = 1;
     string path = 2;
     string name = 3;
-    string DatabaseName = 4;
+    string databaseName = 4;
 }
 
-service HRTFs {
-    rpc GetRandomHRTF (GetRandomHRTFReq) returns (HRTF) {
+service HRTF {
+    rpc GetHRTFFromName (GetHRTFFromNameReq) returns (HRTFData) {
     }
 }
 

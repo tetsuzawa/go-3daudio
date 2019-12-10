@@ -19,12 +19,6 @@ func viewPingHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
-func viewAnalysisHandler(w http.ResponseWriter, r *http.Request) {
-	err := tpls.ExecuteTemplate(w, "analysis.html", nil)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	}
-}
 
 type JSONError struct {
 	Error string `json:"error"`
@@ -90,7 +84,6 @@ func StartWebServer() error {
 	http.HandleFunc("/logout", viewLogoutHandler)
 	http.HandleFunc("/ping", viewPingHandler)
 	http.HandleFunc("/hrtf", viewHRTFHandler)
-	http.HandleFunc("/analysis/", viewAnalysisHandler)
 	http.HandleFunc("/api/sofa/", apiMakeHandler(apiSOFAHandler))
 	return http.ListenAndServe(fmt.Sprintf(":%d", config.Cfg.Web.Port), nil)
 }

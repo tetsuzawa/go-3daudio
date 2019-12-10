@@ -7,22 +7,18 @@ import (
 )
 
 type HRTF struct {
-	ID        string  `json:"id" bson:"id"`
-	Name      string  `json:"name" bson:"name"`
-	Age       uint    `json:"age" bson:"age"`
-	Azimuth   float64 `json:"azimuth" bson:"azimuth"`
-	Elevation float64 `json:"elevation" bson:"elevation"`
-	Data      float64 `json:"data" bson:"data"`
+	ID           string `json:"id" bson:"id"`
+	Name         string `json:"name" bson:"name"`
+	Path         string `json:"path" bson:"path"`
+	DatabaseName string `json:"database_name" bson:"database_name"`
 }
 
-func NewHRTF(id string, name string, age uint, azimuth, elevation, data float64) *HRTF {
+func NewHRTF(id, name, path, databaseName string) *HRTF {
 	return &HRTF{
-		ID:        id,
-		Name:      name,
-		Age:       age,
-		Azimuth:   azimuth,
-		Elevation: elevation,
-		Data:      data,
+		ID:           id,
+		Name:         name,
+		Path:         path,
+		DatabaseName: databaseName,
 	}
 }
 
@@ -69,5 +65,18 @@ func GetHRTF(id string) (*HRTF, error) {
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to find data at FindOne()")
 	}
-	return NewHRTF(hrtf.ID, hrtf.Name, hrtf.Age, hrtf.Azimuth, hrtf.Elevation, hrtf.Data), nil
+	return NewHRTF(hrtf.ID, hrtf.Name, hrtf.Path, hrtf.DatabaseName), nil
+}
+
+func GetHRTFFromName(name string) (*HRTF, error) {
+	hrtfCollection := db.Collection(GetTableName(tableNameHRTFData))
+
+	filter := bson.D{{"name", name}}
+
+	var hrtf HRTF
+	err := hrtfCollection.FindOne(context.TODO(), filter).Decode(&hrtf)
+	if err != nil {
+		return nil, errors.Wrap(err, "failed to find data at FindOne()")
+	}
+	return NewHRTF(hrtf.ID, hrtf.Name, hrtf.Path, hrtf.DatabaseName), nil
 }
