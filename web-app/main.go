@@ -25,7 +25,7 @@ func main() {
 
 	//hrtf := models.NewHRTF(id.String(), "tetsu", 20, 20, 0, 0.35555)
 	log.Println("create and insert HRTF")
-	hrtf := models.NewHRTF("01DQ44KFF4D44TFZA9963GD1VS", "test_hrtf_kosen", "", 20, 0, 0.35555)
+	hrtf := models.NewHRTF("01DQ44KFF4D44TFZA9963GD1VS", "test_hrtf_kosen", "", )
 	if err := hrtf.Create(); err != nil {
 		log.Fatalln(errors.Wrap(err, "failed to create new HRTF instance in main()"))
 	}

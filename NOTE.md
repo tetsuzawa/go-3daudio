@@ -25,3 +25,21 @@
 - wavを渡すのか
 - binを渡すのか
 - 
+
+- ファイル配信
+  - パス
+  - キー uuid
+  - 複数ファイルならディレクトリ?
+  - ディレクトリならzip?
+
+- go でファイルサーバー 
+
+- microservice 案
+  - pythonでsofa可視化
+  - pythonでグラフ可視化
+  - pythonで信号処理
+  - golangでhrtf再生
+  - three.jsで描画
+  - golangでhrtfのフィッティン
+  - fileuploader は fork ([uploader](https://github.com/Code-Hex/uploader/))
+    - uploaderとpython可視化は同居？
