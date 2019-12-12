@@ -14,4 +14,4 @@ test:
 
 .PHONY: protogen-user
 protogen-user:
-	protoc -I ${HOME}/dev/proto-files/user/ ${HOME}/dev/proto-files/user/user.proto --go_out=plugins=grpc:./proto/
+	protoc -I ${HOME}/dev/proto-files/user/ ${HOME}/dev/proto-files/user/user.proto --go_out=plugins=grpc:./proto/user/
