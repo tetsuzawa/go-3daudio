@@ -3,7 +3,10 @@ package models
 import (
 	"context"
 	"github.com/pkg/errors"
+
 	"go.mongodb.org/mongo-driver/bson"
+
+	"github.com/tetsuzawa/go-3daudio/web-app/proto/hrtf"
 )
 
 type HRTF struct {
@@ -13,12 +16,12 @@ type HRTF struct {
 	DatabaseName string `json:"database_name" bson:"database_name"`
 }
 
-func NewHRTF(id, name, path, databaseName string) *HRTF {
+func NewHRTF(hrtfpb *hrtfpb.HRTFData) *HRTF {
 	return &HRTF{
-		ID:           id,
-		Name:         name,
-		Path:         path,
-		DatabaseName: databaseName,
+		ID:           hrtfpb.GetID(),
+		Name:         hrtfpb.GetName(),
+		Path:         hrtfpb.GetPath(),
+		DatabaseName: hrtfpb.GetDatabaseName(),
 	}
 }
 
@@ -55,7 +58,7 @@ func (h *HRTF) Save() error {
 	return nil
 }
 
-func GetHRTF(id string) (*HRTF, error) {
+func GetHRTF(id string) (*hrtfpb.HRTFData, error) {
 	hrtfCollection := db.Collection(GetTableName(tableNameHRTFData))
 
 	filter := bson.D{{"id", id}}
@@ -65,10 +68,16 @@ func GetHRTF(id string) (*HRTF, error) {
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to find data at FindOne()")
 	}
-	return NewHRTF(hrtf.ID, hrtf.Name, hrtf.Path, hrtf.DatabaseName), nil
+	//return NewHRTF(hrtf.ID, hrtf.Name, hrtf.Path, hrtf.DatabaseName), nil
+	return &hrtfpb.HRTFData{
+		ID:           hrtf.ID,
+		Path:         hrtf.Path,
+		Name:         hrtf.Name,
+		DatabaseName: hrtf.DatabaseName,
+	}, nil
 }
 
-func GetHRTFFromName(name string) (*HRTF, error) {
+func GetHRTFFromName(name string) (*hrtfpb.HRTFData, error) {
 	hrtfCollection := db.Collection(GetTableName(tableNameHRTFData))
 
 	filter := bson.D{{"name", name}}
@@ -78,5 +87,10 @@ func GetHRTFFromName(name string) (*HRTF, error) {
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to find data at FindOne()")
 	}
-	return NewHRTF(hrtf.ID, hrtf.Name, hrtf.Path, hrtf.DatabaseName), nil
+	return &hrtfpb.HRTFData{
+		ID:           hrtf.ID,
+		Path:         hrtf.Path,
+		Name:         hrtf.Name,
+		DatabaseName: hrtf.DatabaseName,
+	}, nil
 }
