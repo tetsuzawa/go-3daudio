@@ -13,7 +13,7 @@ import (
 
 var dbSessionsCleaned time.Time
 
-func getUser(w http.ResponseWriter, r *http.Request) models.User {
+func getUser(w http.ResponseWriter, r *http.Request) models.UserServicer {
 	// get cookie
 	c, err := r.Cookie("session")
 	if err != nil {
@@ -28,12 +28,12 @@ func getUser(w http.ResponseWriter, r *http.Request) models.User {
 	http.SetCookie(w, c)
 
 	// if the user exists already, get user
-	//var u models.User
+	//var u models.UserServicer
 
 	s, err := models.GetSession(c.Value)
 	if err != nil {
 		log.Println(errors.Wrap(err, "failed to get session"))
-		return models.User{}
+		return models.UserServicer{}
 	}
 
 	u, err := models.GetUserByUserName(s.UserName)
