@@ -25,7 +25,7 @@ func viewSignupHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var u models.User
+	var u models.UserServicer
 
 	// process form submission
 	if r.Method == http.MethodPost {
