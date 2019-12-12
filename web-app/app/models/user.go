@@ -3,12 +3,14 @@ package models
 import (
 	"context"
 	"fmt"
-	userpb "github.com/tetsuzawa/go-3daudio/web-app/proto/user"
+	"log"
+
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-	"log"
+
+	userpb "github.com/tetsuzawa/go-3daudio/web-app/proto/user"
 )
 
 type User struct {
@@ -124,7 +126,6 @@ func (u *UserServicer) Delete(ctx context.Context, req *userpb.DeleteUserReq) (*
 
 	filter := bson.D{{"_id", id}}
 
-	var user *userpb.User
 	result, err := userCollection.DeleteOne(context.TODO(), filter)
 	if err != nil {
 		log.Printf("failed to delete document at DeleteOne: %v\n", err)
