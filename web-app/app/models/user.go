@@ -77,7 +77,7 @@ func (u *UserServicer) Read(ctx context.Context, req *userpb.ReadUserReq) (*user
 
 	id := req.GetId()
 
-	filter := bson.D{{"id", id}}
+	filter := bson.D{{"_id", id}}
 	//b, err := bson.Marshal(u)
 	//if err != nil {
 	//	return errors.Wrap(err, "failed to encode at bson.Marshal()")
@@ -90,6 +90,32 @@ func (u *UserServicer) Read(ctx context.Context, req *userpb.ReadUserReq) (*user
 		return nil, status.Errorf(codes.Internal, fmt.Sprintf("Internal error: %v", err))
 	}
 	return &userpb.ReadUserRes{User: user,}, nil
+}
+
+func (u *UserServicer) Update(ctx context.Context, req *userpb.UpdateUserReq) (*userpb.UpdateUserRes, error) {
+	userCollection := db.Collection(u.TableName())
+
+	user := req.GetUser()
+
+	filter := bson.D{{"_id", user.Id}}
+	//b, err := bson.Marshal(u)
+	//if err != nil {
+	//	return errors.Wrap(err, "failed to encode at bson.Marshal()")
+	//}
+
+	_, err := userCollection.UpdateOne(context.TODO(), filter, user)
+	if err != nil {
+		log.Printf("failed to update document at UpdateOne: %v\n", err)
+		return nil, status.Errorf(codes.Internal, fmt.Sprintf("Internal error: %v", err))
+	}
+	err = userCollection.FindOne(context.TODO(), filter).Decode(user)
+	if err != nil {
+		log.Printf("failed to insert document at FindOne: %v\n", err)
+		return nil, status.Errorf(codes.Internal, fmt.Sprintf("Internal error: %v", err))
+	}
+	//TODO DEBUG result
+
+	return &userpb.UpdateUserRes{User: user}, nil
 }
 
 //_, err = userCollection.UpdateOne(context.TODO(), filter, id)
