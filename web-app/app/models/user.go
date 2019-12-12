@@ -23,9 +23,9 @@ type User struct {
 
 type UserServicer struct{}
 
-func NewUser(id, username, password, firstname, lastname, role string) *UserServicer {
-	return &UserServicer{
-		ID:        id,
+func NewUser(id, username, password, firstname, lastname, role string) *userpb.User {
+	return &userpb.User{
+		Id:        id,
 		UserName:  username,
 		Password:  password,
 		FirstName: firstname,
@@ -43,7 +43,7 @@ func (u *UserServicer) Create(ctx context.Context, req *userpb.CreateUserReq) (*
 
 	user := req.GetUser()
 
-	data := User{
+	data := userpb.User{
 		//ID:        user.Id,  //empty, Mongodb generates a unique object ID
 		UserName:  user.GetUserName(),
 		Password:  user.GetPassword(),
@@ -78,14 +78,18 @@ func (u *UserServicer) Read(ctx context.Context, req *userpb.ReadUserReq) (*user
 	id := req.GetId()
 
 	filter := bson.D{{"id", id}}
-	b, err := bson.Marshal(u)
+	//b, err := bson.Marshal(u)
+	//if err != nil {
+	//	return errors.Wrap(err, "failed to encode at bson.Marshal()")
+	//}
+
+	var user *userpb.User
+	err := userCollection.FindOne(context.TODO(), filter).Decode(user)
 	if err != nil {
-		return errors.Wrap(err, "failed to encode at bson.Marshal()")
+		log.Printf("failed to insert document at FindOne: %v\n", err)
+		return nil, status.Errorf(codes.Internal, fmt.Sprintf("Internal error: %v", err))
 	}
-
-	var u User
-	err := userCollection.FindOne(context.TODO(), filter).Decode(&u)
-
+	return &userpb.ReadUserRes{User: user,}, nil
 }
 
 //_, err = userCollection.UpdateOne(context.TODO(), filter, id)
