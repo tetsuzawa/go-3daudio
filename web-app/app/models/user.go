@@ -3,7 +3,6 @@ package models
 import (
 	"context"
 	"fmt"
-	"github.com/pkg/errors"
 	userpb "github.com/tetsuzawa/go-3daudio/web-app/proto/user"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -118,34 +117,49 @@ func (u *UserServicer) Update(ctx context.Context, req *userpb.UpdateUserReq) (*
 	return &userpb.UpdateUserRes{User: user}, nil
 }
 
-//_, err = userCollection.UpdateOne(context.TODO(), filter, id)
-//if err != nil {
-//return errors.Wrap(err, "failed to insert data at InsertOne()")
-//}
-//return nil
+func (u *UserServicer) Delete(ctx context.Context, req *userpb.DeleteUserReq) (*userpb.DeleteUserRes, error) {
+	userCollection := db.Collection(u.TableName())
+
+	id := req.GetId()
+
+	filter := bson.D{{"_id", id}}
+
+	var user *userpb.User
+	result, err := userCollection.DeleteOne(context.TODO(), filter)
+	if err != nil {
+		log.Printf("failed to delete document at DeleteOne: %v\n", err)
+		return nil, status.Errorf(codes.Internal, fmt.Sprintf("Internal error: %v", err))
+	}
+	if result.DeletedCount < 1 {
+		err = fmt.Errorf("not found error: could not find document")
+		log.Printf("failed to delete document at DeleteOne (document count issue): %v", err)
+		return nil, status.Errorf(codes.Internal, fmt.Sprintf("Internal error: %v", err))
+	}
+	return &userpb.DeleteUserRes{IsSuccess: true}, nil
+}
+
+//func GetUser(id string) (*UserServicer, error) {
+//	userCollection := db.Collection(GetTableName(tableNameUserData))
 //
-func GetUser(id string) (*UserServicer, error) {
-	userCollection := db.Collection(GetTableName(tableNameUserData))
-
-	filter := bson.D{{"id", id}}
-
-	var u UserServicer
-	err := userCollection.FindOne(context.TODO(), filter).Decode(&u)
-	if err != nil {
-		return nil, errors.Wrap(err, "failed to find data at FindOne()")
-	}
-	return NewUser(u.ID, u.UserName, u.Password, u.FirstName, u.LastName, u.Role), nil
-}
-
-func GetUserByUserName(un string) (*UserServicer, error) {
-	userCollection := db.Collection(GetTableName(tableNameUserData))
-
-	filter := bson.D{{"user_name", un}}
-
-	var u UserServicer
-	err := userCollection.FindOne(context.TODO(), filter).Decode(&u)
-	if err != nil {
-		return nil, errors.Wrap(err, "failed to find data at FindOne()")
-	}
-	return NewUser(u.ID, u.UserName, u.Password, u.FirstName, u.LastName, u.Role), nil
-}
+//	filter := bson.D{{"id", id}}
+//
+//	var u UserServicer
+//	err := userCollection.FindOne(context.TODO(), filter).Decode(&u)
+//	if err != nil {
+//		return nil, errors.Wrap(err, "failed to find data at FindOne()")
+//	}
+//	return NewUser(u.ID, u.UserName, u.Password, u.FirstName, u.LastName, u.Role), nil
+//}
+//
+//func GetUserByUserName(un string) (*UserServicer, error) {
+//	userCollection := db.Collection(GetTableName(tableNameUserData))
+//
+//	filter := bson.D{{"user_name", un}}
+//
+//	var u UserServicer
+//	err := userCollection.FindOne(context.TODO(), filter).Decode(&u)
+//	if err != nil {
+//		return nil, errors.Wrap(err, "failed to find data at FindOne()")
+//	}
+//	return NewUser(u.ID, u.UserName, u.Password, u.FirstName, u.LastName, u.Role), nil
+//}
